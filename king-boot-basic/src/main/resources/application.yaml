@@ -1,0 +1,75 @@
+app:
+  name:  项目名 #${project.name}
+  description: 描述 #${app.name} is ${project.description}
+
+logging:
+  level:
+    root: error
+    web: debug
+    kings: debug
+  #分组log  
+  group:
+    web: org.springframework.core.codec, org.springframework.http, org.springframework.web
+    sql: org.springframework.jdbc.core
+    kings: com.kingboot
+
+spring:
+  profiles:
+    active: dev
+    include: test
+
+  devtools:
+    restart:
+      enabled: false
+      exclude: webapp/**
+      log-condition-evaluation-delta: false
+
+  mvc:
+   
+      
+      
+    static-path-pattern: /static/**
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+
+  resources:
+    static-locations: classpath:/static/
+
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    view-names: thymeleaf/*
+
+  view:
+    view-names: jsp/*
+
+server:
+  port: 8000
+  servlet:
+    context-path: /boot
+    
+management:
+  security:
+    enabled:false
+  #暴露所有接口
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+dubbo:
+  protocol:
+    name: dubbo
+    port: 20880
+    host: 192.168.0.104
+    id: dubbo
+  application:
+    name: dubbo-provider-demo
+    id: dubbo-provider-demo
+  registry:
+    address: zookeeper://127.0.0.1:2181?backup=127.0.0.1:2180,127.0.0.1:2182
+  consumer:
+    check: false
+

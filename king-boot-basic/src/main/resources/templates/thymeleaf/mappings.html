@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>功能映射</title>
+    <link rel="stylesheet" th:href="@{/static/bootstrap/3.3.5/css/bootstrap.min.css}" href="../../static/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/static/zui/1.8.1/css/zui.min.css}" href="../../static/zui/1.8.1/css/zui.min.css" />
+    <script src="//cdn.bootcss.com/zui/1.8.1/lib/jquery/jquery.js"></script>
+    <script th:src="@{/static/zui/1.8.1/js/zui.min.js}" src="../../static/zui/1.8.1/js/zui.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <!-- 导航头部 -->
+        <div class="navbar-header">
+            <!-- 移动设备上的导航切换按钮 -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-example">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- 品牌名称或logo -->
+            <a class="navbar-brand" href="your/nice/url">King Boot</a>
+        </div>
+        <!-- 导航项目 -->
+        <div class="collapse navbar-collapse navbar-collapse-example">
+            <!-- 一般导航项目 -->
+            <ul class="nav navbar-nav pull-right">
+                <li th:if="${@userEnv.userName() == null}">
+                    <a th:href="${@kingEnv.key('basic.login.url')}">登录</a>
+                </li>
+                <!-- 导航中的下拉菜单 -->
+                <li class="dropdown" th:if="${@userEnv.userName() != null}">
+                    <a th:href="'javascript:;'" class="dropdown-toggle" data-toggle="dropdown">
+                        <span th:text="${@userEnv.userProfile().getId()}">用户名</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a th:href="${@kingEnv.key('basic.logout.url')}">登出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- END .navbar-collapse -->
+    </div>
+</nav>
+<div class="container">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            功能映射
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <td>Method</td>
+                    <td>功能</td>
+                    <td>URL</td>
+                </tr>
+                <tr th:each="mapping : ${mappings}" th:class="${mappingStat.odd}? 'odd'">
+                    <td th:text="${mapping.method}">方法</td>
+                    <td th:text="${mapping.name}">功能</td>
+                    <td>
+                        <a th:href="${mapping.url}" target="_blank" th:text="${mapping.url}"></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
