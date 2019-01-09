@@ -4,14 +4,17 @@ app:
 
 logging:
   level:
-    root: error
+    root: debug
     web: debug
     kings: debug
+    exclude: error
+    
   #分组log  
   group:
     web: org.springframework.core.codec, org.springframework.http, org.springframework.web
     sql: org.springframework.jdbc.core
     kings: com.kingboot
+    exclude: org.apache.zookeeper,sun.rmiw
 
 spring:
   profiles:
@@ -25,9 +28,6 @@ spring:
       log-condition-evaluation-delta: false
 
   mvc:
-   
-      
-      
     static-path-pattern: /static/**
     view:
       prefix: /WEB-INF/
@@ -45,6 +45,11 @@ spring:
 
   view:
     view-names: jsp/*
+  redis:
+    host: localhost
+    password: 1234
+    port: 6379
+    timeout: 6000
 
 server:
   port: 8000

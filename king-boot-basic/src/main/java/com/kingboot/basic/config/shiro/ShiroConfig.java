@@ -4,6 +4,7 @@ import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import io.buji.pac4j.filter.LogoutFilter;
 import io.buji.pac4j.filter.SecurityFilter;
 import io.buji.pac4j.subject.Pac4jSubjectFactory;
+import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
@@ -13,6 +14,8 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.crazycake.shiro.RedisCacheManager;
+import org.crazycake.shiro.RedisManager;
 import org.pac4j.core.config.Config;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Value;
@@ -58,11 +61,14 @@ public class ShiroConfig {
     }
     
     @Bean ("securityManager")
-    public DefaultWebSecurityManager securityManager(Pac4jSubjectFactory subjectFactory, SessionManager sessionManager, CasRealm casRealm) {
+    public DefaultWebSecurityManager securityManager(Pac4jSubjectFactory subjectFactory, SessionManager sessionManager, CasRealm casRealm, CacheManager cacheManager) {
         DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
+        casRealm.setCredentialsMatcher(new TinyCredentialsMatcher());
         manager.setRealm(casRealm);
         manager.setSubjectFactory(subjectFactory);
         manager.setSessionManager(sessionManager);
+        manager.setCacheManager(cacheManager);
+        
         return manager;
     }
     
@@ -126,11 +132,11 @@ public class ShiroConfig {
     private void loadShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean) {
         /*下面这些规则配置最好配置到配置文件中 */
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        
         filterChainDefinitionMap.put("/callback", "callbackFilter");
-        filterChainDefinitionMap.put("/thymeleaf/**", "anon");
         filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/error", "anon");
+        filterChainDefinitionMap.put("/thymeleaf/**", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/**", "securityFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -155,12 +161,7 @@ public class ShiroConfig {
         // 添加casFilter到shiroFilter中
         loadShiroFilterChain(shiroFilterFactoryBean);
         Map<String, Filter> filters = new HashMap<>(3);
-        //cas 资源认证拦截器
-        SecurityFilter securityFilter = new SecurityFilter();
-        securityFilter.setConfig(config);
-        securityFilter.setClients(clientName);
         
-        filters.put("securityFilter", securityFilter);
         //cas 认证后回调拦截器
         CallbackFilter callbackFilter = new CallbackFilter();
         callbackFilter.setConfig(config);
@@ -175,7 +176,12 @@ public class ShiroConfig {
         logoutFilter.setLocalLogout(true);
         filters.put("logout", logoutFilter);
         shiroFilterFactoryBean.setFilters(filters);
-        
+    
+        //cas 资源认证拦截器
+        SecurityFilter securityFilter = new SecurityFilter();
+        securityFilter.setConfig(config);
+        securityFilter.setClients(clientName);
+        filters.put("securityFilter", securityFilter);
         return shiroFilterFactoryBean;
     }
     
@@ -194,7 +200,8 @@ public class ShiroConfig {
         cookie.setMaxAge(- 1);
         cookie.setPath("/");
         cookie.setDomain("ws.com");
-        cookie.setHttpOnly(false);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
         return cookie;
     }
     
@@ -222,5 +229,26 @@ public class ShiroConfig {
     @Bean (name = "shiroDialect")
     public ShiroDialect shiroDialect() {
         return new ShiroDialect();
+    }
+    
+    @Bean
+    public RedisCacheManager cacheManager(RedisManager redisManager) {
+        RedisCacheManager redisCacheManager = new RedisCacheManager();
+        redisCacheManager.setRedisManager(redisManager);
+        return redisCacheManager;
+    }
+    
+    @Bean
+    public RedisManager redisManager(
+            @Value("${spring.redis.host}") String host,
+            @Value("${spring.redis.port}") int port,
+            @Value("${spring.redis.timeout}") int timeout,
+            @Value("${spring.redis.password}") String password) {
+        RedisManager redisManager = new RedisManager();
+        redisManager.setHost(host);
+        redisManager.setPort(port);
+        redisManager.setTimeout(timeout);
+        redisManager.setPassword(password);
+        return redisManager;
     }
 }
