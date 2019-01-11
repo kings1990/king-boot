@@ -53,25 +53,30 @@ public class TestThymeleafController {
             if (methodsArray.length > 0) {
                 RequestMethod method = (RequestMethod) methodsArray[0];
                 String reqURIs = info.getPatternsCondition().toString();
-                reqURIs = reqURIs.substring(1, reqURIs.length() - 1);
-                //params
-                Set<NameValueExpression<String>> expressions = info.getParamsCondition().getExpressions();
-                String params ;
-                if (! expressions.isEmpty()) {
-                    //a=1&b=2
-                    params = expressions.toString().replace(", ", "&").replace("[", "").replace("]", "");
-                    if (reqURIs.contains("&")) {
-                        reqURIs = reqURIs + "&" + params;
-                    } else {
-                        reqURIs = reqURIs + "?" + params;
+                reqURIs = reqURIs.replace("[","").replace("]","");
+                String[] reqURIArray = reqURIs.split("\\|\\|");
+                for (String reqURI : reqURIArray) {
+                    //reqURI = reqURI.substring(1, reqURIs.length() - 1);
+                    reqURI = reqURI.trim();
+                    //params
+                    Set<NameValueExpression<String>> expressions = info.getParamsCondition().getExpressions();
+                    String params ;
+                    if (! expressions.isEmpty()) {
+                        //a=1&b=2
+                        params = expressions.toString().replace(", ", "&").replace("[", "").replace("]", "");
+                        if (reqURI.contains("&")) {
+                            reqURI = reqURI + "&" + params;
+                        } else {
+                            reqURI = reqURI + "?" + params;
+                        }
                     }
+                    MappingDetail mappingDetail = new MappingDetail();
+                    mappingDetail.setMethod(method.name());
+                    mappingDetail.setName(info.getName());
+                    String contextPath = request.getContextPath();
+                    mappingDetail.setUrl(contextPath+reqURI);
+                    result.add(mappingDetail);
                 }
-                MappingDetail mappingDetail = new MappingDetail();
-                mappingDetail.setMethod(method.name());
-                mappingDetail.setName(info.getName());
-                String contextPath = request.getContextPath();
-                mappingDetail.setUrl(contextPath+reqURIs);
-                result.add(mappingDetail);
             }
         }
         result.sort(Comparator.comparing(MappingDetail :: getUrl));
