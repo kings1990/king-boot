@@ -38,7 +38,7 @@ function ajax(url, data, success, cache, alone, async, type, dataType, error) {
             if(data.status === 404){
                 layer.msg('请求失败，请求未找到');
             }else if(data.status === 400){
-                layer.msg(data.message);
+                layer.msg(data.responseText);
             }else if(data.status === 401){
                 layer.msg('未登录');
             }else {
