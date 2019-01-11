@@ -7,6 +7,14 @@
     <link rel="stylesheet" th:href="@{/static/zui/1.8.1/css/zui.min.css}" href="../../static/zui/1.8.1/css/zui.min.css" />
     <script src="//cdn.bootcss.com/zui/1.8.1/lib/jquery/jquery.js"></script>
     <script th:src="@{/static/zui/1.8.1/js/zui.min.js}" src="../../static/zui/1.8.1/js/zui.min.js"></script>
+    <script th:src="@{/static/layer/3.1.1/layer/layer.js}" src="../../static/layer/3.1.1/layer/layer.js"></script>
+    <script th:src="@{/static/kings/1.0.0/ajax.js}" src="../../static/kings/1.0.0/ajax.js"></script>
+    <style>
+        .navbar-inverse {
+            background-color: #63b175;
+            border-color: #63b175;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -62,12 +70,23 @@
                     <td th:text="${mapping.method}">方法</td>
                     <td th:text="${mapping.name}">功能</td>
                     <td>
-                        <a th:href="${mapping.url}" target="_blank" th:text="${mapping.url}"></a>
+                        <a th:if="${mapping.method eq 'GET'}" th:href="${mapping.url}" target="_blank" th:text="${mapping.url}"></a>
+                        <a th:if="${mapping.method eq 'POST'}" th:data_href="${mapping.url}" th:data_params="${mapping.data}"  class="a-ajax" th:text="${mapping.url}"></a>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        $(".a-ajax").click(function () {
+            var url = $(this).attr("data_href");
+            var data = $(this).attr("data_params");
+            
+            post(url,$.parseJSON(data));
+        })
+    })
+</script>
 </body>
 </html>

@@ -21,18 +21,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        
+
         <shiro.version>1.4.0</shiro.version>
-        
+
         <!--Maven打包时，环境变量替换-->
         <resource.delimiter>${}</resource.delimiter>
     </properties>
 
     <dependencies>
-
-       
-        
-        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -82,7 +78,7 @@
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>0.2.0</version>
         </dependency>
-        
+
         <dependency>
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
@@ -138,7 +134,7 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
@@ -185,7 +181,12 @@
             <version>2.0.0</version>
         </dependency>
         <!-- Shiro thymeleaf -->
-        
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -196,7 +197,7 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-        
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -206,7 +207,7 @@
                     <!--增加jvm参数-->
                     <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
                 </configuration>
-                
+
                 <dependencies>
                     <!-- spring热部署 -->
                     <dependency>

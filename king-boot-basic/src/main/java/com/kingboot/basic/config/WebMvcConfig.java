@@ -10,18 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.config.annotation.*;
 
 import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Configuration
 @EnableWebMvc
@@ -38,9 +34,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(responseBodyConverter());
-        converters.add(new MappingJackson2XmlHttpMessageConverter());//支持返回xml
         converters.add(jacksonConverter());
-        
     }
     
     @Override
@@ -65,21 +59,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         return converter;
     }
-    
-    @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        //支持.xml结尾的请求
-        Map<String, MediaType> mediaTypeMap = new HashMap<>();
-        mediaTypeMap.put("xml", MediaType.APPLICATION_XML);
-        mediaTypeMap.put("json", MediaType.APPLICATION_JSON);
-        mediaTypeMap.put("html", MediaType.TEXT_HTML);
-        configurer.favorParameter(false)//是否支持format=json参数
-                .favorPathExtension(true).useJaf(false)//是否支持.json .xml等扩展名
-                .ignoreAcceptHeader(true)//忽视Accept请求头
-                .defaultContentType(MediaType.APPLICATION_JSON)//默认返回的context-type
-                .mediaTypes(mediaTypeMap);
-    }
-    
     
     @Override
     public void addCorsMappings(CorsRegistry registry) {

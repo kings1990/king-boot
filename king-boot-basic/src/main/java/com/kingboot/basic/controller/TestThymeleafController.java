@@ -9,11 +9,13 @@
 package com.kingboot.basic.controller;
 
 
+import com.kingboot.basic.config.common.KingParam;
 import com.kingboot.basic.model.MappingDetail;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.condition.NameValueExpression;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -41,14 +43,14 @@ public class TestThymeleafController {
     
     @RequestMapping (name = "映射集", value = "/mappings", method = GET)
     public String test2(Model model, HttpServletRequest request) {
-        Map map = this.handlerMapping.getHandlerMethods();
-        Set set = map.keySet();
+        Map<RequestMappingInfo,HandlerMethod> map = this.handlerMapping.getHandlerMethods();
         List<MappingDetail> result = new ArrayList<>();
-        
-        for (Object object : set) {
-            RequestMappingInfo info = (RequestMappingInfo) object;
+    
+        Set<Map.Entry<RequestMappingInfo, HandlerMethod>> set = map.entrySet();
+        for (Map.Entry<RequestMappingInfo, HandlerMethod> object: set) {
+            RequestMappingInfo info =  object.getKey();
             Set<RequestMethod> methods = info.getMethodsCondition().getMethods();
-            
+            HandlerMethod handlerMethod = object.getValue();
             Object[] methodsArray = methods.toArray();
             if (methodsArray.length > 0) {
                 RequestMethod method = (RequestMethod) methodsArray[0];
@@ -70,9 +72,12 @@ public class TestThymeleafController {
                             reqURI = reqURI + "?" + params;
                         }
                     }
+                    
                     MappingDetail mappingDetail = new MappingDetail();
                     mappingDetail.setMethod(method.name());
                     mappingDetail.setName(info.getName());
+                    KingParam kingParam = handlerMethod.getMethod().getAnnotation(KingParam.class);
+                    mappingDetail.setData(kingParam==null?"":kingParam.value());
                     String contextPath = request.getContextPath();
                     mappingDetail.setUrl(contextPath+reqURI);
                     result.add(mappingDetail);

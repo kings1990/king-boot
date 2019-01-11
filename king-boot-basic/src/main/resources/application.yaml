@@ -4,7 +4,7 @@ app:
 
 logging:
   level:
-    root: debug
+    root: error
     web: debug
     kings: debug
     exclude: error

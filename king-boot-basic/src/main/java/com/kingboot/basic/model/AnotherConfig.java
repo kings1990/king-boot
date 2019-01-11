@@ -1,29 +1,18 @@
 package com.kingboot.basic.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class AnotherConfig {
     
     private String host;
     
     private List<String> domain = new ArrayList<String>();
-    
-    public List<String> getDomain() {
-        return this.domain;
-    }
-    
-    public void setDomain(List<String> domain) {
-        this.domain = domain;
-    }
-    
-    public String getHost() {
-        return host;
-    }
-    
-    public void setHost(String host) {
-        this.host = host;
-    }
     
     @Override
     public String toString() {
