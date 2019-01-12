@@ -55,6 +55,9 @@ public class ShiroConfig {
     @Value ("${cas.client-name}")
     private String clientName;
     
+    @Value("${shiro.timeout.seconds}")
+    private Integer shiroTimeoutSeconds; 
+    
     @Bean
     public static LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
@@ -210,8 +213,7 @@ public class ShiroConfig {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionIdCookie(sessionIdCookie);
         sessionManager.setSessionIdCookieEnabled(true);
-        //30分钟
-        sessionManager.setGlobalSessionTimeout(180000);
+        sessionManager.setGlobalSessionTimeout(shiroTimeoutSeconds*1000);
         sessionManager.setSessionDAO(sessionDAO);
         sessionManager.setDeleteInvalidSessions(true);
         sessionManager.setSessionValidationSchedulerEnabled(true);
