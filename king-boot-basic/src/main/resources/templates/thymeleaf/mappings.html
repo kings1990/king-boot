@@ -67,11 +67,13 @@
                     <td>URL</td>
                 </tr>
                 <tr th:each="mapping : ${mappings}" th:class="${mappingStat.odd}? 'odd'">
-                    <td th:text="${mapping.method}">方法</td>
-                    <td th:text="${mapping.name}">功能</td>
+                    <td >
+                        <span class="label " th:classappend="${(mapping.method eq 'GET'? 'label-info':'') + (mapping.method eq 'POST' ? 'label-success':'')}" th:text="${mapping.method}">方法</span>
+                    </td>
+                    <td th:text="${mapping.name}" >功能</td>
                     <td>
-                        <a th:if="${mapping.method eq 'GET'}" th:href="${mapping.url}" target="_blank" th:text="${mapping.url}"></a>
-                        <a th:if="${mapping.method eq 'POST'}" th:data_href="${mapping.url}" th:data_params="${mapping.data}"  class="a-ajax" th:text="${mapping.url}"></a>
+                        <a th:if="${mapping.method eq 'GET'}" th:href="${mapping.url}" target="_blank" th:text="${mapping.url}">URL</a>
+                        <a th:if="${mapping.method eq 'POST'}" th:data_href="${mapping.url}" th:data_params="${mapping.data}"  class="a-ajax" th:text="${mapping.url}">URL</a>
                     </td>
                 </tr>
             </table>
