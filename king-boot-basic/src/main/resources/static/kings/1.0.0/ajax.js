@@ -13,15 +13,15 @@ function ajax(url, data, success, cache, alone, async, type, dataType, error) {
     var cache = cache || false;//浏览器历史缓存
     var success = success || function (data) {
         /*console.log('请求成功');*/
-        setTimeout(function () {
-            layer.msg(data.message);//通过layer插件来进行提示信息
-        },500);
+        // setTimeout(function () {
+        //     layer.msg(data.message);//通过layer插件来进行提示信息
+        // },500);
         if(data.code){//服务器处理成功
             setTimeout(function () {
-                if(data.url){
-                    location.replace(data.url);
+                if(data.redirectUrl){
+                    location.replace(data.redirectUrl);
                 }else{
-                    layer.msg("result:"+data.data);
+                    layer.msg(data.data, {time: 5000, icon:1});
                 }
             },1500);
         }else{//服务器处理失败
@@ -36,13 +36,13 @@ function ajax(url, data, success, cache, alone, async, type, dataType, error) {
         layer.closeAll('loading');
         setTimeout(function () {
             if(data.status === 404){
-                layer.msg('请求失败，请求未找到');
+                layer.msg('请求失败，请求未找到', {time: 5000, icon:5});
             }else if(data.status === 400){
-                layer.msg(data.responseText);
+                layer.msg(data.responseText, {time: 5000, icon:5});
             }else if(data.status === 401){
-                layer.msg('未登录');
+                layer.msg('未登录', {time: 5000, icon:5});
             }else {
-                layer.msg('请求失败,网络连接超时');
+                layer.msg('请求失败,网络连接超时', {time: 5000, icon:5});
             }
             ajaxStatus = true;
         },500);

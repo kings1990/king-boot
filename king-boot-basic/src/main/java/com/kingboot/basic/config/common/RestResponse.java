@@ -37,6 +37,8 @@ public class RestResponse<T> {
     /** Message. */
     private String message;
     
+    private String redirectUrl;
+    
     /** Data. */
     private T data = null;
     
@@ -126,8 +128,16 @@ public class RestResponse<T> {
         this.message = message;
     }
     
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+    
+    public void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
+    }
+    
     @Override
     public String toString() {
-        return "{\"code\":" + code + ",\"message\":\"" + message + "\",\"data\":" + data + "}";
+        return "{\"code\":" + code + ",\"message\":\"" + message + "\",\"data\":" + data + "\",\"redirectUrl\":" + redirectUrl+"}";
     }
 }
