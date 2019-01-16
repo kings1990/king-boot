@@ -58,7 +58,7 @@ public class RestResponse<T> {
         //     map.put("pageInfo", data);
         //     this.data = (T) map;
         // } else {
-            this.data = data;
+        this.data = data;
         //}
         
     }
@@ -138,6 +138,6 @@ public class RestResponse<T> {
     
     @Override
     public String toString() {
-        return "{\"code\":" + code + ",\"message\":\"" + message + "\",\"data\":" + data + "\",\"redirectUrl\":" + redirectUrl+"}";
+        return "{\"code\":" + code + ",\"message\":\"" + message + "\",\"data\":" + data + "\",\"redirectUrl\":" + redirectUrl + "}";
     }
 }

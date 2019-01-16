@@ -55,8 +55,8 @@ public class ShiroConfig {
     @Value ("${cas.client-name}")
     private String clientName;
     
-    @Value("${shiro.timeout.seconds}")
-    private Integer shiroTimeoutSeconds; 
+    @Value ("${shiro.timeout.seconds}")
+    private Integer shiroTimeoutSeconds;
     
     @Bean
     public static LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
@@ -179,7 +179,7 @@ public class ShiroConfig {
         logoutFilter.setLocalLogout(true);
         filters.put("logout", logoutFilter);
         shiroFilterFactoryBean.setFilters(filters);
-    
+        
         //cas 资源认证拦截器
         SecurityFilter securityFilter = new SecurityFilter();
         securityFilter.setConfig(config);
@@ -213,7 +213,7 @@ public class ShiroConfig {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionIdCookie(sessionIdCookie);
         sessionManager.setSessionIdCookieEnabled(true);
-        sessionManager.setGlobalSessionTimeout(shiroTimeoutSeconds*1000);
+        sessionManager.setGlobalSessionTimeout(shiroTimeoutSeconds * 1000);
         sessionManager.setSessionDAO(sessionDAO);
         sessionManager.setDeleteInvalidSessions(true);
         sessionManager.setSessionValidationSchedulerEnabled(true);
@@ -241,11 +241,7 @@ public class ShiroConfig {
     }
     
     @Bean
-    public RedisManager redisManager(
-            @Value("${spring.redis.host}") String host,
-            @Value("${spring.redis.port}") int port,
-            @Value("${spring.redis.timeout}") int timeout,
-            @Value("${spring.redis.password}") String password) {
+    public RedisManager redisManager(@Value ("${spring.redis.host}") String host, @Value ("${spring.redis.port}") int port, @Value ("${spring.redis.timeout}") int timeout, @Value ("${spring.redis.password}") String password) {
         RedisManager redisManager = new RedisManager();
         redisManager.setHost(host);
         redisManager.setPort(port);

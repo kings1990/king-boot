@@ -13,7 +13,7 @@ import java.lang.annotation.*;
  * @Version V1.0.
  * @date 2019.01.11 11:01:21
  */
-@Target ({ ElementType.METHOD})
+@Target ( {ElementType.METHOD})
 @Retention (RetentionPolicy.RUNTIME)
 @Documented
 public @interface KingParam {

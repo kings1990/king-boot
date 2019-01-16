@@ -17,8 +17,8 @@ public class AnotherConfig {
     @Override
     public String toString() {
         StringBuilder domains = new StringBuilder();
-        this.domain.stream().forEach(q->domains.append(q).append(","));
-        domains.deleteCharAt(domains.length()-1);
-        return "host:"+this.host+"\tdomain:["+domains.toString()+"]";
+        this.domain.stream().forEach(q -> domains.append(q).append(","));
+        domains.deleteCharAt(domains.length() - 1);
+        return "host:" + this.host + "\tdomain:[" + domains.toString() + "]";
     }
 }

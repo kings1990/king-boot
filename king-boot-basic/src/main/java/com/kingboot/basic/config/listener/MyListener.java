@@ -13,11 +13,11 @@ public class MyListener implements ServletContextListener {
     
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        LOGGER.debug(MyListener.class.getCanonicalName()+" init...");
+        LOGGER.debug(MyListener.class.getCanonicalName() + " init...");
     }
     
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        LOGGER.debug(MyListener.class.getCanonicalName()+" destroyed...");
+        LOGGER.debug(MyListener.class.getCanonicalName() + " destroyed...");
     }
 }

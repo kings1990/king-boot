@@ -14,7 +14,7 @@ public class FilterConfig {
     private ScriptFilter scriptFilter;
     
     @Bean
-    public FilterRegistrationBean setScriptFilter(){
+    public FilterRegistrationBean setScriptFilter() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         filterRegistrationBean.setFilter(scriptFilter);
         filterRegistrationBean.addUrlPatterns("/*");
@@ -24,7 +24,7 @@ public class FilterConfig {
     }
     
     @Bean
-    public FilterRegistrationBean setThymeleafFilter(){
+    public FilterRegistrationBean setThymeleafFilter() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         filterRegistrationBean.setFilter(thymeleafFilter);
         filterRegistrationBean.addUrlPatterns("/thymeleaf/*");

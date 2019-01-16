@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserEnv {
-    public CommonProfile userProfile(){
+    public CommonProfile userProfile() {
         Pac4jPrincipal pac4jPrincipal = (Pac4jPrincipal) SecurityUtils.getSubject().getPrincipal();
         return pac4jPrincipal.getProfile();
     }
     
-    public String userName(){
+    public String userName() {
         Pac4jPrincipal pac4jPrincipal = (Pac4jPrincipal) SecurityUtils.getSubject().getPrincipal();
-        if(pac4jPrincipal != null){
+        if (pac4jPrincipal != null) {
             return pac4jPrincipal.getProfile().getId();
         }
         return null;

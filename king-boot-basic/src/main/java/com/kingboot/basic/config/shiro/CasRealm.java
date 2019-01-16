@@ -25,7 +25,6 @@ public class CasRealm extends Pac4jRealm {
     private String clientName;
     
     
-    
     /**
      * 认证
      * @param authenticationToken
@@ -38,19 +37,16 @@ public class CasRealm extends Pac4jRealm {
         final Pac4jToken pac4jToken = (Pac4jToken) authenticationToken;
         final List<CommonProfile> commonProfileList = pac4jToken.getProfiles();
         final CommonProfile commonProfile = commonProfileList.get(0);
-
+        
         System.out.println("单点登录返回的信息" + commonProfile.toString());
         //todo 
         final Pac4jPrincipal principal = new Pac4jPrincipal(commonProfileList, getPrincipalNameAttribute());
         final PrincipalCollection principalCollection = new SimplePrincipalCollection(principal, getName());
-    
         
         SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(principalCollection, commonProfileList.hashCode());
-    
         
         return simpleAuthenticationInfo;
     }
-    
     
     
     /**

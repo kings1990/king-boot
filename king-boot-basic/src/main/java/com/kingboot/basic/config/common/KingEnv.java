@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 public class KingEnv {
     @Autowired
     private Environment environment;
-            
-    public String key(String key){
+    
+    public String key(String key) {
         return environment.getProperty(key);
     }
 }

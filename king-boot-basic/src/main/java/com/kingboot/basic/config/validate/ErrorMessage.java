@@ -1,7 +1,7 @@
 /*
  * 版权所有(C) 浙江大道网络科技有限公司2011-2020
  * Copyright 2009-2020 Zhejiang GreatTao Factoring Co., Ltd.
- *   
+ *
  * This software is the confidential and proprietary information of
  * Zhejiang GreatTao Corporation ("Confidential Information").  You
  * shall not disclose such Confidential Information and shall use
@@ -54,6 +54,6 @@ public class ErrorMessage {
     
     @Override
     public String toString() {
-        return "{\"fieldName\":\""+fieldName+"\",\"message\":\""+message+"\"}";
+        return "{\"fieldName\":\"" + fieldName + "\",\"message\":\"" + message + "\"}";
     }
 }

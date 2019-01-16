@@ -29,12 +29,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping ("/thymeleaf")
 @Controller
 public class TestThymeleafController {
-    @Resource(name = "requestMappingHandlerMapping")//排除controllerEndpointHandlerMapping
+    @Resource (name = "requestMappingHandlerMapping")//排除controllerEndpointHandlerMapping
     private RequestMappingHandlerMapping handlerMapping;
     
     @RequestMapping (name = "返回thymeleaf页面", value = "/1", method = GET)
     public String test1(Model model) throws Exception {
-        if(1 == 1){
+        if (1 == 1) {
             throw new Exception("业务异常");
         }
         model.addAttribute("name", "kings1");
@@ -43,26 +43,26 @@ public class TestThymeleafController {
     
     @RequestMapping (name = "映射集", value = "/mappings", method = GET)
     public String test2(Model model, HttpServletRequest request) {
-        Map<RequestMappingInfo,HandlerMethod> map = this.handlerMapping.getHandlerMethods();
+        Map<RequestMappingInfo, HandlerMethod> map = this.handlerMapping.getHandlerMethods();
         List<MappingDetail> result = new ArrayList<>();
-    
+        
         Set<Map.Entry<RequestMappingInfo, HandlerMethod>> set = map.entrySet();
-        for (Map.Entry<RequestMappingInfo, HandlerMethod> object: set) {
-            RequestMappingInfo info =  object.getKey();
+        for (Map.Entry<RequestMappingInfo, HandlerMethod> object : set) {
+            RequestMappingInfo info = object.getKey();
             Set<RequestMethod> methods = info.getMethodsCondition().getMethods();
             HandlerMethod handlerMethod = object.getValue();
             Object[] methodsArray = methods.toArray();
             if (methodsArray.length > 0) {
                 RequestMethod method = (RequestMethod) methodsArray[0];
                 String reqURIs = info.getPatternsCondition().toString();
-                reqURIs = reqURIs.replace("[","").replace("]","");
+                reqURIs = reqURIs.replace("[", "").replace("]", "");
                 String[] reqURIArray = reqURIs.split("\\|\\|");
                 for (String reqURI : reqURIArray) {
                     //reqURI = reqURI.substring(1, reqURIs.length() - 1);
                     reqURI = reqURI.trim();
                     //params
                     Set<NameValueExpression<String>> expressions = info.getParamsCondition().getExpressions();
-                    String params ;
+                    String params;
                     if (! expressions.isEmpty()) {
                         //a=1&b=2
                         params = expressions.toString().replace(", ", "&").replace("[", "").replace("]", "");
@@ -77,9 +77,9 @@ public class TestThymeleafController {
                     mappingDetail.setMethod(method.name());
                     mappingDetail.setName(info.getName());
                     KingParam kingParam = handlerMethod.getMethod().getAnnotation(KingParam.class);
-                    mappingDetail.setData(kingParam==null?"":kingParam.value());
+                    mappingDetail.setData(kingParam == null ? "" : kingParam.value());
                     String contextPath = request.getContextPath();
-                    mappingDetail.setUrl(contextPath+reqURI);
+                    mappingDetail.setUrl(contextPath + reqURI);
                     result.add(mappingDetail);
                 }
             }

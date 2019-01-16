@@ -3,7 +3,6 @@ package com.kingboot.basic.config.advice;
 
 import com.kingboot.basic.config.common.RestResponse;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.*;
 
 

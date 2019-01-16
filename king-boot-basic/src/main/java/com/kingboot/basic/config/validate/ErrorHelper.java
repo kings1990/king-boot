@@ -1,7 +1,7 @@
 /*
  * 版权所有(C) 浙江大道网络科技有限公司2011-2020
  * Copyright 2009-2020 Zhejiang GreatTao Factoring Co., Ltd.
- *   
+ *
  * This software is the confidential and proprietary information of
  * Zhejiang GreatTao Corporation ("Confidential Information").  You
  * shall not disclose such Confidential Information and shall use
@@ -23,12 +23,12 @@ import java.util.List;
 
 public class ErrorHelper {
     private static Logger logger = LoggerFactory.getLogger(ErrorHelper.class);
-
+    
     public RestResponse converBindError2AjaxError(BindingResult result, boolean validAllPropeerty) {
-
+        
         try {
             RestResponse res = new RestResponse(HttpStatus.BAD_REQUEST, "validate error!");
-
+            
             List<ErrorMessage> errorMesages = new ArrayList<>();
             List<ObjectError> objectErrors = result.getAllErrors();
             String objErrorStr;
@@ -41,7 +41,7 @@ public class ErrorHelper {
                 } else {
                     errorMesages.add(new ErrorMessage(objError.getCode(), objErrorStr));
                 }
-                if (!validAllPropeerty) {
+                if (! validAllPropeerty) {
                     //noinspection BreakStatement
                     break;//just one error object    
                 }

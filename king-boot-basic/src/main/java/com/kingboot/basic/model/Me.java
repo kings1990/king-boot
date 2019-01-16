@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 
-@ConfigurationProperties(prefix = "my")
+@ConfigurationProperties (prefix = "my")
 @Component
 @Getter
 @Setter

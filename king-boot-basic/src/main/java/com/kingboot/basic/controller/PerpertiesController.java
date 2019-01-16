@@ -71,11 +71,13 @@ public class PerpertiesController {
     public AnotherConfig getAnotherConfig() {
         return new AnotherConfig();
     }
+    
     @RequestMapping (name = "第三方组件绑定", value = "/5", method = GET)
     @ResponseBody
     public String test5() {
         return anotherConfig.toString();
     }
+    
     /*************************************************************************************************************/
     
     @RequestMapping (name = "宽松绑定绑定(忽略 1.大小写 2.-(横杠) 3._(下划线)【建议全使用大写】)", value = "/6", method = GET)
@@ -90,13 +92,13 @@ public class PerpertiesController {
         return myFruilt;
     }
     
-    @RequestMapping (name = "自定义converter", value = "/8", method = GET,params = {"areaCode=0574","phoneNum=12345678"})
+    @RequestMapping (name = "自定义converter", value = "/8", method = GET, params = {"areaCode=0574", "phoneNum=12345678"})
     @ResponseBody
     public Telephone test8(Telephone tel) {
         return tel;
     }
     
-    @RequestMapping (name = "@ConfigurationProperties验证", value = "/9", method = GET,params = {"areaCode=05","phoneNum=12345678"})
+    @RequestMapping (name = "@ConfigurationProperties验证", value = "/9", method = GET, params = {"areaCode=05", "phoneNum=12345678"})
     @ResponseBody
     public MyContact test9() {
         return myContact;
@@ -107,10 +109,6 @@ public class PerpertiesController {
     public Me test10() {
         return me;
     }
-    
-    
-    
-    
     
     
 }

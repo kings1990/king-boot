@@ -5,8 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.*;
 import javax.servlet.FilterConfig;
+import javax.servlet.*;
 import java.io.IOException;
 
 @Component
@@ -16,7 +16,7 @@ public class ThymeleafFilter implements Filter {
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        LOGGER.debug(ThymeleafFilter.class.getCanonicalName()+" init...");
+        LOGGER.debug(ThymeleafFilter.class.getCanonicalName() + " init...");
     }
     
     @Override

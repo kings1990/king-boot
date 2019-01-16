@@ -14,12 +14,7 @@ public class ServiceRegistry implements Watcher {
     private static CountDownLatch latch = new CountDownLatch(1);
     private static Logger logger = LoggerFactory.getLogger(ServiceRegistry.class);
     private ZooKeeper zk;
-    
-    public ZooKeeper getZk() {
-        return zk;
-    }
-    
-    @Value("${zk.address}")
+    @Value ("${zk.address}")
     private String zkServers;
     
     public ServiceRegistry() {
@@ -31,6 +26,10 @@ public class ServiceRegistry implements Watcher {
         } catch (Exception e) {
             logger.error("create zookeeper client failuer", e);
         }
+    }
+    
+    public ZooKeeper getZk() {
+        return zk;
     }
     
     //@Override

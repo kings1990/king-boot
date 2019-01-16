@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.*;
 import javax.servlet.FilterConfig;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
@@ -25,7 +25,7 @@ public class ScriptFilter implements Filter {
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        LOGGER.debug(ScriptFilter.class.getCanonicalName()+" init...");
+        LOGGER.debug(ScriptFilter.class.getCanonicalName() + " init...");
     }
     
     @Override

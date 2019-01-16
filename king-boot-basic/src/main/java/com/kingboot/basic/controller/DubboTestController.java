@@ -16,7 +16,7 @@ public class DubboTestController {
     @Reference
     private HelloService helloService;
     
-    @RequestMapping (name = "dubbo测试",value = "/1", method = GET)
+    @RequestMapping (name = "dubbo测试", value = "/1", method = GET)
     @ResponseBody
     public String test1() {
         String result = helloService.hello();

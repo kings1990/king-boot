@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProfileController {
     
-    @Value("${test.version}")
+    @Value ("${test.version}")
     private String version;
     
-    @RequestMapping (name = "spring.profiles.include测试配置",value = "/1", method = RequestMethod.GET)
+    @RequestMapping (name = "spring.profiles.include测试配置", value = "/1", method = RequestMethod.GET)
     public String test1() throws Exception {
         return version;
     }

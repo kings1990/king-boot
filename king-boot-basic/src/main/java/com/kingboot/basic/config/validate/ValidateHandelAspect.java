@@ -1,7 +1,7 @@
 /*
  * 版权所有(C) 浙江大道网络科技有限公司2011-2020
  * Copyright 2009-2020 Zhejiang GreatTao Factoring Co., Ltd.
- *   
+ *
  * This software is the confidential and proprietary information of
  * Zhejiang GreatTao Corporation ("Confidential Information").  You
  * shall not disclose such Confidential Information and shall use
@@ -30,7 +30,7 @@ import org.springframework.validation.BindingResult;
 @Aspect
 @Component
 public class ValidateHandelAspect {
-    /**judge is all property error need to be export*/
+    /** judge is all property error need to be export */
     private boolean outputAllPropError = false;
     
     /**
@@ -45,8 +45,8 @@ public class ValidateHandelAspect {
      * @date 2016.08.03 17:51:42
      */
     @Around ("validatePointcut()")
-    public Object validateAround(ProceedingJoinPoint pjp) throws Throwable  {
-        Object[] args =  pjp.getArgs();
+    public Object validateAround(ProceedingJoinPoint pjp) throws Throwable {
+        Object[] args = pjp.getArgs();
         BindingResult bindingResult = null;
         if (args != null) {
             for (Object obj : args) {
@@ -58,9 +58,9 @@ public class ValidateHandelAspect {
             }
         }
         
-        if ( bindingResult != null && bindingResult.hasErrors() ){//异常输出
-            ErrorHelper errorHelper = new ErrorHelper(); 
-            throw new ValidateException(errorHelper.converBindError2AjaxError(bindingResult,outputAllPropError).toString());
+        if (bindingResult != null && bindingResult.hasErrors()) {//异常输出
+            ErrorHelper errorHelper = new ErrorHelper();
+            throw new ValidateException(errorHelper.converBindError2AjaxError(bindingResult, outputAllPropError).toString());
             //return errorHelper.converBindError2AjaxError(bindingResult,outputAllPropError);
         } else {//正常输出
             return pjp.proceed(args);

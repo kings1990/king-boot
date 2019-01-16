@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
-@ConfigurationProperties(prefix = "person.emperor")
+@ConfigurationProperties (prefix = "person.emperor")
 @Component
 @Setter
 @Data
@@ -18,7 +18,6 @@ public class Person implements Serializable {
     private String lastName;
     
     private String fullName;
-    
     
     
 }

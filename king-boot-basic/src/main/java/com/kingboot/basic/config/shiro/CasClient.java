@@ -16,16 +16,16 @@ public class CasClient extends org.pac4j.cas.client.CasClient {
     public CasClient() {
         super();
     }
-
+    
     public CasClient(CasConfiguration configuration) {
         super(configuration);
     }
-
+    
     /*
      * (non-Javadoc)
      * @see org.pac4j.core.client.IndirectClient#getRedirectAction(org.pac4j.core.context.WebContext)
      */
-
+    
     @Override
     public RedirectAction getRedirectAction(WebContext context) {
         this.init();
@@ -35,7 +35,7 @@ public class CasClient extends org.pac4j.cas.client.CasClient {
             this.cleanRequestedUrl(context);
             return getAjaxRequestResolver().buildAjaxResponse(action.getLocation(), context);
         } else {
-            final String attemptedAuth = (String)context.getSessionStore().get(context, this.getName() + ATTEMPTED_AUTHENTICATION_SUFFIX);
+            final String attemptedAuth = (String) context.getSessionStore().get(context, this.getName() + ATTEMPTED_AUTHENTICATION_SUFFIX);
             if (CommonHelper.isNotBlank(attemptedAuth)) {
                 this.cleanAttemptedAuthentication(context);
                 this.cleanRequestedUrl(context);
@@ -47,22 +47,22 @@ public class CasClient extends org.pac4j.cas.client.CasClient {
             }
         }
     }
-
+    
     private void cleanRequestedUrl(WebContext context) {
         SessionStore<WebContext> sessionStore = context.getSessionStore();
         if (sessionStore.get(context, Pac4jConstants.REQUESTED_URL) != null) {
             sessionStore.set(context, Pac4jConstants.REQUESTED_URL, "");
         }
-
+        
     }
-
+    
     private void cleanAttemptedAuthentication(WebContext context) {
         SessionStore<WebContext> sessionStore = context.getSessionStore();
         if (sessionStore.get(context, this.getName() + ATTEMPTED_AUTHENTICATION_SUFFIX) != null) {
             sessionStore.set(context, this.getName() + ATTEMPTED_AUTHENTICATION_SUFFIX, "");
         }
-
+        
     }
-
-
+    
+    
 }
