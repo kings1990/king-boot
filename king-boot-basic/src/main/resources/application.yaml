@@ -2,10 +2,14 @@ app:
   name:  项目名 #${project.name}
   description: 描述 #${app.name} is ${project.description}
 
+info:
+  description: sringboot 大保健
+  
+
 logging:
   level:
     root: error
-    web: debug
+    web: error
     kings: debug
     exclude: error
     
@@ -50,15 +54,27 @@ spring:
     password: 1234
     port: 6379
     timeout: 6000
+    
+  boot:
+    admin:
+      client:
+        url: http://localhost:7000
+        period: 30000
+        instance:
+          health-url: https://ws.com/boot/actuator/health
+          service-url: http://ws.com/boot
+          management-url: http://ws.com/boot/actuator
+          name: king-boot-basic
+        username: ws
+        password: 1234  
 
 server:
   port: 8000
   servlet:
     context-path: /boot
-    
+  
+  
 management:
-  security:
-    enabled:false
   #暴露所有接口
   endpoints:
     web:

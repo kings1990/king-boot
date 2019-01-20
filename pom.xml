@@ -17,7 +17,12 @@
         <module>king-boot-auth-server</module>
         <module>kingboot-service</module>
         <module>kingboot-service-impl</module>
+        <module>king-boot-admin</module>
     </modules>
+    
+    <properties>
+        <spring-boot-admin.version>2.1.1</spring-boot-admin.version>
+    </properties>
 
 
 </project>

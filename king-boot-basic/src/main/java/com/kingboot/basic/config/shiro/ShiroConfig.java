@@ -141,6 +141,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/thymeleaf/**", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/actuator/**", "anon");
         filterChainDefinitionMap.put("/**", "securityFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }

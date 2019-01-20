@@ -1,0 +1,27 @@
+server:
+  port: 7000
+spring:
+  security:
+    user:
+      name: ws
+      password: 1234
+  boot:
+    admin:
+      notify:
+        mail:
+          from: kingsoffice90@163.com
+          to: java_ws_love@163.com
+          
+  mail:
+    default-encoding: UTF-8
+    host: smtp.163.com
+    password: ws123456
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true  
+    username: kingsoffice90@163.com
+

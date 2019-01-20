@@ -1,0 +1,45 @@
+info: 
+  description: sringboot dubbo
+spring:  
+  boot:
+    admin:
+      client:
+        url: http://localhost:7000
+        period: 30000
+        instance:
+          health-url: http://localhost:8080/actuator/health
+          service-url: http://localhost:8080
+          management-url: http://localhost:8080/actuator
+          name: king-boot-dubbo
+          metadata:
+            user.name: ws
+            user.password: 1234
+        username: ws
+        password: 1234
+
+  dubbo:
+    application:
+      id: dubbo-provider-demo
+      name: dubbo-provider-demo
+    protocol:
+      id: dubbo
+      name: dubbo
+      port: 20880
+      status: server
+    registry:
+      address: zookeeper://127.0.0.1:2181?backup=127.0.0.1:2180,127.0.0.1:2182
+      id: my-registry
+    scan:
+      basePackages: com.kingboot.service
+
+
+management:
+  #暴露所有接口
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+
+  
+

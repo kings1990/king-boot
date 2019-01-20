@@ -13,6 +13,8 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.config.annotation.*;
 
@@ -63,6 +65,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public MappingJackson2HttpMessageConverter jacksonConverter() {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         return converter;
+    }
+    
+    @Configuration
+    public static class SecurityPermitAllConfig extends WebSecurityConfigurerAdapter {
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests().anyRequest().permitAll()
+                    .and().csrf().disable();
+        }
     }
 }
 
