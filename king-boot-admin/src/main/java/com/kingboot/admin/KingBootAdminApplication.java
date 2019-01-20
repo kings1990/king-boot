@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @EnableAdminServer
 public class KingBootAdminApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(KingBootAdminApplication.class, args);
-	}
-
+    
+    public static void main(String[] args) {
+        SpringApplication.run(KingBootAdminApplication.class, args);
+    }
+    
 }
 
