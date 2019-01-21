@@ -62,8 +62,8 @@ spring:
         period: 30000
         instance:
           health-url: https://ws.com/boot/actuator/health
-          service-url: http://ws.com/boot
-          management-url: http://ws.com/boot/actuator
+          service-url: https://ws.com/boot
+          management-url: https://ws.com/boot/actuator
           name: king-boot-basic
         username: ws
         password: 1234
