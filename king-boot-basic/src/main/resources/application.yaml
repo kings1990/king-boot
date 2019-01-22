@@ -116,7 +116,7 @@ dubbo:
 mapper:
   mappers:
     - tk.mybatis.mapper.common.Mapper
-    - com.kingboot.basic.config.mybatis.mapper.BaseMapper
+    - com.kingboot.basic.config.mybatis.mapper.MybatisMysqlMapper
     - tk.mybatis.mapper.common.MySqlMapper
   notEmpty: true
   identity: MYSQL
