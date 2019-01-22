@@ -14,7 +14,7 @@ public class ProfileController {
     private String version;
     
     @RequestMapping (name = "spring.profiles.include测试配置", value = "/1", method = RequestMethod.GET)
-    public String test1() throws Exception {
+    public String test1() {
         return version;
     }
 }

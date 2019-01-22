@@ -1,0 +1,3 @@
+boot.url=jdbc:mysql://localhost:3306/boot
+boot.username=root
+boot.password=1234
