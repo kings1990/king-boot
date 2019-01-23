@@ -136,7 +136,7 @@ public class ShiroConfig {
         /*下面这些规则配置最好配置到配置文件中 */
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/callback", "callbackFilter");
-        filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/logout", "logoutFilter");
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/thymeleaf/**", "anon");
@@ -178,7 +178,7 @@ public class ShiroConfig {
         logoutFilter.setDefaultUrl(casLogoutSuccessUrl);
         logoutFilter.setCentralLogout(true);
         logoutFilter.setLocalLogout(true);
-        filters.put("logout", logoutFilter);
+        filters.put("logoutFilter", logoutFilter);
         shiroFilterFactoryBean.setFilters(filters);
         
         //cas 资源认证拦截器

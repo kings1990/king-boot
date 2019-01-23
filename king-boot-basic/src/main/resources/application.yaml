@@ -70,7 +70,7 @@ spring:
 
   datasource:
     dboot:
-      jdbc-url: jdbc:mysql://localhost:3306/boot
+      jdbc-url: jdbc:mysql://localhost:3306/boot?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
       username: root
       password: 1234
       driver-class-name: com.mysql.cj.jdbc.Driver
