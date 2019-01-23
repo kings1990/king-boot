@@ -3,8 +3,10 @@ package com.kingboot.basic;
 import com.kingboot.basic.config.listener.MyApplicationStartingEventListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
+@EnableTransactionManagement
 @tk.mybatis.spring.annotation.MapperScan(basePackages = "com.kingboot.basic.dao.boot.mapper",sqlSessionFactoryRef = "sqlSessionFactory-boot")
 public class KingBootBasicApplication {
     

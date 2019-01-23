@@ -138,6 +138,6 @@ public class RestResponse<T> {
     
     @Override
     public String toString() {
-        return "{\"code\":" + code + ",\"message\":\"" + message + "\",\"data\":" + data + "\",\"redirectUrl\":" + redirectUrl + "}";
+        return "{\"code\":" + code + ",\"message\":\"" + message + "\",\"data\":" + data + ",\"redirectUrl\":" + redirectUrl + "}";
     }
 }
