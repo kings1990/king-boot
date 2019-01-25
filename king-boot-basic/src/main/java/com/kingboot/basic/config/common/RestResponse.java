@@ -42,12 +42,6 @@ public class RestResponse<T> {
     /** Data. */
     private T data = null;
     
-    /**
-     * Instantiates a new Rest response.
-     * @param code    the code
-     * @param message the message
-     * @param data    the data
-     */
     public RestResponse(int code, String message, T data) {
         this.code = code;
         this.message = message;
@@ -65,11 +59,37 @@ public class RestResponse<T> {
     
     /**
      * Instantiates a new Rest response.
+     * @param code    the code
+     * @param message the message
+     * @param data    the data
+     */
+    public RestResponse(int code, String message, T data,String redirectUrl) {
+        this.code = code;
+        this.message = message;
+        // this.data = data;
+        //this.data = data;
+        // if (data != null && data.getClass().equals(PageInfo.class)) {
+        //     Map<String, Object> map = new HashMap<String, Object>();
+        //     map.put("pageInfo", data);
+        //     this.data = (T) map;
+        // } else {
+        this.data = data;
+        this.redirectUrl = redirectUrl;
+        //}
+        
+    }
+    
+    /**
+     * Instantiates a new Rest response.
      * @param status the status
      * @param data   the data
      */
     public RestResponse(HttpStatus status, T data) {
-        this(status.value(), status.getReasonPhrase(), data);
+        this(status.value(), status.getReasonPhrase(), data,"");
+    }
+    
+    public RestResponse(HttpStatus status,String message, T data,String redirectUrl) {
+        this(status.value(), status.getReasonPhrase(), data,redirectUrl);
     }
     
     /**
@@ -77,7 +97,7 @@ public class RestResponse<T> {
      * @param data the data
      */
     public RestResponse(T data) {
-        this(HttpStatus.OK.value(), "OK", data);
+        this(HttpStatus.OK.value(), "OK", data,"");
     }
     
     /**
