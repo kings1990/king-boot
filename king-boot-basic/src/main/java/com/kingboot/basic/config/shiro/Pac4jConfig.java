@@ -79,7 +79,7 @@ public class Pac4jConfig {
     public CasConfiguration casConfig() {
         final CasConfiguration configuration = new CasConfiguration();
         //CAS server登录地址
-        configuration.setLoginUrl(loginUrl);
+        configuration.setLoginUrl(casLoginUrl);
         //CAS 版本，默认为 CAS30，我们使用的是 CAS20
         configuration.setProtocol(CasProtocol.CAS30);
         configuration.setAcceptAnyProxy(true);

@@ -21,9 +21,9 @@ public class KingsSecurityFilter extends SecurityFilter {
     
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        String authorizers = getAuthorizers();
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        if(authorizers == null){
+        super.doFilter(servletRequest, servletResponse, filterChain);
+        if(response.getStatus() == HttpStatus.FOUND.value()){
             if(isAjaxOrMobileRequest(servletRequest)){
                 String loginUrl = ((CasClient) (this.getConfig().getClients().findClient(getClients()))).getConfiguration().getLoginUrl();
                 RestResponse<String> restResponse = new RestResponse<>(HttpStatus.UNAUTHORIZED, "Unauthenticated user", "", loginUrl);
@@ -33,7 +33,6 @@ public class KingsSecurityFilter extends SecurityFilter {
                 return;
             }
         }
-        super.doFilter(servletRequest, servletResponse, filterChain);
     }
     
     private boolean isAjaxOrMobileRequest(ServletRequest servletRequest){
