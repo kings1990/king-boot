@@ -32,7 +32,9 @@ public class CallbackFilter extends io.buji.pac4j.filter.CallbackFilter {
         System.err.println(request.getRequestURL());
         if(isMobileLogin(request)){
             try {
+                super.doFilter(servletRequest, servletResponse, filterChain);
                 doReturnSession(response,new RestResponse<>(HttpStatus.OK,request.getSession().getId()));
+                return;
             } catch (Exception e) {
                 super.doFilter(servletRequest, servletResponse, filterChain);
             }
