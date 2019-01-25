@@ -30,6 +30,9 @@ public class Pac4jConfig {
     @Value ("${cas.callback.url}")
     private String callbackUrl;
     
+    @Value ("${basic.login.url}")
+    private String loginUrl;
+    
     /**
      * pac4j配置
      * @param casClient
@@ -76,7 +79,7 @@ public class Pac4jConfig {
     public CasConfiguration casConfig() {
         final CasConfiguration configuration = new CasConfiguration();
         //CAS server登录地址
-        configuration.setLoginUrl(casLoginUrl);
+        configuration.setLoginUrl(loginUrl);
         //CAS 版本，默认为 CAS30，我们使用的是 CAS20
         configuration.setProtocol(CasProtocol.CAS30);
         configuration.setAcceptAnyProxy(true);

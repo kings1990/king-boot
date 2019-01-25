@@ -2,7 +2,6 @@ package com.kingboot.basic.config.shiro;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import io.buji.pac4j.filter.LogoutFilter;
-import io.buji.pac4j.filter.SecurityFilter;
 import io.buji.pac4j.subject.Pac4jSubjectFactory;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -57,6 +56,9 @@ public class ShiroConfig {
     
     @Value ("${shiro.timeout.seconds}")
     private Integer shiroTimeoutSeconds;
+    
+    @Value ("${basic.login.url}")
+    private String loginUrl;
     
     @Bean
     public static LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
@@ -159,7 +161,7 @@ public class ShiroConfig {
         // 必须设置 SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //登录url kings   cas地址f
-        shiroFilterFactoryBean.setLoginUrl(casLoginUrl);
+        shiroFilterFactoryBean.setLoginUrl(loginUrl);
         
         //shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         // 添加casFilter到shiroFilter中
@@ -182,7 +184,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setFilters(filters);
         
         //cas 资源认证拦截器
-        SecurityFilter securityFilter = new SecurityFilter();
+        KingsSecurityFilter securityFilter = new KingsSecurityFilter();
         securityFilter.setConfig(config);
         securityFilter.setClients(clientName);
         filters.put("securityFilter", securityFilter);

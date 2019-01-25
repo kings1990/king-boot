@@ -2,6 +2,7 @@ package com.kingboot.basic.config.shiro;
 
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kingboot.basic.config.common.RestResponse;
 import org.apache.shiro.web.servlet.ShiroHttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ import java.io.PrintWriter;
 
 
 public class CallbackFilter extends io.buji.pac4j.filter.CallbackFilter {
-    private static final Gson GSON = new Gson();
+    private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
     
     private static final String  PLATFORM = "platform";
     
