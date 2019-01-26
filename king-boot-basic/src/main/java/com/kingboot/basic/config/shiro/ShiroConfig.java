@@ -60,6 +60,9 @@ public class ShiroConfig {
     @Value ("${basic.login.url}")
     private String loginUrl;
     
+    @Value ("${cas.callback.url}")
+    private String callbackUrl;
+    
     @Bean
     public static LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
@@ -185,6 +188,7 @@ public class ShiroConfig {
         
         //cas 资源认证拦截器
         KingsSecurityFilter securityFilter = new KingsSecurityFilter();
+        securityFilter.setLoginUrl(loginUrl);
         securityFilter.setConfig(config);
         securityFilter.setClients(clientName);
         filters.put("securityFilter", securityFilter);
