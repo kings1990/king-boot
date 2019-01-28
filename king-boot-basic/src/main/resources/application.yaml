@@ -51,7 +51,7 @@ spring:
     view-names: jsp/*
   redis:
     host: localhost
-    password: 1234
+    password: 
     port: 6379
     timeout: 6000
     jedis:
@@ -98,6 +98,9 @@ management:
     web:
       exposure:
         include: "*"
+  endpoint:
+    health:
+      show-details: always
 
 dubbo:
   protocol:
