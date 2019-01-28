@@ -54,6 +54,10 @@ spring:
     password: 1234
     port: 6379
     timeout: 6000
+    jedis:
+      pool:
+        max-idle: 8
+        max-wait: 1
 
   boot:
     admin:

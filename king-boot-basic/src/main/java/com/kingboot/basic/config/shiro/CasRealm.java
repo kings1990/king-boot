@@ -1,8 +1,10 @@
 package com.kingboot.basic.config.shiro;
 
+import com.kingboot.basic.config.shiro.service.SessionService;
 import io.buji.pac4j.realm.Pac4jRealm;
 import io.buji.pac4j.subject.Pac4jPrincipal;
 import io.buji.pac4j.token.Pac4jToken;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -11,9 +13,13 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.crazycake.shiro.RedisManager;
 import org.pac4j.core.profile.CommonProfile;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 认证与授权
@@ -24,7 +30,11 @@ public class CasRealm extends Pac4jRealm {
     
     private String clientName;
     
+    @Autowired
+    private RedisManager redisManager;
     
+    @Autowired
+    private SessionService sessionService;
     /**
      * 认证
      * @param authenticationToken
@@ -43,8 +53,17 @@ public class CasRealm extends Pac4jRealm {
         final Pac4jPrincipal principal = new Pac4jPrincipal(commonProfileList, getPrincipalNameAttribute());
         final PrincipalCollection principalCollection = new SimplePrincipalCollection(principal, getName());
         
-        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(principalCollection, commonProfileList.hashCode());
         
+        //todo set info to redis
+        Map<String, Object> attributes = new HashMap<>();
+        String account = principal.getProfile().getId();
+        attributes.put("account",account);
+        Map<String, Object> extraAttributes = sessionService.getExtraAttributes(account);
+        attributes.putAll(extraAttributes);
+        String sid = (String) SecurityUtils.getSubject().getSession().getId();
+        sessionService.saveAccountToSessionIdMapping(account,sid);
+        
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(attributes,commonProfileList.hashCode() , getName());
         return simpleAuthenticationInfo;
     }
     

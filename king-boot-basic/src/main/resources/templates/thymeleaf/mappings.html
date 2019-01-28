@@ -41,7 +41,7 @@
                 <!-- 导航中的下拉菜单 -->
                 <li class="dropdown" th:if="${@userEnv.userName() != null}">
                     <a class="dropdown-toggle" data-toggle="dropdown" th:href="'javascript:;'">
-                        <span th:text="${@userEnv.userProfile().getId()}">用户名</span>
+                        <span th:text="${@userEnv.userName()}">用户名</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" role="menu">
