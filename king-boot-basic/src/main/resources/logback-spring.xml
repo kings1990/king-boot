@@ -18,7 +18,7 @@
         <springProfile name="dev">
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- rollover daily 配置日志所生成的目录以及生成文件名的规则 -->
-                <fileNamePattern>//Users/wilson/develop/gt-workspace-git/kings-project/king-boot/logs/king-boot-basic/dev/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <fileNamePattern>//Users/wilson/develop/gt-workspace-git/kings-project/king-boot/king-boot-basic/logs/dev/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
                 <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                     <!-- or whenever the file size reaches 64 MB -->
                     <maxFileSize>64 MB</maxFileSize>
@@ -29,7 +29,7 @@
         <springProfile name="default">
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- rollover daily 配置日志所生成的目录以及生成文件名的规则 -->
-                <fileNamePattern>/Users/wilson/develop/gt-workspace-git/kings-project/king-boot/logs/king-boot-basic/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <fileNamePattern>/Users/wilson/develop/gt-workspace-git/kings-project/king-boot/king-boot-basic/logs/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
                 <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                     <!-- or whenever the file size reaches 64 MB -->
                     <maxFileSize>64 MB</maxFileSize>
