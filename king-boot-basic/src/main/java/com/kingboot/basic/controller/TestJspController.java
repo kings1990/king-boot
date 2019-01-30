@@ -3,6 +3,7 @@ package com.kingboot.basic.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -12,7 +13,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class TestJspController {
     
     
-    @RequestMapping (name = "返回jsp页面", value = "/1", method = GET)
+    @GetMapping (name = "返回jsp页面", value = "/1")
     public String test2(Model model) {
         model.addAttribute("a", "haha");
         return "jsp/a";

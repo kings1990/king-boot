@@ -7,8 +7,8 @@ import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
@@ -26,7 +26,7 @@ public class ZooKeeperTestController {
     @Autowired
     private ZkClient zkClient;
     
-    @RequestMapping (name = "zookeeper调用", value = "/1", method = RequestMethod.GET)
+    @GetMapping (name = "zookeeper调用", value = "/1")
     @ResponseBody
     public List<String> test1() throws KeeperException, InterruptedException {
         List<String> serviceNameList = zooKeeper.getChildren("/dubbo", true);

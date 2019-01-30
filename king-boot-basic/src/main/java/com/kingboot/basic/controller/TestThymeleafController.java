@@ -13,6 +13,7 @@ import com.kingboot.basic.config.common.KingParam;
 import com.kingboot.basic.model.MappingDetail;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.method.HandlerMethod;
@@ -24,15 +25,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 @RequestMapping ("/thymeleaf")
 @Controller
 public class TestThymeleafController {
     @Resource (name = "requestMappingHandlerMapping")//排除controllerEndpointHandlerMapping
     private RequestMappingHandlerMapping handlerMapping;
     
-    @RequestMapping (name = "返回thymeleaf页面", value = "/1", method = GET)
+    @GetMapping (name = "返回thymeleaf页面", value = "/1")
     public String test1(Model model) throws Exception {
         if (1 == 1) {
             throw new Exception("业务异常");
@@ -41,7 +40,7 @@ public class TestThymeleafController {
         return "thymeleaf/test";
     }
     
-    @RequestMapping (name = "映射集", value = "/mappings", method = GET)
+    @GetMapping (name = "映射集", value = "/mappings")
     public String test2(Model model, HttpServletRequest request) {
         Map<RequestMappingInfo, HandlerMethod> map = this.handlerMapping.getHandlerMethods();
         List<MappingDetail> result = new ArrayList<>();
