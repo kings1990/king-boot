@@ -3,6 +3,7 @@ package com.kingboot.basic.config.mybatis;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -32,6 +33,9 @@ public class CustomeDatasourceConfig {
      * @author Kings
      * @date 2016.01.22 10:47:42
      */
+    
+    @Value("${mybatis.type-aliases-package}")
+    private String typeAliasesPackage;
     @Bean("dBoot")
     @Primary
     @ConfigurationProperties (prefix = "spring.datasource.dboot")
@@ -42,9 +46,11 @@ public class CustomeDatasourceConfig {
 
     @Bean(name = "sqlSessionFactory-boot")
     @Primary
-    public SqlSessionFactory testSqlSessionFactory(@Qualifier ("dBoot") DataSource dataSource) throws Exception {
+    public SqlSessionFactory  bootSqlSessionFactory(@Qualifier ("dBoot") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
+        bean.setTypeAliasesPackage(typeAliasesPackage);
+        bean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml"));
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
         return bean.getObject();
     }
