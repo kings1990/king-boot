@@ -34,7 +34,7 @@ public class Swagger2 {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs")
+                .title("Kings Rest Api Center")
                 .description("api文档中心")
                 //.termsOfServiceUrl("http://blog.didispace.com/")
                 .contact(new Contact("Kings","https://gitee.com/kings","963987632@qq.com"))
