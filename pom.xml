@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.king</groupId>
     <artifactId>king-boot</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <modules>
         <module>king-boot-basic</module>
@@ -29,10 +29,19 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-kings9090-king</id>
-            <name>kings9090-king</name>
-            <url>https://api.bintray.com/maven/kings9090/king/com.king/;publish=1</url>
+            <id>bintray-darkings1990-kings</id>
+            <name>darkings1990-kings</name>
+            <url>https://api.bintray.com/maven/darkings1990/kings/com.king/;publish=1</url>
         </repository>
     </distributionManagement>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
