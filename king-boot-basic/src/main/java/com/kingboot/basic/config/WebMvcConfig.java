@@ -44,7 +44,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**");
+        //registry.addMapping("/api/**");由nginx代替
     }
     
     @Override

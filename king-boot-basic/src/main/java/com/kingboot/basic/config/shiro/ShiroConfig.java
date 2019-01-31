@@ -12,7 +12,6 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.pac4j.core.config.Config;
@@ -216,9 +215,20 @@ public class ShiroConfig {
         return cookie;
     }
     
-    @Bean
-    public DefaultWebSessionManager sessionManager(SimpleCookie sessionIdCookie, SessionDAO sessionDAO) {
-        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+    // @Bean
+    // public DefaultWebSessionManager sessionManager(SimpleCookie sessionIdCookie, SessionDAO sessionDAO) {
+    //     DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+    //     sessionManager.setSessionIdCookie(sessionIdCookie);
+    //     sessionManager.setSessionIdCookieEnabled(true);
+    //     sessionManager.setGlobalSessionTimeout(shiroTimeoutSeconds * 1000);
+    //     sessionManager.setSessionDAO(sessionDAO);
+    //     sessionManager.setDeleteInvalidSessions(true);
+    //     sessionManager.setSessionValidationSchedulerEnabled(true);
+    //     return sessionManager;
+    // }
+    
+    @Bean KingsSessionManager sessionManager(SimpleCookie sessionIdCookie, SessionDAO sessionDAO) {
+        KingsSessionManager sessionManager = new KingsSessionManager();
         sessionManager.setSessionIdCookie(sessionIdCookie);
         sessionManager.setSessionIdCookieEnabled(true);
         sessionManager.setGlobalSessionTimeout(shiroTimeoutSeconds * 1000);

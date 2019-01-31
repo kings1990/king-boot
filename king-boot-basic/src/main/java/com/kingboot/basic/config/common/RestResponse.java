@@ -149,7 +149,7 @@ public class RestResponse<T> {
     }
     
     public String getRedirectUrl() {
-        return redirectUrl;
+        return redirectUrl==null?"":redirectUrl;
     }
     
     public void setRedirectUrl(String redirectUrl) {
