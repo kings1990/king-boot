@@ -4,7 +4,6 @@
 
     <groupId>com.kingboot</groupId>
     <artifactId>king-boot-basic</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>king-boot-basic</name>
@@ -13,7 +12,7 @@
     <parent>
         <groupId>com.king</groupId>
         <artifactId>king-boot</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <properties>

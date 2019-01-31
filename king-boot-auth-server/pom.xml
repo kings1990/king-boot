@@ -4,11 +4,9 @@
     <parent>
         <groupId>com.king</groupId>
         <artifactId>king-boot</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.kingboot</groupId>
     <artifactId>king-boot-auth-server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>king-boot-auth-server</name>
     <description>auth serevr</description>
 
