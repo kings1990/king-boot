@@ -140,5 +140,10 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
-  
-  
+
+
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /swagger/api

@@ -25,6 +25,7 @@
         <mapper.version>2.1.4</mapper.version>
         <pagehelper.version>1.2.10</pagehelper.version>
         <boot.mybatis.version>2.0.0</boot.mybatis.version>
+        <swagger.version>2.9.2</swagger.version>
     </properties>
 
     <distributionManagement>
