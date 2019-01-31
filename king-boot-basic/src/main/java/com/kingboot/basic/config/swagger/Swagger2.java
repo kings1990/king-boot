@@ -8,6 +8,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
@@ -26,7 +27,9 @@ public class Swagger2 {
                 .apis(RequestHandlerSelectors.basePackage("com.kingboot.basic.api"))
                 .paths(path())
                 .build()
-                .securityContexts(Lists.newArrayList(securityContext()));
+                .securityContexts(Lists.newArrayList(securityContext()))
+                .securitySchemes(Lists.newArrayList(apiKey()))
+                .host("ws.com");
     }
 
     private ApiInfo apiInfo() {
@@ -48,7 +51,9 @@ public class Swagger2 {
                 .paths(pathThird())
                 .build()
                 .groupName("third")
-                .securityContexts(Lists.newArrayList(securityContextThird()));
+                .securityContexts(Lists.newArrayList(securityContextThird()))
+                .securitySchemes(Lists.newArrayList(apiKey()))
+                .host("ws.com");
     }
     
     private Predicate<String> path() {
@@ -68,5 +73,9 @@ public class Swagger2 {
         return SecurityContext.builder()
                 .forPaths(pathThird())
                 .build();
+    }
+    
+    private ApiKey apiKey() {
+        return new ApiKey("Token", "Token", "header");
     }
 }
