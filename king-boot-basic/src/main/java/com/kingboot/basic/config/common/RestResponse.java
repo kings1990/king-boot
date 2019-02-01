@@ -11,6 +11,7 @@
 
 package com.kingboot.basic.config.common;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.http.HttpStatus;
 
 
@@ -32,14 +33,18 @@ public class RestResponse<T> {
     public static final RestResponse<Void> VOID_REST_RESPONSE = new RestResponse<>(null);
     
     /** Code. */
+    @ApiModelProperty("CODE码")
     private int code;
     
     /** Message. */
+    @ApiModelProperty("消息")
     private String message;
     
+    @ApiModelProperty("下一个需要跳转的地址")
     private String redirectUrl;
     
     /** Data. */
+    @ApiModelProperty("返回实体数据")
     private T data = null;
     
     public RestResponse(int code, String message, T data) {
