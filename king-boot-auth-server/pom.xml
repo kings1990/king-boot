@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.king</groupId>
         <artifactId>king-boot</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
     <artifactId>king-boot-auth-server</artifactId>
     <name>king-boot-auth-server</name>
