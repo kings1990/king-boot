@@ -33,7 +33,7 @@ public class RestResponse<T> {
     public static final RestResponse<Void> VOID_REST_RESPONSE = new RestResponse<>(null);
     
     /** Code. */
-    @ApiModelProperty("CODE码")
+    @ApiModelProperty("Code码")
     private int code;
     
     /** Message. */
