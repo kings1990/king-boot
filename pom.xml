@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.king</groupId>
     <artifactId>king-boot</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
     <modules>
         <module>king-boot-basic</module>
@@ -57,7 +57,10 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
         </plugins>
     </build>
+
+
+    
 </project>
