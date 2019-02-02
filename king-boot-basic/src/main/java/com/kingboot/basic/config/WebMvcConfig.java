@@ -14,6 +14,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.filter.FormContentFilter;
 import org.springframework.web.servlet.config.annotation.*;
 
 import java.nio.charset.Charset;
@@ -25,6 +26,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
     
     @Autowired
     private TelephoneConverter telephoneConverter;
+    
+    @Bean
+    public FormContentFilter httpPutFormContentFilter() {
+        return new FormContentFilter();
+    }
     
     @Override
     public void addFormatters(FormatterRegistry registry) {

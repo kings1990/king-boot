@@ -4,14 +4,15 @@ $(function () {
     ajaxStatus = true;
 });
 
-// ajax封装
-function ajax(url, data, success, cache, alone, async, type, dataType, error) {
-    var type = type || 'post';//请求类型
-    var dataType = dataType || 'json';//接收数据类型
-    var async = async || true;//异步请求
-    var alone = alone || false;//独立提交（一次有效的提交）
-    var cache = cache || false;//浏览器历史缓存
-    var success = success || function (data) {
+var DEFAULT_OPTIONS = {
+    url:"",
+    data:"",
+    type:"post",
+    dataType:"json",
+    async:true,//异步请求
+    alone:false,//独立提交（一次有效的提交）
+    cache:false,
+    success:function (data) {
         /*console.log('请求成功');*/
         // setTimeout(function () {
         //     layer.msg(data.message);//通过layer插件来进行提示信息
@@ -29,8 +30,8 @@ function ajax(url, data, success, cache, alone, async, type, dataType, error) {
                 ajaxStatus = true;
             }
         }
-    };
-    var error = error || function (data) {
+    },
+    error:function (data) {
         /*console.error('请求成功失败');*/
         /*data.code;//错误状态吗*/
         layer.closeAll('loading');
@@ -46,35 +47,68 @@ function ajax(url, data, success, cache, alone, async, type, dataType, error) {
             }
             ajaxStatus = true;
         }, 500);
+    }
+};
+
+// ajax封装
+function ajax(options) {
+    options = {
+        url: options.url || DEFAULT_OPTIONS.url,
+        data: options.data || DEFAULT_OPTIONS.data,
+        type: options.type || DEFAULT_OPTIONS.type,
+        dataType: options.dataType || DEFAULT_OPTIONS.dataType,
+        async: options.async || DEFAULT_OPTIONS.async,
+        alone: options.alone || DEFAULT_OPTIONS.alone,
+        cache: options.cache || DEFAULT_OPTIONS.cache,
+        success: options.success || DEFAULT_OPTIONS.success,
+        error: options.error || DEFAULT_OPTIONS.error,
     };
+    
+    var url = options.url;
+    var reg = new RegExp(("{(\\w+)}"),"gi");
+    var matchArray = url.match(reg);
+    if(matchArray){
+        for(j = 0; j < matchArray.length; j++) {
+            var paramStrWithDollar = matchArray[j];
+            paramStr = paramStrWithDollar.replace("{","").replace("}","");
+            url = url.replace(paramStrWithDollar,options.data[paramStr]);
+        }
+        options.url = url;
+    }
+    
+    
+    
     /*判断是否可以发送请求*/
     if (!ajaxStatus) {
         return false;
     }
     ajaxStatus = false;//禁用ajax请求
     /*正常情况下1秒后可以再次多个异步请求，为true时只可以有一次有效请求（例如添加数据）*/
-    if (!alone) {
+    if (!options.alone) {
         setTimeout(function () {
             ajaxStatus = true;
         }, 1000);
     }
-    $.ajax({
-        'url': url,
-        'data': data,
-        'type': type,
-        'dataType': dataType,
-        'async': async,
-        'success': success,
-        'error': error,
-        'jsonpCallback': 'jsonp' + (new Date()).valueOf().toString().substr(-4),
-        'beforeSend': function () {
-            layer.msg('加载中', {
-                //通过layer插件来进行提示正在加载
-                icon: 16,
-                shade: 0.01
-            });
-        },
-    });
+    if(options.url){
+        $.ajax({
+            'url': options.url,
+            'data': options.data,
+            'type': options.type,
+            'dataType': options.dataType,
+            'async': options.async,
+            'success': options.success,
+            'error': options.error,
+            'jsonpCallback': 'jsonp' + (new Date()).valueOf().toString().substr(-4),
+            'beforeSend': function () {
+                layer.msg('加载中', {
+                    //通过layer插件来进行提示正在加载
+                    icon: 16,
+                    shade: 0.01
+                });
+            },
+        });
+    }
+    
 }
 
 // submitAjax(post方式提交)
@@ -83,7 +117,17 @@ function submitAjax(form, success, cache, alone) {
     var form = $(form);
     var url = form.attr('action');
     var data = form.serialize();
-    ajax(url, data, success, cache, alone, false, 'post', 'json');
+    var options = {
+        url:url,
+        data:data,
+        success:success,
+        cache:cache,
+        alone:alone,
+        async:false,
+        type:'post',
+        dataType:"json"
+    };
+    ajax(options);
 }
 
 /*//调用实例
@@ -96,15 +140,48 @@ $(function () {
 
 // ajax提交(post方式提交)
 function post(url, data, success, cache, alone) {
-    ajax(url, data, success, cache, alone, false, 'post', 'json');
+    var options = {
+        url:url,
+        data:data,
+        success:success,
+        cache:cache,
+        alone:alone,
+        async:false,
+        type:'post',
+        dataType:"json"
+        
+    };
+    ajax(options);
 }
 
 // ajax提交(get方式提交)
 function get(url, success, cache, alone) {
-    ajax(url, {}, success, alone, false, 'get', 'json');
+    var options = {
+        url:url,
+        data:{},
+        success:success,
+        cache:cache,
+        alone:alone,
+        async:false,
+        type:'get',
+        dataType:"json"
+
+    };
+    ajax(options);
 }
 
 // jsonp跨域请求(get方式提交)
 function jsonp(url, success, cache, alone) {
-    ajax(url, {}, success, cache, alone, false, 'get', 'jsonp');
+    var options = {
+        url:url,
+        data:{},
+        success:success,
+        cache:cache,
+        alone:alone,
+        async:false,
+        type:'get',
+        dataType:"jsonp"
+
+    };
+    ajax(options);
 }
