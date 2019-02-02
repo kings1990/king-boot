@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.Future;
+
 @RequestMapping ("/task")
 @Controller
 public class TaskTestController {
@@ -15,9 +17,15 @@ public class TaskTestController {
     @ResponseBody
     public String testTask() throws InterruptedException {
         long begin = System.currentTimeMillis();
-        asyncTask.task1();
-        asyncTask.task2();
-        asyncTask.task3();
+        Future<String> future1 = asyncTask.task1();
+        Future<String> future2 = asyncTask.task2();
+        Future<String> future3 = asyncTask.task3();
+        
+        while (true){
+            if(future1.isDone() && future2.isDone() && future3.isDone()){
+                break;    
+            }
+        }
         long end = System.currentTimeMillis();
         System.out.println("总耗时:"+(end-begin));
         return "1";
