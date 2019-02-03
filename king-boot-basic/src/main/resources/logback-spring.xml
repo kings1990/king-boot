@@ -5,7 +5,7 @@
 
 
     <!-- Simple file output -->
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="fileDebug" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- encoder defaults to ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
         <encoder>
             <pattern>
@@ -18,7 +18,7 @@
         <springProfile name="dev">
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- rollover daily 配置日志所生成的目录以及生成文件名的规则 -->
-                <fileNamePattern>//Users/wilson/develop/gt-workspace-git/kings-project/king-boot/king-boot-basic/logs/dev/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <fileNamePattern>//Users/wilson/develop/gt-workspace-git/kings-project/king-boot/king-boot-basic/logs/dev/king-boot-basic.debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
                 <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                     <!-- or whenever the file size reaches 64 MB -->
                     <maxFileSize>64 MB</maxFileSize>
@@ -29,7 +29,7 @@
         <springProfile name="default">
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- rollover daily 配置日志所生成的目录以及生成文件名的规则 -->
-                <fileNamePattern>/Users/wilson/develop/gt-workspace-git/kings-project/king-boot/king-boot-basic/logs/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <fileNamePattern>/Users/wilson/develop/gt-workspace-git/kings-project/king-boot/king-boot-basic/logs/king-boot-basic.debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
                 <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                     <!-- or whenever the file size reaches 64 MB -->
                     <maxFileSize>64 MB</maxFileSize>
@@ -41,8 +41,33 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
         </filter>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
         <!-- Safely log to the same file from multiple JVMs. Degrades performance! -->
         <prudent>true</prudent>
+    </appender>
+
+    <appender name="fileError" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread]%logger{56}.%method:line:\(%L\) -%msg%n
+            </pattern>
+        </encoder>
+
+        <!-- 设置滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 路径 -->
+            <fileNamePattern>/Users/wilson/develop/gt-workspace-git/kings-project/king-boot/king-boot-basic/logs/king-boot-basic.error.%d{yyyy-MM-dd}.%d.log</fileNamePattern>
+            <!-- 控制保留的归档文件的最大数量，超出数量就删除旧文件，假设设置每个月滚动，
+            且<maxHistory> 是1，则只保存最近1个月的文件，删除之前的旧文件 -->
+            <MaxHistory>1</MaxHistory>
+        </rollingPolicy>
     </appender>
 
 
@@ -51,7 +76,7 @@
         <!-- encoder defaults to ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
         <encoder>
             <pattern>
-                [ %-5level] [%date{yyyy-MM-dd HH:mm:ss}] %logger{96} [%line] - %msg%n
+                %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:line:\(%L\) -%msg%n
             </pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>
@@ -61,14 +86,15 @@
         </filter>
     </appender>
 
+    
 
     <!-- Enable FILE and STDOUT appenders for all log messages. By default, only log at level INFO and above. -->
     <root level="INFO">
-        <appender-ref ref="FILE"/>
+        <appender-ref ref="fileDebug"/>
+        <appender-ref ref="fileError"/>
         <appender-ref ref="STDOUT"/>
     </root>
 
-    <!-- For loggers in the these namespaces, log at all levels. -->
-    <logger name="com.kingboot.basic" level="DEBUG"/>
+    
 
 </configuration>
