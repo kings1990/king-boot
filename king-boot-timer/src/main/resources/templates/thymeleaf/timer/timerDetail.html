@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器详情</title>
+    <link href="../../static/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" th:href="@{/static/bootstrap/3.3.5/css/bootstrap.min.css}" />
+    <link href="../../static/zui/1.8.1/css/zui.min.css" rel="stylesheet" th:href="@{/static/zui/1.8.1/css/zui.min.css}" />
+    <script src="//cdn.bootcss.com/zui/1.8.1/lib/jquery/jquery.js"></script>
+    <script src="../../static/zui/1.8.1/js/zui.min.js" th:src="@{/static/zui/1.8.1/js/zui.min.js}"></script>
+</head>
+<body>
+<div class="panel ">
+    <div class="panel-body">
+        <div class="page-content">
+            <br class="content pt-20">
+            <form action="" class="form-horizontal clearfix" modelAttribute="timer">
+                <div class="form-group col-md-12 col-xs-12">
+                    <label class="control-label col-md-2 col-xs-2" for="name">定时器名称:</label>
+                    <div class="col-md-4 col-xs-4">
+                        <input class="form-control" id="name" name="name" readonly th:value="${timer.name}" type="text">
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-xs-12">
+                    <label class="control-label col-md-2 col-xs-2" for="describe">描述:</label>
+                    <div class="col-md-4 col-xs-4">
+                        <input class="form-control" id="describe" name="describe" readonly th:value="${timer.describe}"
+                               type="text">
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-xs-12">
+                    <label class="control-label col-md-2 col-xs-2" for="topic">topic:</label>
+                    <div class="col-md-4 col-xs-4">
+                        <input class="form-control" id="topic" name="topic" readonly
+                               th:value="${timer.topic}" type="text">
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-xs-12">
+                    <label class="control-label col-md-2 col-xs-2" for="message">message:</label>
+                    <div class="col-md-4 col-xs-4">
+                        <input class="form-control" id="message" name="message" readonly th:value="${timer.message}" type="text">
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-xs-12">
+                    <label class="control-label col-md-2 col-xs-2" for="message">corn:</label>
+                    <div class="col-md-4 col-xs-4">
+                        <input class="form-control" id="corn" name="corn" readonly th:value="${timer.corn}" type="text">
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-xs-12">
+                    <label class="control-label col-md-2 col-xs-2">定时器状态:</label>
+                    <div class="col-md-4 col-xs-4">
+                        <select aria-invalid="false" class="form-control valid" disabled id="status" name="status">
+                            <option th:if="${!timer.status}" value="false">禁用</option>
+                            <option th:if="${timer.status}" value="true">启用
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <span>_____________________________________________________________________我是分割线______________________________________________________________________________________</span>
+            <br />
+            <div class="form-group col-md-12 col-xs-12">
+                <label class="control-label col-md-2 col-xs-2" for="topic">最近应该执行的时间:</label>
+                <div class="col-md-4 col-xs-4">
+                    <input class="form-control" id="lastExpectTime " name="lastExpectTime" readonly
+                           th:value="${executor.lastExpectTime}" type="text">
+                </div>
+            </div>
+            <span>执行者状况:</span>
+            <table class="table table-striped table-bordered table-hover dataTable">
+                <thead>
+                <tr>
+                    <th>
+                        groupId
+                    </th>
+                    <th>
+                        上次执行时间
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="topicInfo : ${executor.topicInfos}">
+                    <td th:text="${topicInfo.consumer}"></td>
+                    <td th:text="${#dates.format(topicInfo.lastTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

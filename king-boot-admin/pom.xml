@@ -59,6 +59,7 @@
     </dependencyManagement>
 
     <build>
+        <finalName>king-boot-admin</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

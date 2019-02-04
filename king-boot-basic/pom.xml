@@ -305,6 +305,7 @@
     </dependencies>
 
     <build>
+        <finalName>king-boot-basic</finalName>
         <!--打包过滤-->
         <resources>
             <resource>

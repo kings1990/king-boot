@@ -1,0 +1,29 @@
+server:
+  port: 9100
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/timer
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: myGroup
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: true
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: HTML5
+    prefix: classpath:/templates/thymeleaf/
+    
+logging:
+  level: 
+    root: error
+    exclude: error
+  group:
+    exclude: org.apache.zookeeper,org.mongodb  

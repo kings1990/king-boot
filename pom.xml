@@ -18,6 +18,7 @@
         <module>kingboot-service</module>
         <module>kingboot-service-impl</module>
         <module>king-boot-admin</module>
+        <module>king-boot-timer</module>
     </modules>
 
     <properties>

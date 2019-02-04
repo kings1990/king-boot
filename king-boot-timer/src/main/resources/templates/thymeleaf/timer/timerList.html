@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>功能映射</title>
+    <link href="../../static/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" th:href="@{/static/bootstrap/3.3.5/css/bootstrap.min.css}" />
+    <link href="../../static/zui/1.8.1/css/zui.min.css" rel="stylesheet" th:href="@{/static/zui/1.8.1/css/zui.min.css}" />
+    <script src="//cdn.bootcss.com/zui/1.8.1/lib/jquery/jquery.js"></script>
+    <script src="../../static/zui/1.8.1/js/zui.min.js" th:src="@{/static/zui/1.8.1/js/zui.min.js}"></script>
+    <script src="../../static/layer/3.1.1/layer/layer.js" th:src="@{/static/layer/3.1.1/layer/layer.js}"></script>
+    <script src="../../static/bootstrap-table/1.13.3/bootstrap-table.min.js" th:src="@{/static/bootstrap-table/1.13.3/bootstrap-table.min.js}"></script>
+    <script src="../../static/bootstrap-table/1.13.3/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/bootstrap-table/1.13.3/locale/bootstrap-table-zh-CN.min.js}"></script>
+    <script src="../../static/bootstrap-table/1.13.3/extensions/export/bootstrap-table-export.min.js" th:src="@{/static/bootstrap-table/1.13.3/extensions/export/bootstrap-table-export.min.js}"></script>
+    <script src="../../static/zui/1.8.1/lib/datetimepicker/datetimepicker.min.js" th:src="@{/static/zui/1.8.1/lib/datetimepicker/datetimepicker.min.js}"></script>
+</head>
+<body>
+<div class="panel ">
+    <div class="panel-body">
+        <div class="page-content">
+            <div class="container">
+                <div class="tab-content pt-20">
+                    <div class="tab-pane active">
+                        <form class="form-horizontal" id="formSearch">
+                            <div class="nav pd-10 pl-0 pr-0 form-horizontal">
+                                <div class="col-md-2 col-xs-4 mt-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">定时器名称:</span>
+                                        <input class="form-control" id="timerName" name="timerName"
+                                               onblur="$(this).val($.trim($(this).val()))" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-xs-4 mt-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">topic:</span>
+                                        <input class="form-control" id="topic" name="topic"
+                                               onblur="$(this).val($.trim($(this).val()))" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-xs-4 mt-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">描述:</span>
+                                        <input class="form-control" id="describe" name="describe"
+                                               onblur="$(this).val($.trim($(this).val()))" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 mt-6">
+                                    <div class="input-group err">
+                                        <span class="input-group-addon">创建日期：</span>
+                                        <input class="check-datetime form-control formdate" id="createTimeBeg"
+                                               name="createTimeBeg"
+                                               type="text" value="">
+                                        <span class="input-group-addon fix-border fix-padding">--</span>
+                                        <input class="check-datetime form-control formdate" id="createTimeEnd"
+                                               name="createTimeEnd"
+                                               type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-4 mt-4">
+                                    <span>
+                                        <button class="btn btn-info" id="btn_query" type="button">查询</button>
+                                    </span>
+                                    <span>
+                                        <a _href='/timer/addTimer' class='data-detail btn btn-info'
+                                           href='/timer/addTimer'
+                                           title='新增定时器'>新增
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="bootstrap-table pl-10 pr-10">
+                            <table class="table table-hover table-striped" id="table">
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--页面内容end-->
+        </div>
+    </div>
+</div>
+<script>
+    /**判断时间格式 YYYY-MM-DD格式*/
+    $(document).on('change', '.check-datetime', function () {
+
+        var regu = "^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$";
+        var re = new RegExp(regu);
+        if ($(this).val().search(re) == -1) {
+            $(this).val('');
+        }
+
+        if ($(this).val() != "") {
+            if ($(this).val() < "1971-01-01") {
+                new $.zui.Messager("时间不能是1971年以前", {placement: 'center', type: 'danger'}).show();
+            } else if ($(this).val() > "2038-01-01") {
+                new $.zui.Messager("时间不能是2038年以后", {placement: 'center', type: 'danger'}).show();
+            }
+        }
+    });
+
+    function formatterDateTime(date) {
+        var datetime = date.getFullYear() + "/" // "年"
+            +
+            ((date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : "0" + (date.getMonth() + 1)) + "/" // "月"
+            +
+            (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " " + ((date.getHours() + 8) < 10 ? "0" + (date.getHours() + 8) : ((date.getHours() + 8) < 24 ? date.getHours() + 8 : "00")) +
+            ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":" + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds())
+        return datetime;
+    }
+
+    function longMsTimeConvertToDateTime(time) {
+        if (typeof (time) == "undefined") {
+            return time;
+        }
+        if ((time + "").match("^[0-9]*$") == null) {
+            //没有全部都是数字，1、已经正确显示。2、没有时间记录
+            return time;
+        }
+        var myDate = new Date(time);
+        return formatterDateTime(myDate);
+    }
+
+
+    $(function () {
+        /*s时间控件*/
+        $(".formdate").datetimepicker({
+            language: "en",
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "yyyy-mm-dd"
+        }).on('changeDate', function (ev) {
+            var starttime = $("input[name=createTimeBeg]").val();
+            var endtime = $("input[name=createTimeEnd]").val();
+            if (endtime != "" && starttime !== "") {
+                if (starttime > endtime) {
+                    $(".err").addClass("has-error");
+                    //layer.msg("Start time can't after the end time");
+                } else {
+                    $(".err").removeClass("has-error");
+                }
+            }
+        });
+        //table init
+        $('#table').bootstrapTable({
+            url: '/timer/loadTimerList', //请求后台的URL（*）
+            contentType: "application/x-www-form-urlencoded", //用post请求，这个是必须条件，必须加上，get可以不用，亲测
+            dataType: "json",
+            method: 'get', //请求方式（*）
+            //            toolbar: '#toolbar',        //工具按钮用哪个容器
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true, //是否显示分页（*）
+            sortable: false, //是否启用排序
+            sortOrder: "asc", //排序方式
+            //            search: true,             //是否使用客户端搜索
+            queryParams: queryParams,//传递参数（*）
+            "queryParamsType": "limit",
+            sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: 1, //初始化加载第一页，默认第一页
+            pageSize: 15, //每页的记录行数（*）
+            pageList: [10, 15, 30, 50], //可供选择的每页的行数（*）
+            showColumns: true, //是否显示所有的列
+            showRefresh: true, //是否显示刷新按钮
+            minimumCountColumns: 2, //最少允许的列数
+            clickToSelect: true, //是否启用点击选中行
+            strictSearch: true,
+            //            height: 460,            //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            showToggle: true, //是否显示详细视图和列表视图的切换按钮
+            uniqueId: "id", //每一行的唯一标识，一般为主键列
+            cardView: false, //是否显示详细视图
+            goPage: "CN",
+            detailView: false, //是否显示父子表
+            showExport: true, //是否显示导出
+            exportDataType: "basic", //basic', 'all', 'selected'.
+            //            align: "center",
+            columns: [
+                /* {checkbox: true}, */
+                {
+                    field: 'name',
+                    title: '名称',
+                    align: "center"
+                },
+                {
+                    field: 'describe',
+                    title: '描述',
+                    align: "center"
+                },
+                {
+                    field: 'topic',
+                    title: 'kafka topic',
+                    align: "center"
+                },
+                {
+                    field: 'message',
+                    title: 'kafka message',
+                    align: "center"
+                },
+                {
+                    field: 'corn',
+                    title: 'corn',
+                    align: "center"
+                },
+                {
+                    field: 'createTime',
+                    title: '创建日期',
+                    align: "center",
+                    formatter: function (value, row, index) {
+                        return longMsTimeConvertToDateTime(value);
+                    }
+                },
+                {
+                    field: 'status',
+                    title: '启用状态',
+                    align: "center",
+                    formatter: function (value,
+                                         row, index) {
+                        if (value == true) {
+                            return "启用"
+                        } else {
+                            return "禁用"
+                        }
+                    }
+                },
+                {
+                    field: '_id',
+                    title: '操作',
+                    align: "center",
+                    formatter: function (value, row, index) {
+                        var used = "<button class='btn btn-sm btn-primary'onclick='startTimer(" + "\"" + value + "\"" + ")'>启用</button>&nbsp";
+                        var disabled = "<button class='btn btn-sm btn-primary'onclick='stopTimer(" + "\"" + value + "\"" + ")'>禁用</button>&nbsp"
+                        if (row.status) {
+                            return disabled + "<a class='data-detail btn btn-primary btn-mini'  title='定时器详情'  href='/timer/" + value + "/detailTimer'  >详情</a> &nbsp" +
+                                "<a class='data-detail btn btn-primary btn-mini'  title='定时器编辑'  href='/timer/" + value + "/editTimer'  >编辑</a> &nbsp" +
+                                "<button class='btn btn-sm btn-primary'onclick='executeTimer(" + "\"" + value + "\"" + ")'>执行</button>&nbsp" +
+                                "<button class='btn btn-sm btn-primary'onclick='delTimer(" + "\"" + value + "\"" + ")'>删除</button>"
+                                ;
+                        } else {
+                            return used + "<a class='data-detail btn btn-primary btn-mini'  title='定时器详情'  href='/timer/" + value + "/detailTimer'  >详情</a> &nbsp" +
+                                "<a class='data-detail btn btn-primary btn-mini'  title='定时器编辑'  href='/timer/" + value + "/editTimer'  >编辑</a> &nbsp" +
+                                "<button class='btn btn-sm btn-primary'onclick='executeTimer(" + "\"" + value + "\"" + ")'>执行</button>&nbsp" +
+                                "<button class='btn btn-sm btn-primary'onclick='delTimer(" + "\"" + value + "\"" + ")'>删除</button>"
+                                ;
+                        }
+                    }
+
+                }
+            ]
+        });
+        $("#btn_query").click(function () {
+            /* if(!param_ok()){
+             //参数没有通过验证
+             return;
+             } */
+            $('#table').bootstrapTable('refresh');
+        });
+    });
+
+    function processDate(date) {
+        if (!date.match(/^\d{4}-\d{1,2}-\d{1,2}$/g)) {
+            return '';
+        }
+        return date;
+    }
+
+    function queryParams(params) {
+        var temp = { //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
+            limit: params.limit, //页面大小
+            offset: params.offset, //页码
+            timerName: $("#timerName").val(),
+            topic: $("#topic").val(),
+            describe: $("#describe").val(),
+            createTimeBeg: processDate($('#createTimeBeg').val()),
+            createTimeEnd: processDate($('#createTimeEnd').val())
+        };
+        return temp;
+    }
+
+
+    function startTimer(id) {
+        $.ajax({
+            type: 'post',
+            url: '/timer/' + id + '/startTimer',
+            dataType: "text",
+            success: function (res) {
+                if (res == "ok") {
+                    layer.msg("已启动");
+                } else if (res == "mesFail") {
+                    layer.msg("启动失败，请检查message是否正确");
+                } else if (res == "fail") {
+                    layer.msg("启动失败，请检查cron表达式是否正确");
+                }
+                $('#table').bootstrapTable('refresh');
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                layer.msg(errorThrown);
+                //window.location.href = '/capital/create/2';
+            }
+        })
+    }
+
+    function stopTimer(id) {
+        $.ajax({
+            type: 'post',
+            url: '/timer/' + id + '/stopTimer',
+            dataType: "text",
+            success: function (res) {
+                if (res == "ok") {
+                    layer.msg("已停止");
+                    $('#table').bootstrapTable('refresh');
+                } else if (res == "fail") {
+                    layer.msg("停止失败");
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                layer.msg(errorThrown);
+                //window.location.href = '/capital/create/2';
+            }
+        })
+    }
+
+    function executeTimer(id) {
+        $.ajax({
+            type: 'get',
+            url: '/timer/' + id + '/executeTimer',
+            dataType: "text",
+            success: function (res) {
+                if (res == "ok") {
+                    layer.msg("执行成功");
+                    $('#table').bootstrapTable('refresh');
+                } else if (res == "mesFail") {
+                    layer.msg("执行失败,message格式错误")
+                    $('#table').bootstrapTable('refresh');
+                } else if (res == "fail") {
+                    layer.msg("执行失败")
+                    $('#table').bootstrapTable('refresh');
+                }
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                layer.msg(errorThrown);
+                //window.location.href = '/capital/create/2';
+            }
+        })
+    }
+
+
+    function delTimer(id) {
+        $.ajax({
+            type: 'get',
+            url: '/timer/' + id + '/delTimer',
+            dataType: "text",
+            success: function (res) {
+                if (res == "ok") {
+                    layer.msg("删除成功");
+                    $('#table').bootstrapTable('refresh');
+                } else if (res == "fail") {
+                    layer.msg("请先停用定时器")
+                    $('#table').bootstrapTable('refresh');
+                }
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                layer.msg(errorThrown);
+                //window.location.href = '/capital/create/2';
+            }
+        })
+    }
+
+
+    //删除
+    function delTimer(id) {
+        console.log(id);
+        layer.msg('你确定要删除吗？', {
+            time: 0 //不自动关闭
+            , btn: ['确定', '取消']
+            , yes: function (index) {
+                $.ajax({
+                    type: 'get',
+                    url: '/timer/' + id + '/delTimer',
+                    dataType: "text",
+                    success: function (res) {
+                        if (res == "ok") {
+                            layer.msg("删除成功");
+                            $('#table').bootstrapTable('refresh');
+                        } else if (res == "fail") {
+                            layer.msg("请先停用定时器")
+                            $('#table').bootstrapTable('refresh');
+                        }
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        layer.msg(errorThrown);
+                        //window.location.href = '/capital/create/2';
+                    }
+                })
+            }
+        });
+    }
+</script>
+</body>
+</html>
