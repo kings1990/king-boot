@@ -75,8 +75,7 @@
                     </div>
                 </div>
             </form>
-            <span>_____________________________________________________________________我是分割线______________________________________________________________________________________</span>
-            <br />
+            <hr/>
             <div class="form-group col-md-12 col-xs-12">
                 <label class="control-label col-md-2 col-xs-2" for="topic">最近应该执行的时间:</label>
                 <div class="col-md-4 col-xs-4">
@@ -88,18 +87,16 @@
             <table class="table table-striped table-bordered table-hover dataTable">
                 <thead>
                 <tr>
-                    <th>
-                        groupId
-                    </th>
-                    <th>
-                        上次执行时间
-                    </th>
+                    <th>groupId</th>
+                    <th>上次执行时间</th>
+                    <th>消息内容</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="topicInfo : ${executor.topicInfos}">
                     <td th:text="${topicInfo.consumer}"></td>
                     <td th:text="${#dates.format(topicInfo.lastTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td th:text="${topicInfo.payload}"></td>
                 </tr>
                 </tbody>
             </table>

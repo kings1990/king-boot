@@ -1,6 +1,7 @@
 package com.king.timer.consumer;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.king.timer.entity.TopicInfo;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,12 @@ public abstract class AbstractConsumer implements MessageHandler {
         topicInfo.setOffset(record.offset());
         topicInfo.setLastTime(new Timestamp(record.timestamp()));
         topicInfo.setConsumer(groupId);
+        try {
+            JSONObject jsonObject = JSONObject.parseObject(record.value().toString());
+            topicInfo.setPayload(jsonObject.getString("payload"));
+        } catch (Exception e){
+            topicInfo.setPayload("--");
+        }
         mongoTemplate.insert(topicInfo, TOPICINFO);
     }
     

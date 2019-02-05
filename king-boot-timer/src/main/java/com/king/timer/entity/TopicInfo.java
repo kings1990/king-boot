@@ -28,6 +28,8 @@ public class TopicInfo {
     private Long offset;
     private String topic;
     
+    private String payload;
+    
     /**
      * Instantiates a new Topic info.
      * @param consumer the consumer
