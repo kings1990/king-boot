@@ -130,7 +130,7 @@ public class TopicController {
         newTopic.setTopic(topic);
         newTopic.setCreateTime(sdf.format(new Date()));
         mongoTemplate.insert(newTopic, TIMER_TOPIC);
-        return "redirect:/topic/list";
+        return "ok";
     }
     
     
@@ -158,7 +158,7 @@ public class TopicController {
         }
         timerTopic.setDelStatus(true);
         mongoTemplate.save(timerTopic, TIMER_TOPIC);
-        return "redirect:/topic/list";
+        return "ok";
     }
     
     

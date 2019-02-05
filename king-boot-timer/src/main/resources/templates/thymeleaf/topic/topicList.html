@@ -245,10 +245,10 @@
                     url: '/topic/' + id + '/delTopic',
                     dataType: "text",
                     success: function (res) {
-                        if (res == "ok") {
+                        if (res === "ok") {
                             layer.msg("删除成功");
                             $('#table').bootstrapTable('refresh');
-                        } else if (res == "fail") {
+                        } else if (res === "fail") {
                             layer.msg("删除失败，存在timer使用该topic")
                             $('#table').bootstrapTable('refresh');
                         }
