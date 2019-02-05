@@ -247,19 +247,19 @@
                     title: '操作',
                     align: "center",
                     formatter: function (value, row, index) {
-                        var used = "<button class='btn btn-sm btn-primary'onclick='startTimer(" + "\"" + value + "\"" + ")'>启用</button>&nbsp";
-                        var disabled = "<button class='btn btn-sm btn-primary'onclick='stopTimer(" + "\"" + value + "\"" + ")'>禁用</button>&nbsp"
+                        var used = "<button class='btn btn-warning btn-mini'onclick='startTimer(" + "\"" + value + "\"" + ")'>启用</button> ";
+                        var disabled = "<button class='btn btn-warning btn-mini'onclick='stopTimer(" + "\"" + value + "\"" + ")'>禁用</button> ";
                         if (row.status) {
-                            return disabled + "<a class='data-detail btn btn-primary btn-mini'  title='定时器详情'  href='/timer/" + value + "/detailTimer'  >详情</a> &nbsp" +
-                                "<a class='data-detail btn btn-primary btn-mini'  title='定时器编辑'  href='/timer/" + value + "/editTimer'  >编辑</a> &nbsp" +
-                                "<button class='btn btn-sm btn-primary'onclick='executeTimer(" + "\"" + value + "\"" + ")'>执行</button>&nbsp" +
-                                "<button class='btn btn-sm btn-primary'onclick='delTimer(" + "\"" + value + "\"" + ")'>删除</button>"
+                            return disabled + "<a class='data-detail btn btn-primary btn-mini'  title='定时器详情'  href='/timer/" + value + "/detailTimer'  >详情</a> " +
+                                "<a class='data-detail btn btn-info btn-mini'  title='定时器编辑'  href='/timer/" + value + "/editTimer'  >编辑</a> " +
+                                "<button class='btn btn-success btn-mini'onclick='executeTimer(" + "\"" + value + "\"" + ")'>执行</button> " +
+                                "<button class='btn btn-danger btn-mini'onclick='delTimer(" + "\"" + value + "\"" + ")'>删除</button>"
                                 ;
                         } else {
-                            return used + "<a class='data-detail btn btn-primary btn-mini'  title='定时器详情'  href='/timer/" + value + "/detailTimer'  >详情</a> &nbsp" +
-                                "<a class='data-detail btn btn-primary btn-mini'  title='定时器编辑'  href='/timer/" + value + "/editTimer'  >编辑</a> &nbsp" +
-                                "<button class='btn btn-sm btn-primary'onclick='executeTimer(" + "\"" + value + "\"" + ")'>执行</button>&nbsp" +
-                                "<button class='btn btn-sm btn-primary'onclick='delTimer(" + "\"" + value + "\"" + ")'>删除</button>"
+                            return used + "<a class='data-detail btn btn-primary btn-mini'  title='定时器详情'  href='/timer/" + value + "/detailTimer'  >详情</a> " +
+                                "<a class='data-detail btn btn-info btn-mini'  title='定时器编辑'  href='/timer/" + value + "/editTimer'  >编辑</a> " +
+                                "<button class='btn btn-success btn-mini'onclick='executeTimer(" + "\"" + value + "\"" + ")'>执行</button> " +
+                                "<button class='btn btn-danger btn-mini'onclick='delTimer(" + "\"" + value + "\"" + ")'>删除</button>"
                                 ;
                         }
                     }
