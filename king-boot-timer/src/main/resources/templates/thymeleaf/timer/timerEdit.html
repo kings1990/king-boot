@@ -9,70 +9,89 @@
     <script src="../../static/zui/1.8.1/js/zui.min.js" th:src="@{/static/zui/1.8.1/js/zui.min.js}"></script>
 </head>
 <body>
-<div class="panel ">
-    <div class="panel-body">
-        <div class="page-content">
-            <div class="content pt-20">
-                <form class="form-horizontal clearfix" method="post" modelAttribute="timer" th:action="@{/timer/{id}/doEditTimer(id=${timer._id})}">
-                    <div class="form-group col-md-12 col-xs-12">
-                        <label class="control-label col-md-2 col-xs-2" for="name">定时器名称:</label>
-                        <div class="col-md-4 col-xs-4">
-                            <input class="form-control" data-val="true" data-val-required="请输入定时器名称." id="name" name="name"
-                                   placeholder="" th:value="${timer.name}" type="text">
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <!-- 导航头部 -->
+        <div class="navbar-header">
+            <!-- 移动设备上的导航切换按钮 -->
+            <button class="navbar-toggle" data-target=".navbar-collapse-example" data-toggle="collapse" type="button">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- 品牌名称或logo -->
+            <a class="navbar-brand" href="/timer/list">King Boot Timer</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="panel panel-danger">
+        <div class="panel-heading">定时器编辑</div>
+        <div class="panel-body">
+            <div class="page-content">
+                <div class="content pt-20">
+                    <form class="form-horizontal clearfix" method="post" modelAttribute="timer" th:action="@{/timer/{id}/doEditTimer(id=${timer._id})}">
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label class="control-label col-md-2 col-xs-2" for="name">定时器名称:</label>
+                            <div class="col-md-4 col-xs-4">
+                                <input class="form-control" data-val="true" data-val-required="请输入定时器名称." id="name" name="name"
+                                       placeholder="" th:value="${timer.name}" type="text">
+                            </div>
+                            <div class="text-danger clearboth" data-valmsg-for="name"
+                                 data-valmsg-replace="true"></div>
                         </div>
-                        <div class="text-danger clearboth" data-valmsg-for="name"
-                             data-valmsg-replace="true"></div>
-                    </div>
-                    <div class="form-group col-md-12 col-xs-12">
-                        <label class="control-label col-md-2 col-xs-2" for="describe">描述:</label>
-                        <div class="col-md-4 col-xs-4">
-                            <input class="form-control" data-val="true" data-val-required="请输入定时器描述." id="describe" name="describe"
-                                   placeholder="" th:value="${timer.describe}" type="text">
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label class="control-label col-md-2 col-xs-2" for="describe">描述:</label>
+                            <div class="col-md-4 col-xs-4">
+                                <input class="form-control" data-val="true" data-val-required="请输入定时器描述." id="describe" name="describe"
+                                       placeholder="" th:value="${timer.describe}" type="text">
+                            </div>
+                            <div class="text-danger clearboth" data-valmsg-for="describe"
+                                 data-valmsg-replace="true"></div>
                         </div>
-                        <div class="text-danger clearboth" data-valmsg-for="describe"
-                             data-valmsg-replace="true"></div>
-                    </div>
-                    <div class="form-group col-md-12 col-xs-12">
-                        <label class="control-label col-md-2 col-xs-2">topic:</label>
-                        <div class="col-md-4 col-xs-4">
-                            <input class="form-control" data-val="true" data-val-required="请输入定时器描述." id="topic" name="topic"
-                                   placeholder="" readonly th:value="${timer.topic}" type="text">
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label class="control-label col-md-2 col-xs-2">topic:</label>
+                            <div class="col-md-4 col-xs-4">
+                                <input class="form-control" data-val="true" data-val-required="请输入定时器描述." id="topic" name="topic"
+                                       placeholder="" readonly th:value="${timer.topic}" type="text">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group col-md-12 col-xs-12">
-                        <label class="control-label col-md-2 col-xs-2" for="message">message:</label>
-                        <div class="col-md-4 col-xs-4">
-                            <input class="form-control" data-val="true" data-val-required="请输入message." id="message" name="message"
-                                   placeholder="填日期格式 例如yyyy-MM-dd" th:value="${timer.message}" type="text">
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label class="control-label col-md-2 col-xs-2" for="message">message:</label>
+                            <div class="col-md-4 col-xs-4">
+                                <input class="form-control" data-val="true" data-val-required="请输入message." id="message" name="message"
+                                       placeholder="填日期格式 例如yyyy-MM-dd" th:value="${timer.message}" type="text">
+                            </div>
+                            <div class="text-danger clearboth" data-valmsg-for="message"
+                                 data-valmsg-replace="true"></div>
                         </div>
-                        <div class="text-danger clearboth" data-valmsg-for="message"
-                             data-valmsg-replace="true"></div>
-                    </div>
-                    <div class="form-group col-md-12 col-xs-12">
-                        <label class="control-label col-md-2 col-xs-2" for="message">corn:</label>
-                        <div class="col-md-4 col-xs-4">
-                            <input class="form-control" data-val="true" data-val-required="请输入corn." id="corn" name="corn"
-                                   placeholder="填正确的cron表达式 例如*/5 * * * * ?" th:value="${timer.corn}" type="text">
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label class="control-label col-md-2 col-xs-2" for="message">corn:</label>
+                            <div class="col-md-4 col-xs-4">
+                                <input class="form-control" data-val="true" data-val-required="请输入corn." id="corn" name="corn"
+                                       placeholder="填正确的cron表达式 例如*/5 * * * * ?" th:value="${timer.corn}" type="text">
+                            </div>
+                            <div class="text-danger clearboth" data-valmsg-for="corn"
+                                 data-valmsg-replace="true"></div>
                         </div>
-                        <div class="text-danger clearboth" data-valmsg-for="corn"
-                             data-valmsg-replace="true"></div>
-                    </div>
-                    <div class="form-group col-md-12 col-xs-12">
-                        <label class="control-label col-md-2 col-xs-2">定时器状态:</label>
-                        <div class="col-md-2 col-xs-2">
-                            <select aria-invalid="false" class="form-control valid" id="status" name="status">
-                                <option value="false">禁用</option>
-                                <option value="true">启用</option>
-                            </select>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label class="control-label col-md-2 col-xs-2">定时器状态:</label>
+                            <div class="col-md-2 col-xs-2">
+                                <select aria-invalid="false" class="form-control valid" id="status" name="status">
+                                    <option value="false">禁用</option>
+                                    <option value="true">启用</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group col-md-12 col-xs-12 mt-30 mb-20">
-                        <label class="control-label col-md-2 col-xs-2">&nbsp;</label>
-                        <div class="col-md-4 col-xs-4 text-right">
-                            <button class="btn btn-primary pl-50 pr-50" id="submit" type="submit">保存</button>
+                        <div class="form-group col-md-12 col-xs-12 mt-30 mb-20">
+                            <label class="control-label col-md-2 col-xs-2">&nbsp;</label>
+                            <div class="col-md-4 col-xs-4 text-right">
+                                <button class="btn btn-primary pl-50 pr-50" id="submit" type="submit">保存</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

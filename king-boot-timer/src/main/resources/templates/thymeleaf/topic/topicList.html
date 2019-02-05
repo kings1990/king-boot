@@ -14,23 +14,41 @@
     <script src="../../static/zui/1.8.1/lib/datetimepicker/datetimepicker.min.js" th:src="@{/static/zui/1.8.1/lib/datetimepicker/datetimepicker.min.js}"></script>
 </head>
 <body>
-<div class="panel ">
-    <div class="panel-body">
-        <div class="page-content">
-            <div class="container">
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <!-- 导航头部 -->
+        <div class="navbar-header">
+            <!-- 移动设备上的导航切换按钮 -->
+            <button class="navbar-toggle" data-target=".navbar-collapse-example" data-toggle="collapse" type="button">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- 品牌名称或logo -->
+            <a class="navbar-brand" href="/timer/list">King Boot Timer</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="panel panel-danger">
+        <div class="panel-heading">topic列表</div>
+        <div class="panel-body">
+            <div class="page-content">
+                
                 <div class="tab-content pt-20">
                     <div class="tab-pane active">
                         <form class="form-horizontal" id="formSearch">
-                            <div class="nav pd-10 pl-0 pr-0 form-horizontal">
-                                <div class="col-md-2 col-xs-4 mt-6">
+                            <div class="row">
+                                <div class="col-sm-4 ">
                                     <div class="input-group">
                                         <span class="input-group-addon">topic名称:</span>
                                         <input class="form-control" id="topicName" name="topicName"
                                                onblur="$(this).val($.trim($(this).val()))" type="text">
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-xs-4 mt-6">
-                                    <div class="input-group err">
+                                <div class="col-sm-4 ">
+                                    <div class="input-group ">
                                         <span class="input-group-addon">创建日期：</span>
                                         <input class="check-datetime form-control formdate" id="createTimeBeg"
                                                name="createTimeBeg"
@@ -41,29 +59,26 @@
                                                type="text" value="">
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-xs-4 mt-6">
-                                    <span>
+                                <div class="col-sm-4 ">
+                                    <span class="pull-right">
                                         <button class="btn btn-info" id="btn_query" type="button">查询</button>
-                                    </span>
-                                    <span>
-                                        <button class="btn btn-info" onclick="addTopic()"
-                                                type="button">新增
-                                        </button>
+                                        <button class="btn btn-info" onclick="addTopic()" type="button">新增</button>
                                     </span>
                                 </div>
-                            </div>
+                            </div>    
                         </form>
+                        <br/>
                         <div class="bootstrap-table pl-10 pr-10">
                             <table class="table table-hover table-striped" id="table">
                             </table>
                         </div>
                     </div>
                 </div>
+                <!--页面内容end-->
             </div>
-            <!--页面内容end-->
         </div>
     </div>
-</div>
+</div>    
 <script>
     /**判断时间格式 YYYY-MM-DD格式*/
     $(document).on('change', '.check-datetime', function () {
@@ -123,10 +138,10 @@
             var endtime = $("input[name=createTimeEnd]").val();
             if (endtime != "" && starttime !== "") {
                 if (starttime > endtime) {
-                    $(".err").addClass("has-error");
+                    $(".").addClass("has-or");
                     //layer.msg("Start time can't after the end time");
                 } else {
-                    $(".err").removeClass("has-error");
+                    $(".").removeClass("has-or");
                 }
             }
         });
@@ -239,8 +254,8 @@
                         }
 
                     },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        layer.msg(errorThrown);
+                    or: function (XMLHttpRequest, textStatus, orThrown) {
+                        layer.msg(orThrown);
                         //window.location.href = '/capital/create/2';
                     }
                 })

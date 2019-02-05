@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>功能映射</title>
+    <title>定时器列表</title>
     <link href="../../static/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" th:href="@{/static/bootstrap/3.3.5/css/bootstrap.min.css}" />
     <link href="../../static/zui/1.8.1/css/zui.min.css" rel="stylesheet" th:href="@{/static/zui/1.8.1/css/zui.min.css}" />
     <script src="//cdn.bootcss.com/zui/1.8.1/lib/jquery/jquery.js"></script>
@@ -14,37 +14,40 @@
     <script src="../../static/zui/1.8.1/lib/datetimepicker/datetimepicker.min.js" th:src="@{/static/zui/1.8.1/lib/datetimepicker/datetimepicker.min.js}"></script>
 </head>
 <body>
-<div class="panel ">
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <!-- 导航头部 -->
+        <div class="navbar-header">
+            <!-- 移动设备上的导航切换按钮 -->
+            <button class="navbar-toggle" data-target=".navbar-collapse-example" data-toggle="collapse" type="button">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- 品牌名称或logo -->
+            <a class="navbar-brand" href="/timer/list">King Boot Timer</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+<div class="panel panel-danger">
+    <div class="panel-heading">定时器列表</div>
     <div class="panel-body">
         <div class="page-content">
-            <div class="container">
+            
                 <div class="tab-content pt-20">
                     <div class="tab-pane active">
                         <form class="form-horizontal" id="formSearch">
-                            <div class="nav pd-10 pl-0 pr-0 form-horizontal">
-                                <div class="col-md-2 col-xs-4 mt-4">
-                                    <div class="input-group">
+                            <div class="row">
+                                <div class=" col-sm-4">
+                                    <div class="input-group ">
                                         <span class="input-group-addon">定时器名称:</span>
                                         <input class="form-control" id="timerName" name="timerName"
                                                onblur="$(this).val($.trim($(this).val()))" type="text">
                                     </div>
-                                </div>
-                                <div class="col-md-2 col-xs-4 mt-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">topic:</span>
-                                        <input class="form-control" id="topic" name="topic"
-                                               onblur="$(this).val($.trim($(this).val()))" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-xs-4 mt-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">描述:</span>
-                                        <input class="form-control" id="describe" name="describe"
-                                               onblur="$(this).val($.trim($(this).val()))" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-4 mt-6">
-                                    <div class="input-group err">
+                                    <br>
+                                    <div class="input-group ">
                                         <span class="input-group-addon">创建日期：</span>
                                         <input class="check-datetime form-control formdate" id="createTimeBeg"
                                                name="createTimeBeg"
@@ -55,29 +58,42 @@
                                                type="text" value="">
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-xs-4 mt-4">
-                                    <span>
-                                        <button class="btn btn-info" id="btn_query" type="button">查询</button>
-                                    </span>
-                                    <span>
-                                        <a _href='/timer/addTimer' class='data-detail btn btn-info'
-                                           href='/timer/addTimer'
-                                           title='新增定时器'>新增
-                                        </a>
+                                <div class=" col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">topic:</span>
+                                        <input class="form-control" id="topic" name="topic"
+                                               onblur="$(this).val($.trim($(this).val()))" type="text">
+                                    </div>
+                                </div>
+                                <div class=" col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">描述:</span>
+                                        <input class="form-control" id="describe" name="describe"
+                                               onblur="$(this).val($.trim($(this).val()))" type="text">
+                                    </div>
+                                    <br/>
+                                    <span class="pull-right">
+                                        <button class="btn btn-primary" id="btn_query" type="button">查询</button>
+                                        <a  class='data-detail btn btn-success' href='/timer/addTimer' title='新增定时器'>新增</a>
+                                        <a class="btn btn-info" href="/topic/list">Topic列表</a>
                                     </span>
                                 </div>
+                                
+                                
+                               
                             </div>
                         </form>
-                        <div class="bootstrap-table pl-10 pr-10">
+                        <br/>
+                        <div class="bootstrap-table pt-10">
                             <table class="table table-hover table-striped" id="table">
                             </table>
                         </div>
                     </div>
                 </div>
-            </div>
             <!--页面内容end-->
         </div>
     </div>
+</div>
 </div>
 <script>
     /**判断时间格式 YYYY-MM-DD格式*/
@@ -138,10 +154,10 @@
             var endtime = $("input[name=createTimeEnd]").val();
             if (endtime != "" && starttime !== "") {
                 if (starttime > endtime) {
-                    $(".err").addClass("has-error");
+                    $(".").addClass("has-or");
                     //layer.msg("Start time can't after the end time");
                 } else {
-                    $(".err").removeClass("has-error");
+                    $(".").removeClass("has-or");
                 }
             }
         });
@@ -296,8 +312,8 @@
                 }
                 $('#table').bootstrapTable('refresh');
             },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                layer.msg(errorThrown);
+            or: function (XMLHttpRequest, textStatus, orThrown) {
+                layer.msg(orThrown);
                 //window.location.href = '/capital/create/2';
             }
         })
@@ -316,8 +332,8 @@
                     layer.msg("停止失败");
                 }
             },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                layer.msg(errorThrown);
+            or: function (XMLHttpRequest, textStatus, orThrown) {
+                layer.msg(orThrown);
                 //window.location.href = '/capital/create/2';
             }
         })
@@ -341,8 +357,8 @@
                 }
 
             },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                layer.msg(errorThrown);
+            or: function (XMLHttpRequest, textStatus, orThrown) {
+                layer.msg(orThrown);
                 //window.location.href = '/capital/create/2';
             }
         })
@@ -364,8 +380,8 @@
                 }
 
             },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                layer.msg(errorThrown);
+            or: function (XMLHttpRequest, textStatus, orThrown) {
+                layer.msg(orThrown);
                 //window.location.href = '/capital/create/2';
             }
         })
@@ -393,8 +409,8 @@
                         }
 
                     },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        layer.msg(errorThrown);
+                    or: function (XMLHttpRequest, textStatus, orThrown) {
+                        layer.msg(orThrown);
                         //window.location.href = '/capital/create/2';
                     }
                 })

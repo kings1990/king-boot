@@ -9,7 +9,25 @@
     <script src="../../static/zui/1.8.1/js/zui.min.js" th:src="@{/static/zui/1.8.1/js/zui.min.js}"></script>
 </head>
 <body>
-<div class="panel ">
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <!-- 导航头部 -->
+        <div class="navbar-header">
+            <!-- 移动设备上的导航切换按钮 -->
+            <button class="navbar-toggle" data-target=".navbar-collapse-example" data-toggle="collapse" type="button">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- 品牌名称或logo -->
+            <a class="navbar-brand" href="/timer/list">King Boot Timer</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="panel panel-danger">
+    <div class="panel-heading">定时器详情</div>
     <div class="panel-body">
         <div class="page-content">
             <br class="content pt-20">
@@ -87,6 +105,7 @@
             </table>
         </div>
     </div>
+</div>
 </div>
 </div>
 </body>
