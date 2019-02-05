@@ -18,9 +18,9 @@
 
 #服务启动指令
 
-```
-zookeeper
+## zookeeper
 
+```
 cd ~/develop/environment/zookeeper/zk34-0/bin 
 ./zkServer.sh start
 
@@ -31,33 +31,33 @@ cd ~/develop/environment/zookeeper/zkui-master/target
 java -jar zkui-2.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
+## mongodb
 ```
-mongodb
-
 mongod
 ```
 
+## kafka
+
 ```
-kafka
 brew services start kafka
 brew services stop kafka
 ```
 
-```
-jenkins
+## jenkins
 
+```
 sudo launchctl load  /Library/LaunchDaemons/org.jenkins-ci.plist
 ```
 
-```
-redis
+## redis
 
+```
 cd /usr/local/Cellar/redis/3.0.6/bin
 ./redis-server
 ```
 
-```
-nginx
+## nginx
 
+```
 nginx
 ```
