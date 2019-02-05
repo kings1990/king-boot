@@ -6,9 +6,6 @@
 //
 // import javax.annotation.Resource;
 //
-// /**
-//  * Created by hbprotoss on 29/11/2016.
-//  */
 // public class HeartBeat implements JobInterface {
 //
 //     @Resource
