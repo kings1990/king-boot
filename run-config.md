@@ -14,6 +14,8 @@
 | cas ssl                   | 8443        |                                               |
 | basic ssl                 | 443         |                                               |
 | jenkins                   | 9999        | http://localhost:9999                         |
+| swagger                   | 8083        | http://localhost:8083/swagger                 |
+
 
 
 #服务启动指令
