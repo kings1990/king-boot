@@ -2,7 +2,7 @@
 
 | 项目(服务)                  | 端口 | 访问 |
 |:-------------------------:|:-----------:| :--------------------------------------------:|
-| king-boot-timer           | 9100        | http://localhost:9100/timer/list              |
+| king-boot-timer           | 9100        | http://timer.ws.com                           |
 | king-boot-basic           | 8000        | https://king.ws.com/boot/thymeleaf/mappings   |       
 | king-boot-admin           | 7000        | http://localhost:7000                         |        
 | king-boot-dubbo-server    | 8080        | http://localhost:8080                         |
@@ -14,7 +14,7 @@
 | cas ssl                   | 8443        |                                               |
 | basic ssl                 | 443         |                                               |
 | jenkins                   | 9999        | http://localhost:9999                         |
-| swagger                   | 8083        | http://localhost:8083/swagger                 |
+| swagger                   | 8083        | http://swagger.ws.com                         |
 
 
 
