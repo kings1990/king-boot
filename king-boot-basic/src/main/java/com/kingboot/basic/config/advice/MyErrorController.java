@@ -74,6 +74,7 @@ public class MyErrorController extends BasicErrorController {
         if (status.equals(HttpStatus.BAD_REQUEST)) {
             Map<String, Object> errorMessage = (Map<String, Object>) JSONObject.parse(message);
             map.put("data", errorMessage.get("data"));
+            map.put("redirectUrl", errorMessage.get("redirectUrl"));
         } else {
             map.put("data", message);
         }
