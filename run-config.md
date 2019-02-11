@@ -11,10 +11,12 @@
 | zkui                      | 9090        | http://localhost:9090                         |
 | mysql                     | 3306        |                                               |
 | kafka                     | 9092        |                                               |
+| kafka monitor             | 8181        | http://localhost:8181                         |
 | cas ssl                   | 8443        |                                               |
 | basic ssl                 | 443         |                                               |
 | jenkins                   | 9999        | http://localhost:9999                         |
 | swagger                   | 8083        | http://swagger.ws.com                         |
+| static resource           | 80          | http://static.ws.com                          |
 
 
 
