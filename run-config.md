@@ -65,3 +65,11 @@ cd /usr/local/Cellar/redis/3.0.6/bin
 ```
 nginx
 ```
+
+## nexus
+
+```
+cd /Users/wilson/develop/nexus/nexus-2.11.3-01-bundle/nexus-2.11.3-01/bin
+./nexus start
+nginx
+```
