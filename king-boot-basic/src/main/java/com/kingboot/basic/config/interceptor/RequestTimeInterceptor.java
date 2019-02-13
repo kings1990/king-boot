@@ -27,7 +27,7 @@ public class RequestTimeInterceptor extends HandlerInterceptorAdapter {
         long begTime = (Long) request.getAttribute(REQUEST_TIME);
         long postHandleTime = System.currentTimeMillis();
         request.setAttribute(POST_HANDLE_TIME, postHandleTime);
-        if (! request.getRequestURI().startsWith(request.getContextPath() + "/static")) {
+        if (! request.getRequestURI().contains("/static/")) {
             logger.info("{} postHandle cost {} ms", request.getRequestURL(), postHandleTime - begTime);
         }
         super.postHandle(request, response, handler, modelAndView);
@@ -42,7 +42,7 @@ public class RequestTimeInterceptor extends HandlerInterceptorAdapter {
         
         if (begTime != null && completeTime != null) {
             long renderTime = afterCompletionTime - completeTime;
-            if (! request.getRequestURI().startsWith(request.getContextPath() + "/static")) {
+            if (! request.getRequestURI().contains("/static/")) {
                 logger.info("{} afterCompletion render view cost {} ms, totally cost {} ms", request.getRequestURL(), renderTime, afterCompletionTime - begTime);
             }
             
