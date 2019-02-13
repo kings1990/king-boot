@@ -29,7 +29,7 @@ public class Swagger2 {
                 .build()
                 .securityContexts(Lists.newArrayList(securityContext()))
                 .securitySchemes(Lists.newArrayList(apiKey()))
-                .host("ws.com");
+                .host("king.ws.com");
     }
 
     private ApiInfo apiInfo() {
@@ -53,7 +53,7 @@ public class Swagger2 {
                 .groupName("third")
                 .securityContexts(Lists.newArrayList(securityContextThird()))
                 .securitySchemes(Lists.newArrayList(apiKey()))
-                .host("ws.com");
+                .host("king.ws.com");
     }
     
     private Predicate<String> path() {
