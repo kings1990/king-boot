@@ -73,3 +73,5 @@ cd /Users/wilson/develop/nexus/nexus-2.11.3-01-bundle/nexus-2.11.3-01/bin
 ./nexus start
 nginx
 ```
+
+
