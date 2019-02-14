@@ -5,7 +5,7 @@
 | king-boot-timer           | 9100        | http://timer.ws.com                           |
 | king-boot-basic           | 8000        | https://king.ws.com/boot/thymeleaf/mappings   |       
 | king-boot-admin           | 7000        | http://localhost:7000                         |        
-| king-boot-dubbo-server    | 8080        | http://localhost:8080                         |
+| king-boot-dubbo-server    | 8080        | http://localhost:9001                         |
 | nexus                     | 8081        | http://localhost:8081/nexus                   |
 | zookeeper                 | 2181 2182   |                                               |
 | zkui                      | 9090        | http://localhost:9090                         |
