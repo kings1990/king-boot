@@ -17,6 +17,8 @@
 | jenkins                   | 9999        | http://localhost:9999                         |
 | swagger                   | 8083        | http://swagger.ws.com                         |
 | static resource           | 80          | http://static.ws.com                          |
+| elasticsearch             | 9200        | http://localhost:9200                         |
+
 
 
 
@@ -72,6 +74,12 @@ nginx
 cd /Users/wilson/develop/nexus/nexus-2.11.3-01-bundle/nexus-2.11.3-01/bin
 ./nexus start
 nginx
+```
+
+## elasticsearch
+```
+cd ~/develop/environment/elasticsearch-6.6.0/bin
+./elasticsearch
 ```
 
 
