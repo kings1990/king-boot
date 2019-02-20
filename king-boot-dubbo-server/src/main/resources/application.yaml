@@ -7,9 +7,9 @@ spring:
         url: http://localhost:7000
         period: 30000
         instance:
-          health-url: http://localhost:8080/actuator/health
-          service-url: http://localhost:8080
-          management-url: http://localhost:8080/actuator
+          health-url: http://localhost:9001/actuator/health
+          service-url: http://localhost:9001
+          management-url: http://localhost:9001/actuator
           name: king-boot-dubbo
           metadata:
             user.name: ws
