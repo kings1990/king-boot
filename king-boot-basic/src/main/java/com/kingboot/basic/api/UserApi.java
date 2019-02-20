@@ -7,6 +7,7 @@ import com.kingboot.basic.model.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.util.Date;
 @RestController
 @RequestMapping ("/api/user")
 @Api (description = "用户api")
+@Slf4j
 public class UserApi {
     @GetMapping (value = "/{id}",name = "api测试(查询)")
     @ApiOperation(value = "根据id查询用户",notes = "根据id查询用户【Kings】")

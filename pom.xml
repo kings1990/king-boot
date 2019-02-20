@@ -15,10 +15,11 @@
         <module>king-boot-basic</module>
         <module>king-boot-dubbo-server</module>
         <module>king-boot-auth-server</module>
-        <module>kingboot-service</module>
-        <module>kingboot-service-impl</module>
         <module>king-boot-admin</module>
         <module>king-boot-timer</module>
+
+        <module>kingboot-service</module>
+        <module>kingboot-service-impl</module>
     </modules>
 
     <properties>
@@ -27,6 +28,7 @@
         <pagehelper.version>1.2.10</pagehelper.version>
         <boot.mybatis.version>2.0.0</boot.mybatis.version>
         <swagger.version>2.9.2</swagger.version>
+        <dubbo.version>2.7.0</dubbo.version>
     </properties>
 
     <distributionManagement>
@@ -37,6 +39,48 @@
         </repository>
     </distributionManagement>
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.1.1.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Apache Dubbo  -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-bom</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>servlet-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
     <build>
         <plugins>
             <plugin>
@@ -62,6 +106,20 @@
         </plugins>
     </build>
 
+
+    <repositories>
+        <repository>
+            <id>apache.snapshots.https</id>
+            <name>Apache Development Snapshot Repository</name>
+            <url>https://repository.apache.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     
 </project>

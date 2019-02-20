@@ -106,13 +106,13 @@ dubbo:
   protocol:
     name: dubbo
     port: 20880
-    host: 192.168.0.104
+    host: 127.0.0.1
     id: dubbo
   application:
     name: dubbo-provider-demo
     id: dubbo-provider-demo
   registry:
-    address: zookeeper://127.0.0.1:2181?backup=127.0.0.1:2180,127.0.0.1:2182
+    address: zookeeper://127.0.0.1:2181?backup=127.0.0.1:2182
   consumer:
     check: false
 

@@ -1,10 +1,9 @@
 package com.kingboot.service.impl;
 
 import com.kingboot.service.HelloService;
-import org.springframework.stereotype.Component;
+import org.apache.dubbo.config.annotation.Service;
 
-@Component
-@com.alibaba.dubbo.config.annotation.Service(interfaceClass = HelloService.class)
+@Service
 public class HelloServiceImpl implements HelloService {
     @Override
     public String hello() {

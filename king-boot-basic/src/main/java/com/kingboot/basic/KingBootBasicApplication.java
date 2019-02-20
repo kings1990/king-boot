@@ -1,6 +1,7 @@
 package com.kingboot.basic;
 
 import com.kingboot.basic.config.listener.MyApplicationStartingEventListener;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @tk.mybatis.spring.annotation.MapperScan(basePackages = "com.kingboot.basic.dao.boot.mapper",sqlSessionFactoryRef = "sqlSessionFactory-boot")
 @EnableScheduling//定时任务
 @EnableAsync//异步任务
+@EnableDubbo
 public class KingBootBasicApplication {
     
     public static void main(String[] args) {

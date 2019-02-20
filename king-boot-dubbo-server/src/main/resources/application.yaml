@@ -1,6 +1,10 @@
+
 info:
   description: sringboot dubbo
 spring:
+  main:
+    allow-bean-definition-overriding: true
+      
   boot:
     admin:
       client:
@@ -17,20 +21,21 @@ spring:
         username: ws
         password: 1234
 
-  dubbo:
-    application:
-      id: dubbo-provider-demo
-      name: dubbo-provider-demo
-    protocol:
-      id: dubbo
-      name: dubbo
-      port: 20880
-      status: server
-    registry:
-      address: zookeeper://127.0.0.1:2181?backup=127.0.0.1:2180,127.0.0.1:2182
-      id: my-registry
-    scan:
-      basePackages: com.kingboot.service
+dubbo:
+  application:
+    id: dubbo-provider-demo
+    name: dubbo-provider-demo
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 20880
+    status: server
+  registry:
+    address: zookeeper://127.0.0.1:2181?backup=127.0.0.1:2182
+    id: my-registry
+    protocol: zookeeper
+  scan:
+    base-packages: com.kingboot.service.impl
 
 
 management:
@@ -39,6 +44,9 @@ management:
     web:
       exposure:
         include: "*"
+  endpoint:
+    health:
+      show-details: always      
 
 server:
   port: 9001
