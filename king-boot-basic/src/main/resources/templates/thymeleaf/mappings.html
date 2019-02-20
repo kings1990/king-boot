@@ -78,7 +78,7 @@
                     </td>
                     <td th:text="${mapping.name}">功能</td>
                     <td>
-                        <a target="_blank" th:href="${mapping.url}" th:if="${mapping.method eq 'GET'}" th:text="${mapping.url}">URL</a>
+                        <a target="_blank" th:href="${mapping.urlWithParam}" th:if="${mapping.method eq 'GET'}" th:text="${mapping.url}">URL</a>
                         <a class="a-ajax" th:data_href="${mapping.url}" th:data_type="${mapping.method}" th:data_params="${mapping.data}" th:if="${mapping.method eq 'POST' or mapping.method eq 'PUT' or mapping.method eq 'DELETE'}" th:text="${mapping.url}">URL</a>
                     </td>
                 </tr>

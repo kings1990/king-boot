@@ -21,6 +21,7 @@ import java.util.Date;
 public class UserApi {
     @GetMapping (value = "/{id}",name = "api测试(查询)")
     @ApiOperation(value = "根据id查询用户",notes = "根据id查询用户【Kings】")
+    @KingParam ("{\"id\":1}")
     public RestResponse<User> getUser(@PathVariable @ApiParam("用户id") Integer id) {
         return new RestResponse<>(new User(1,11,"1234","15258297405",new Date()));
     }

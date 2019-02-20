@@ -11,6 +11,8 @@ public class MappingDetail {
     
     private String url;
     
+    private String urlWithParam;
+    
     private String method;
     
     private String data;

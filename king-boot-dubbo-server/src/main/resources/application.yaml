@@ -15,9 +15,6 @@ spring:
           service-url: http://localhost:9001
           management-url: http://localhost:9001/actuator
           name: king-boot-dubbo
-          metadata:
-            user.name: ws
-            user.password: 1234
         username: ws
         password: 1234
 
@@ -37,7 +34,7 @@ dubbo:
   scan:
     base-packages: com.kingboot.service.impl
 
-
+  #endpoints.health.sensitive =
 management:
   #暴露所有接口
   endpoints:
@@ -46,7 +43,7 @@ management:
         include: "*"
   endpoint:
     health:
-      show-details: always      
+      show-details: always
 
 server:
   port: 9001

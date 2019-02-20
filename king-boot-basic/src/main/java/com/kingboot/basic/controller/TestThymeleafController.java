@@ -9,6 +9,7 @@
 package com.kingboot.basic.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.kingboot.basic.config.common.KingParam;
 import com.kingboot.basic.model.MappingDetail;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,8 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RequestMapping ("/thymeleaf")
 @Controller
@@ -78,6 +81,27 @@ public class TestThymeleafController {
                     KingParam kingParam = handlerMethod.getMethod().getAnnotation(KingParam.class);
                     mappingDetail.setData(kingParam == null ? "" : kingParam.value());
                     String contextPath = request.getContextPath();
+                    
+                    /*正则替换参数*/
+                    String pattern = "\\{(\\w+)\\}";
+                    Pattern p = Pattern.compile(pattern);
+                    Matcher matcher = p.matcher(reqURI);
+                    String urlWithParam = reqURI;
+                    while (matcher.find()) {
+                        String group = matcher.group();
+                        String groupWithoutSymbol = group.replace("{", "").replace("}", "");
+                        
+                        if (kingParam != null) {
+                            Object parse = JSONObject.parse(kingParam.value());
+                            JSONObject jsonObject = JSONObject.parseObject(parse.toString());
+                            if (jsonObject.getString(groupWithoutSymbol) != null) {
+                                urlWithParam = reqURI.replace(group, jsonObject.getString(groupWithoutSymbol));
+                            }
+                        }
+                        
+                    }
+                    /*正则替换参数*/
+                    mappingDetail.setUrlWithParam(contextPath + urlWithParam);
                     mappingDetail.setUrl(contextPath + reqURI);
                     result.add(mappingDetail);
                 }
