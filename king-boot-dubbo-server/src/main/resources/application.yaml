@@ -11,9 +11,9 @@ spring:
         url: http://localhost:7000
         period: 30000
         instance:
-          health-url: http://localhost:9001/actuator/health
-          service-url: http://localhost:9001
-          management-url: http://localhost:9001/actuator
+          health-url: http://localhost:7001/actuator/health
+          service-url: http://localhost:7001
+          management-url: http://localhost:7001/actuator
           name: king-boot-dubbo
         username: ws
         password: 1234
@@ -46,4 +46,4 @@ management:
       show-details: always
 
 server:
-  port: 9001
+  port: 7001
