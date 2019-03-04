@@ -5,6 +5,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.DispatcherType;
+
 @Configuration
 public class FilterConfig {
     @Autowired
@@ -31,4 +33,14 @@ public class FilterConfig {
         filterRegistrationBean.setOrder(2);
         return filterRegistrationBean;
     }
+    
+    @Bean
+    public FilterRegistrationBean eurekaFilter() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter(new CustomUrlRewriteFilter());
+        registrationBean.addUrlPatterns("/eureka/*");
+        registrationBean.setDispatcherTypes(DispatcherType.REQUEST);
+        return registrationBean;
+    }
+    
 }

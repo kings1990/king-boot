@@ -37,8 +37,7 @@ spring:
       prefix: /WEB-INF/
       suffix: .jsp
 
-  resources:
-    static-locations: classpath:/static/
+  
 
   thymeleaf:
     cache: false
@@ -46,6 +45,10 @@ spring:
     mode: HTML5
     prefix: classpath:/templates/
     view-names: thymeleaf/*
+  #eureka冲突  
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
 
   view:
     view-names: jsp/*
@@ -147,3 +150,17 @@ springfox:
     swagger:
       v2:
         path: /swagger/api
+        
+eureka:
+  dashboard:
+    path: /eurekaui
+    
+  instance:
+    hostname: king.ws.com
+    
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: https://${eureka.instance.hostname}${server.servlet.context-path}/eureka/
+        
