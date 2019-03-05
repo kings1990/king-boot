@@ -7,14 +7,13 @@
         <version>2.1.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.king</groupId>
+    <groupId>com.kingboot</groupId>
     <artifactId>king-boot</artifactId>
     <version>1.0.2</version>
     <packaging>pom</packaging>
     <modules>
         <module>king-boot-basic</module>
         <module>king-boot-dubbo-server</module>
-        <module>king-boot-auth-server</module>
         <module>king-boot-admin</module>
         <module>king-boot-timer</module>
 
