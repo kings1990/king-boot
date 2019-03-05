@@ -152,7 +152,7 @@ springfox:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://register.ws.com/eureka/
+      defaultZone: http://kings:1234@register.ws.com/eureka/
 
   instance:
     health-check-url: https://king.ws.com/${server.servlet.context-path}/actuator/health

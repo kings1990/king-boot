@@ -11,9 +11,16 @@ eureka:
      registerWithEureka: false
      fetchRegistry: false
      serviceUrl:
-       defaultZone: http://${eureka.instance.hostname}/eureka/
+       defaultZone: http://kings:1234@${eureka.instance.hostname}/eureka/
 
    server:
      enable-self-preservation: false
 server:
   port: 8201
+
+
+spring:
+  security:
+    user:
+      name: kings
+      password: 1234
