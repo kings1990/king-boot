@@ -4,7 +4,7 @@ import com.kingboot.basic.config.listener.MyApplicationStartingEventListener;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableScheduling//定时任务
 @EnableAsync//异步任务
 @EnableDubbo
-@EnableEurekaServer
+@EnableEurekaClient
 public class KingBootBasicApplication {
     
     public static void main(String[] args) {

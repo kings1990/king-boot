@@ -143,7 +143,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/logout", "logoutFilter");
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/swagger/api", "anon");
-        filterChainDefinitionMap.put("/eurekaui", "anon");
         filterChainDefinitionMap.put("/eureka/**", "anon");
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/thymeleaf/**", "anon");

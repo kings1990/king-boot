@@ -1,7 +1,3 @@
-app:
-  name:  项目名 #${project.name}
-  description: 描述 #${app.name} is ${project.description}
-
 info:
   description: sringboot 大保健
 
@@ -21,6 +17,8 @@ logging:
     exclude: org.apache.zookeeper,sun.rmiw
 
 spring:
+  application:
+    name: king-boot-basic
   profiles:
     active: dev
     include: test
@@ -152,15 +150,11 @@ springfox:
         path: /swagger/api
         
 eureka:
-  dashboard:
-    path: /eurekaui
-    
-  instance:
-    hostname: king.ws.com
-    
   client:
-    registerWithEureka: false
-    fetchRegistry: false
     serviceUrl:
-      defaultZone: https://${eureka.instance.hostname}${server.servlet.context-path}/eureka/
-        
+      defaultZone: http://register.ws.com/eureka/
+
+  instance:
+    health-check-url: https://king.ws.com/${server.servlet.context-path}/actuator/health
+    status-page-url: https://king.ws.com/${server.servlet.context-path}/actuator/info
+    home-page-url: https://king.ws.com/${server.servlet.context-path}/

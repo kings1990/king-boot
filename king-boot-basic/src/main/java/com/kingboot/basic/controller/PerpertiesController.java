@@ -28,9 +28,6 @@ public class PerpertiesController {
     @Value ("${my.firstName}")
     private String firstName;
     
-    @Value ("${app.description}")
-    private String description;
-    
     @Autowired
     private DevConfig devConfig;
     
