@@ -22,7 +22,9 @@ spring:
   profiles:
     active: dev
     include: test
-
+  main:
+    allow-bean-definition-overriding: true
+    
   devtools:
     restart:
       enabled: false
@@ -74,18 +76,26 @@ spring:
         password: 1234
 
   datasource:
-    dboot:
-      jdbc-url: jdbc:mysql://localhost:3306/boot?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
-      username: root
-      password: 1234
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      druid:
-        initial-size: 1
-        min-idle: 1
-        max-active: 20
-        test-on-borrow: true
-        allow: true
-    
+#    dboot:
+#      jdbc-url: jdbc:mysql://localhost:3306/boot?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+#      username: root
+#      password: 1234
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      druid:
+#        initial-size: 1
+#        min-idle: 1
+#        max-active: 20
+#        test-on-borrow: true
+#        allow: true
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+    url: jdbc:mysql://localhost:3306/boot?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
 
 server:
   port: 8000
@@ -148,7 +158,7 @@ springfox:
     swagger:
       v2:
         path: /swagger/api
-        
+           
 eureka:
   client:
     serviceUrl:
@@ -158,3 +168,6 @@ eureka:
     health-check-url: https://king.ws.com/${server.servlet.context-path}/actuator/health
     status-page-url: https://king.ws.com/${server.servlet.context-path}/actuator/info
     home-page-url: https://king.ws.com/${server.servlet.context-path}/
+feign:
+  hystrix:
+    enabled: true

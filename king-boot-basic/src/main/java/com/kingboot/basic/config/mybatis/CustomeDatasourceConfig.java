@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
@@ -23,7 +22,7 @@ import javax.sql.DataSource;
  * @Version V1.0.
  * @date 2016.01.22 10:47:42
  */
-@Configuration
+//@Configuration
 public class CustomeDatasourceConfig {
     /**
      * <p class="detail">

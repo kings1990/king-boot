@@ -319,6 +319,17 @@
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+            <version>1.4.6.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <version>2.1.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
             <version>2.1.0.RELEASE</version>
         </dependency>
@@ -329,6 +340,14 @@
             <artifactId>urlrewritefilter</artifactId>
             <version>4.0.4</version>
         </dependency>
+        
+        <!-- own project dep -->
+        <dependency>
+            <groupId>com.kingboot</groupId>
+            <artifactId>king-boot-user-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- own project dep -->
     </dependencies>
 
     <build>
