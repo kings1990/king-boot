@@ -169,5 +169,22 @@ eureka:
     status-page-url: https://king.ws.com/${server.servlet.context-path}/actuator/info
     home-page-url: https://king.ws.com/${server.servlet.context-path}/
 feign:
+  client:
+    config:
+      default:
+        #和hystrix一起配置
+        connectTimeout: 4000
+        readTimeout: 4000
   hystrix:
     enabled: true
+  httpclient:
+    connection-timeout: 4000
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
