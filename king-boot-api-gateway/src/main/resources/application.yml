@@ -1,0 +1,19 @@
+server:
+  port: 8401
+spring:
+  application:
+    name: king-boot-api-gateway
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://kings:1234@register.ws.com/eureka/
+
+#\u81EA\u5B9A\u4E49\u8DEF\u7531\u6620\u5C04
+zuul:
+  routes:
+    KING-BOOT-USER: /apigateway/**
+    KING-BOOT-BASIC: /apigateway/**
+    auth-service:
+      path: /auth/**
+      service-id: king-boot-auth
+      strip-prefix: false

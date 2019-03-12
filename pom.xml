@@ -16,7 +16,9 @@
         <module>king-boot-dubbo-server</module>
         <module>king-boot-admin</module>
         <module>king-boot-timer</module>
-
+        <module>king-boot-api-gateway</module>
+        <module>king-boot-auth</module>
+        
         <module>kingboot-service</module>
         <module>kingboot-service-impl</module>
     </modules>

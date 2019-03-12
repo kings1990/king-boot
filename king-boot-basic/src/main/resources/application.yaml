@@ -16,7 +16,10 @@ logging:
     kings: com.kingboot
     exclude: org.apache.zookeeper,sun.rmiw
 
+
 spring:
+  
+    
   application:
     name: king-boot-basic
   profiles:
@@ -104,6 +107,8 @@ server:
 
 
 management:
+  security:
+    enabled: false
   #暴露所有接口
   endpoints:
     web:
@@ -165,9 +170,9 @@ eureka:
       defaultZone: http://kings:1234@register.ws.com/eureka/
 
   instance:
-    health-check-url: https://king.ws.com/${server.servlet.context-path}/actuator/health
-    status-page-url: https://king.ws.com/${server.servlet.context-path}/actuator/info
-    home-page-url: https://king.ws.com/${server.servlet.context-path}/
+    health-check-url: https://ws.com/${server.servlet.context-path}/actuator/health
+    status-page-url: https://ws.com/${server.servlet.context-path}/actuator/info
+    home-page-url: https://ws.com/${server.servlet.context-path}/
 feign:
   client:
     config:

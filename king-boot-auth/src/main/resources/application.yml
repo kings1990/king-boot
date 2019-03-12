@@ -1,0 +1,10 @@
+
+spring:
+  application:
+    name: king-boot-auth
+server:
+  port: 8402
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://kings:1234@register.ws.com/eureka/  

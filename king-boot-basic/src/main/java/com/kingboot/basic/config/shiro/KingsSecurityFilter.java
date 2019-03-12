@@ -24,6 +24,7 @@ public class KingsSecurityFilter extends SecurityFilter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
         super.doFilter(servletRequest, servletResponse, filterChain);
         if(response.getStatus() == HttpStatus.FOUND.value()){
             if(isAjaxOrMobileRequest(servletRequest)){

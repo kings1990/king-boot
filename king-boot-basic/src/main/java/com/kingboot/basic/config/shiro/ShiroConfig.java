@@ -50,8 +50,8 @@ public class ShiroConfig {
     private String basicLoginUrl;
     
     /** 客户端名称 */
-    @Value ("${cas.client-name}")
-    private String clientName;
+    // @Value ("${cas.client-name}")
+    // private String clientName;
     
     @Value ("${shiro.timeout.seconds}")
     private Integer shiroTimeoutSeconds;
@@ -83,7 +83,6 @@ public class ShiroConfig {
     public CasRealm casRealm() {
         CasRealm realm = new CasRealm();
         // 使用自定义的realm
-        realm.setClientName(clientName);
         realm.setCachingEnabled(false);
         //暂时不使用缓存
         realm.setAuthenticationCachingEnabled(false);
@@ -144,6 +143,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/swagger/api", "anon");
         filterChainDefinitionMap.put("/eureka/**", "anon");
+        filterChainDefinitionMap.put("/hystrix/**", "anon");
+        
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/thymeleaf/**", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");
@@ -189,9 +190,9 @@ public class ShiroConfig {
         
         //cas 资源认证拦截器
         KingsSecurityFilter securityFilter = new KingsSecurityFilter();
+        securityFilter.setClients("casClient,jwtClient,restClient");
         securityFilter.setLoginUrl(loginUrl);
         securityFilter.setConfig(config);
-        securityFilter.setClients(clientName);
         filters.put("securityFilter", securityFilter);
         return shiroFilterFactoryBean;
     }

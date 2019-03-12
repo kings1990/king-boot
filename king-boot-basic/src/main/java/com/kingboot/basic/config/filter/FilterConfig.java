@@ -38,7 +38,7 @@ public class FilterConfig {
     public FilterRegistrationBean eurekaFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new CustomUrlRewriteFilter());
-        registrationBean.addUrlPatterns("/eureka/*");
+        registrationBean.addUrlPatterns("/eureka/*","/hystrix/*");
         registrationBean.setDispatcherTypes(DispatcherType.REQUEST);
         return registrationBean;
     }
