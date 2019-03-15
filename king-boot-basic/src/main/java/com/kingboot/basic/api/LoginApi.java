@@ -2,10 +2,13 @@ package com.kingboot.basic.api;
 
 
 import com.kingboot.common.model.RestResponse;
+import com.nimbusds.jose.EncryptionMethod;
+import com.nimbusds.jose.JWEAlgorithm;
+import com.nimbusds.jose.JWSAlgorithm;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.pac4j.cas.profile.CasRestProfile;
 import org.pac4j.core.context.J2EContext;
+import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.core.profile.ProfileManager;
 import org.pac4j.jwt.config.encryption.SecretEncryptionConfiguration;
 import org.pac4j.jwt.config.signature.SecretSignatureConfiguration;
@@ -28,24 +31,26 @@ import java.util.Optional;
 @Api (description = "loginApi")
 @Slf4j
 public class LoginApi {
-@Autowired
-private JwtAuthenticator jwtAuthenticator;
+
     //需要设置安装jce $JAVA_HOME/jre/lib/security/java.security 设置crypto.policy=unlimited
     @Value ("${jwt.salt}")
     private String salt;
     
+    @Autowired
+    private JwtAuthenticator jwtAuthenticator;
+    
     @PostMapping("/token")
     public RestResponse<String> login(HttpServletRequest request, HttpServletResponse response) throws NoSuchAlgorithmException {
         J2EContext context = new J2EContext(request, response);
-        final ProfileManager<CasRestProfile> manager = new ProfileManager(context);
-        final JwtGenerator generator = new JwtGenerator(new SecretSignatureConfiguration(salt),
-                new SecretEncryptionConfiguration(salt));
+        final ProfileManager manager = new ProfileManager(context);
+        final JwtGenerator<CommonProfile> generator = new JwtGenerator<>(new SecretSignatureConfiguration(salt, JWSAlgorithm.HS256),
+                new SecretEncryptionConfiguration(salt, JWEAlgorithm.DIR, EncryptionMethod.A128CBC_HS256));
         String token = "";
-        final Optional<CasRestProfile> profile = manager.get(true);
+        final Optional<CommonProfile> profile = manager.get(true);
         if (profile.isPresent()) {
             token = generator.generate(profile.get());
         }
-        String ticketGrantingTicketId1 = profile.get().getTicketGrantingTicketId();
+        
         return new RestResponse<>(token);
     }
 }

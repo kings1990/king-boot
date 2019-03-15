@@ -19,6 +19,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
+        <pac4j.version>3.7.0-SNAPSHOT</pac4j.version>
         <shiro.version>1.4.0</shiro.version>
 
         <!--Maven打包时，环境变量替换-->
@@ -174,19 +175,19 @@
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-cas</artifactId>
-            <version>3.4.0</version>
+            <version>${pac4j.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-core</artifactId>
-            <version>3.4.0</version>
+            <version>${pac4j.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-http</artifactId>
-            <version>3.4.0</version>
+            <version>${pac4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
