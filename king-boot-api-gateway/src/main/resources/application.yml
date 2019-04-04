@@ -11,9 +11,14 @@ eureka:
 #\u81EA\u5B9A\u4E49\u8DEF\u7531\u6620\u5C04
 zuul:
   routes:
-    KING-BOOT-USER: /apigateway/**
-    KING-BOOT-BASIC: /apigateway/**
+    king-boot-user: 
+      path: /apigateway/u/**
+      service-id: king-boot-user
+    king-boot-basic: 
+      path: /apigateway/b/**
+      service-id: king-boot-basic
     auth-service:
       path: /auth/**
       service-id: king-boot-auth
       strip-prefix: false
+  strip-prefix: false

@@ -1,6 +1,7 @@
 package com.kingboot.auth.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -13,7 +14,8 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 
-@Service   // It has to be annotated with @Service.
+@Service  // It has to be annotated with @Service.
+@Primary
 public class UserDetailsServiceImpl implements UserDetailsService {
     
     @Autowired
