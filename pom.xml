@@ -21,6 +21,8 @@
         
         <module>kingboot-service</module>
         <module>kingboot-service-impl</module>
+        <module>king-boot-user</module>
+        <module>king-boot-order</module>
     </modules>
 
     <properties>

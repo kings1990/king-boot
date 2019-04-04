@@ -1,0 +1,47 @@
+server:
+  port: 8301
+
+management:
+  #暴露所有接口
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /swagger/api
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://kings:1234@register.ws.com/eureka/
+
+  instance:
+    health-check-url: http://localhost:${server.servlet.context-path}/actuator/health
+    status-page-url: http://localhost:${server.servlet.context-path}/actuator/info
+    home-page-url: htts://localhost:${server.servlet.context-path}/
+    
+spring:
+  application:
+    name: king-boot-user
+        
+feign:
+  client:
+    config: 
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+  hystrix:
+    enabled: true
+KING-BOOT-USER:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
+
+info:
+  description: sringboot user
