@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @EnableFeignClients
 @EnableEurekaClient
-public class KingBootUserAppApplication {
+public class KingBootOrderAppApplication {
     
     public static void main(String[] args) {
-        SpringApplication.run(KingBootUserAppApplication.class, args);
+        SpringApplication.run(KingBootOrderAppApplication.class, args);
     }
     
     @Bean

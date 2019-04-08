@@ -12,7 +12,7 @@ public class OrderServiceImpl implements OrderService {
     public Order findById(Integer id) {
         Order user = new Order();
         user.setId(id);
-        user.setOrderID("OD-123");
+        user.setOrderId("OD-123");
         return user;
     }
 }

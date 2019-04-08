@@ -1,5 +1,5 @@
 server:
-  port: 8301
+  port: 8302
 
 management:
   #暴露所有接口
@@ -29,7 +29,7 @@ eureka:
     
 spring:
   application:
-    name: king-boot-user
+    name: king-boot-order-app
         
 feign:
   client:
@@ -44,4 +44,4 @@ KING-BOOT-USER:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
 
 info:
-  description: sringboot user
+  description: sringboot order
