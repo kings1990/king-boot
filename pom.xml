@@ -23,6 +23,7 @@
         <module>kingboot-service-impl</module>
         <module>king-boot-user</module>
         <module>king-boot-order</module>
+        <module>king-boot-common-model</module>
     </modules>
 
     <properties>
@@ -35,6 +36,8 @@
 
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+        
+        <boot-common.version>1.0.2</boot-common.version>
     </properties>
 
     <distributionManagement>

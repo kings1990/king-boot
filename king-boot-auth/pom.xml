@@ -45,7 +45,7 @@
         <dependency>
             <groupId>com.kingboot</groupId>
             <artifactId>king-boot-common-model</artifactId>
-            <version>1.0.2</version>
+            <version>${boot-common.version}</version>
         </dependency>
 	</dependencies>
 
