@@ -1,7 +1,7 @@
-package com.kingboot.order.service.impl;
+package com.kingboot.user.service.impl;
 
 import com.kingboot.order.entity.User;
-import com.kingboot.order.service.UserService;
+import com.kingboot.user.service.UserService;
 import org.springframework.stereotype.Service;
 
 

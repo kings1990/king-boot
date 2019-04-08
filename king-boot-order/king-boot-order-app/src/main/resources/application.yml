@@ -29,19 +29,35 @@ eureka:
     
 spring:
   application:
-    name: king-boot-order-app
+    name: king-boot-order
         
-feign:
-  client:
-    config: 
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-  hystrix:
-    enabled: true
-KING-BOOT-USER:
+
+  
+king-boot-order:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
 
 info:
   description: sringboot order
+
+feign:
+  client:
+    config:
+      default:
+        #和hystrix一起配置
+        connectTimeout: 4000
+        readTimeout: 4000
+  hystrix:
+    enabled: true
+  httpclient:
+    connection-timeout: 4000  
+  
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000

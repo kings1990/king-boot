@@ -1,4 +1,4 @@
-package com.kingboot.order;
+package com.kingboot.user;
 
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.WeightedResponseTimeRule;

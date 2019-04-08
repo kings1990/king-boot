@@ -1,4 +1,4 @@
-package com.kingboot.order.client;
+package com.kingboot.user.client;
 
 
 import com.kingboot.common.model.RestResponse;

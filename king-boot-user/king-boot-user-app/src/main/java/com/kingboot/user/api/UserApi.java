@@ -1,9 +1,9 @@
-package com.kingboot.order.api;
+package com.kingboot.user.api;
 
 
 import com.kingboot.common.model.RestResponse;
 import com.kingboot.order.entity.User;
-import com.kingboot.order.service.UserService;
+import com.kingboot.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

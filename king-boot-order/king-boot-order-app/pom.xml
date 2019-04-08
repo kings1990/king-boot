@@ -84,6 +84,7 @@
             <artifactId>king-boot-user-client</artifactId>
             <version>${boot-user.version}</version>
         </dependency>
+
         
     </dependencies>
 

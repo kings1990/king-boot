@@ -8,8 +8,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
-@EnableFeignClients
+@SpringBootApplication(scanBasePackages={"com.kingboot.user.client","com.kingboot.order"})
+@EnableFeignClients("com.kingboot.user.client")
 @EnableEurekaClient
 public class KingBootOrderAppApplication {
     
