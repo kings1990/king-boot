@@ -1,5 +1,7 @@
 server:
   port: 8301
+  servlet:
+    context-path: 
 
 management:
   #暴露所有接口
@@ -23,9 +25,9 @@ eureka:
       defaultZone: http://kings:1234@register.ws.com/eureka/
 
   instance:
-    health-check-url: http://localhost:${server.servlet.context-path}/actuator/health
-    status-page-url: http://localhost:${server.servlet.context-path}/actuator/info
-    home-page-url: htts://localhost:${server.servlet.context-path}/
+    health-check-url: http://localhost:${server.port}actuator/health
+    status-page-url: http://localhost:${server.port}/actuator/info
+    home-page-url: htts://localhost:${server.port}
     
 spring:
   application:

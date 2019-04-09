@@ -19,13 +19,16 @@
 
 
 | 项目                 | 端口 | 访问 |
-|:-------------------------:|:-----------:| :--------------------------------------------:|
-| king-boot-timer           | 9100        | http://timer.ws.com                           |
-| king-boot-basic           | 8000        | https://king.ws.com/boot/thymeleaf/mappings   |       
-| king-boot-admin           | 7000        | http://localhost:7000                         |        
-| king-boot-dubbo-server    | 7001        | http://localhost:9001                         |
-| king-boot-user-app        | 8301        | http://localhost:8301/user/detail/1           |
-| king-boot-order-app       | 8302        | http://localhost:8302/order/detail/1          |
+|:-------------------------:|:-----------:| :----------------------------------------------:|
+| king-boot-timer           | 9100        | http://timer.ws.com                             |
+| king-boot-basic           | 8000        | https://king.ws.com/boot/thymeleaf/mappings     |       
+| king-boot-admin           | 7000        | http://localhost:7000                           |        
+| king-boot-dubbo-server    | 7001        | http://localhost:9001                           |
+| king-boot-user-app        | 8301        | http://localhost:8301/user/detail/1             |
+| king-boot-order-app       | 8302        | http://localhost:8302/order/detail/1            |
+| king-boot-cionfig-server  | 8202        | http://localhost:8202/master/order-service.json |
+
+
 
 
 #服务启动指令

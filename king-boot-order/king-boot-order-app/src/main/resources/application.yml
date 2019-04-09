@@ -23,19 +23,24 @@ eureka:
       defaultZone: http://kings:1234@register.ws.com/eureka/
 
   instance:
-    health-check-url: http://localhost:${server.servlet.context-path}/actuator/health
-    status-page-url: http://localhost:${server.servlet.context-path}/actuator/info
-    home-page-url: htts://localhost:${server.servlet.context-path}/
+    health-check-url: http://localhost:${server.port}/actuator/health
+    status-page-url: http://localhost:${server.port}/actuator/info
+    home-page-url: htts://localhost:${server.port}/
     
 spring:
-  application:
-    name: king-boot-order
   zipkin:
     base-url: http://localhost:9411/
   sleuth:
     sampler:
       #采样百分比、开发环境可以设置为1表示全部，生成用默认
       probability: 1 
+  application:
+    name: king-boot-order
+    cloud:
+      config:
+        discovery:
+          service-id: king-boot-config-server
+          enabled: true
 
 
 king-boot-order:
