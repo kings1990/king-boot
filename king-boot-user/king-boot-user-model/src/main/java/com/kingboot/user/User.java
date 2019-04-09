@@ -1,4 +1,4 @@
-package com.kingboot.order.entity;
+package com.kingboot.user;
 
 
 import lombok.Getter;

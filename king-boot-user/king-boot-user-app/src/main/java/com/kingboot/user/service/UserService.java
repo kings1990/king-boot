@@ -1,7 +1,7 @@
 package com.kingboot.user.service;
 
 
-import com.kingboot.order.entity.User;
+import com.kingboot.user.User;
 
 public interface UserService {
     

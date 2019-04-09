@@ -1,7 +1,7 @@
 package com.kingboot.user.client;
 
 import com.kingboot.common.model.RestResponse;
-import com.kingboot.order.entity.User;
+import com.kingboot.user.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

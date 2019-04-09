@@ -2,7 +2,7 @@ package com.kingboot.user.client;
 
 
 import com.kingboot.common.model.RestResponse;
-import com.kingboot.order.entity.User;
+import com.kingboot.user.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
