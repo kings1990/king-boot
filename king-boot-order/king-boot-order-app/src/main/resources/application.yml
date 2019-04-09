@@ -30,13 +30,19 @@ eureka:
 spring:
   application:
     name: king-boot-order
-        
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    sampler:
+      #采样百分比、开发环境可以设置为1表示全部，生成用默认
+      probability: 1 
 
-  
+
 king-boot-order:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
-
+    listOfServers: localhost:8302
+    
 info:
   description: sringboot order
 
@@ -52,7 +58,7 @@ feign:
   httpclient:
     connection-timeout: 4000  
   
-
+  
 
 hystrix:
   command:
@@ -61,3 +67,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 4000
+ribbon:
+  eureka:
+    enabled: true

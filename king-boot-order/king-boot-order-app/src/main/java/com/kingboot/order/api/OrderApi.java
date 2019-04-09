@@ -30,7 +30,9 @@ public class OrderApi {
     @ResponseBody
     @ApiOperation (value = "根据id查询用户",notes = "根据id查询用户【Kings】")
     public RestResponse<Order> findById (@PathVariable @ApiParam Integer id) {
+        //log.info("order findById");
         RestResponse<User> u = userClient.findById(1);
+        System.out.println(u);
         return new RestResponse<>(orderService.findById(id));
     }
     

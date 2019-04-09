@@ -14,6 +14,7 @@
 | swagger                   | 8083        | http://swagger.ws.com                         |
 | static resource           | 80          | http://static.ws.com                          |
 | elasticsearch             | 9200        | http://localhost:9200                         |
+| zipkin                    | 9411        | http://localhost:9411/zipkin                  |
 
 
 

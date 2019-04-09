@@ -14,9 +14,9 @@ zuul:
     king-boot-user: 
       path: /apigateway/u/**
       service-id: king-boot-user
-#    king-boot-basic: 
-#      path: /apigateway/b/**
-#      service-id: king-boot-basic
+    king-boot-order: 
+      path: /apigateway/o/**
+      service-id: king-boot-order
     auth-service:
       path: /auth/**
       service-id: king-boot-auth
