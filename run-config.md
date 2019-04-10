@@ -15,7 +15,7 @@
 | static resource           | 80          | http://static.ws.com                          |
 | elasticsearch             | 9200        | http://localhost:9200                         |
 | zipkin                    | 9411        | http://localhost:9411/zipkin                  |
-
+| rabbitMQ                  | 15672       | http://localhost:15672
 
 
 | 项目                 | 端口 | 访问 |

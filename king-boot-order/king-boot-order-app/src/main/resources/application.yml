@@ -36,11 +36,24 @@ spring:
       probability: 1 
   application:
     name: king-boot-order
-    cloud:
-      config:
-        discovery:
-          service-id: king-boot-config-server
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      direct:
+        retry:
           enabled: true
+      simple:
+        retry:
+          enabled: true
+
+  cloud:
+    config:
+      discovery:
+        service-id: king-boot-config-server
+        enabled: true
 
 
 king-boot-order:
