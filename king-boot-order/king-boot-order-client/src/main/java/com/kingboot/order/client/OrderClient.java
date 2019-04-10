@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient (value = "king-boot-order",fallback = OrderClientImpl.class)
 public interface OrderClient {
     
-    @GetMapping (value = "/order/detail/{id}",name = "根据id查询")
+    @GetMapping (value = "/api/order/detail/{id}",name = "根据id查询")
     RestResponse<Order> findById (@PathVariable Integer id);
 }

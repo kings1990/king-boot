@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping ("/order")
+@RequestMapping ("/api/order")
 @Api (description = "订单API")
 @Slf4j
 public class OrderApi {

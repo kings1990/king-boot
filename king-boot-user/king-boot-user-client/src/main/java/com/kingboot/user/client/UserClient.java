@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient (value = "king-boot-user",fallback = UserClientImpl.class)
 public interface UserClient {
     
-    @GetMapping (value = "/user/detail/{id}",name = "根据id查询")
+    @GetMapping (value = "/api/user/detail/{id}",name = "根据id查询")
     RestResponse<User> findById (@PathVariable Integer id);
 }
