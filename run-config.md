@@ -89,6 +89,16 @@ nginx
 ```
 cd ~/develop/environment/elasticsearch-6.6.0/bin
 ./elasticsearch
+
+
+cd ~/develop/environment/elk/logstash-6.6.0/bin
+./logstash -f ../config/beats.conf
+
+cd ~/develop/environment/elk/filebeat-6.6.0
+./filebeat -e -c filebeat.yml
+
+cd ~/develop/environment/elk/kibana-6.6.0/bin
+./kibana
 ```
 
 
