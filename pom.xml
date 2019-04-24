@@ -42,7 +42,7 @@
         <boot-user.version>1.0.2</boot-user.version>
         <boot-order.version>1.0.2</boot-order.version>
 
-        <docker.image.prefix>darkings1990</docker.image.prefix>
+        <docker.image.prefix>darkings1990/boot</docker.image.prefix>
     </properties>
 
     <distributionManagement>
