@@ -14,29 +14,29 @@ import java.io.InputStream;
 
 @Slf4j
 public class CustomUrlRewriteFilter extends UrlRewriteFilter {
-    
-    private UrlRewriter urlRewriter;
-    
-    @Override
-    protected void loadUrlRewriter(javax.servlet.FilterConfig filterConfig) throws ServletException {
-        try {
-            InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("urlrewrite.xml");
-            Conf conf = new Conf(filterConfig.getServletContext(), inputStream, "urlrewrite.xml", "");
-            urlRewriter = new UrlRewriter(conf);
-        } catch (Exception e) {
-            log.error("load urlrewrite.xml error");
-        }
-    }
-    
-    @Override
-    public void destroyUrlRewriter() {
-        if (urlRewriter != null) {
-            urlRewriter.destroy();
-        }
-    }
-    
-    @Override
-    public UrlRewriter getUrlRewriter(ServletRequest request, ServletResponse response, FilterChain chain) {
-        return urlRewriter;
-    }
+	
+	private UrlRewriter urlRewriter;
+	
+	@Override
+	protected void loadUrlRewriter(javax.servlet.FilterConfig filterConfig) throws ServletException {
+		try {
+			InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("urlrewrite.xml");
+			Conf conf = new Conf(filterConfig.getServletContext(), inputStream, "urlrewrite.xml", "");
+			urlRewriter = new UrlRewriter(conf);
+		} catch (Exception e) {
+			log.error("load urlrewrite.xml error");
+		}
+	}
+	
+	@Override
+	public void destroyUrlRewriter() {
+		if (urlRewriter != null) {
+			urlRewriter.destroy();
+		}
+	}
+	
+	@Override
+	public UrlRewriter getUrlRewriter(ServletRequest request, ServletResponse response, FilterChain chain) {
+		return urlRewriter;
+	}
 }

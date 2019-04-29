@@ -18,9 +18,9 @@ import java.util.Date;
  */
 @Component
 public class TenMinuteTask {
-    
-    @Scheduled(cron = "0 0/10 * * * ? ")
-    public void excute(){
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-    }
+	
+	@Scheduled (cron = "0 0/10 * * * ? ")
+	public void excute() {
+		System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+	}
 }

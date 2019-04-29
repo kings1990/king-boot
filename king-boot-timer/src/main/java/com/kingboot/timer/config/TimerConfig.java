@@ -9,17 +9,17 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 @Configuration
 public class TimerConfig {
-    
-    @Bean
-    public ZkClient zkClient() {
-        return new ZkClient("localhost:2181", 30000, 0x7fffffff, new BytesPushThroughSerializer());
-    }
-    
-    @Bean
-    public SchedulerFactoryBean scheduler() {
-        SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
-        return schedulerFactoryBean;
-    }
-    
-    
+	
+	@Bean
+	public ZkClient zkClient() {
+		return new ZkClient("localhost:2181", 30000, 0x7fffffff, new BytesPushThroughSerializer());
+	}
+	
+	@Bean
+	public SchedulerFactoryBean scheduler() {
+		SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
+		return schedulerFactoryBean;
+	}
+	
+	
 }

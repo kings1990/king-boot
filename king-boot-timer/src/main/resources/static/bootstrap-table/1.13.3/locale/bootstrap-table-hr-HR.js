@@ -14,10 +14,10 @@
   'use strict';
 
   /**
-  * Bootstrap Table Croatian translation
-  * Author: Petra Štrbenac (petra.strbenac@gmail.com)
-  * Author: Petra Štrbenac (petra.strbenac@gmail.com)
-  */
+   * Bootstrap Table Croatian translation
+   * Author: Petra Štrbenac (petra.strbenac@gmail.com)
+   * Author: Petra Štrbenac (petra.strbenac@gmail.com)
+   */
   (function ($) {
     $.fn.bootstrapTable.locales['hr-HR'] = {
       formatLoadingMessage: function formatLoadingMessage() {

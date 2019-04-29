@@ -155,8 +155,8 @@
       },
       getCurrentHeader: function getCurrentHeader(_ref2) {
         var $header = _ref2.$header,
-            options = _ref2.options,
-            $tableHeader = _ref2.$tableHeader;
+          options = _ref2.options,
+          $tableHeader = _ref2.$tableHeader;
 
         var header = $header;
         if (options.height) {
@@ -272,7 +272,7 @@
       },
       isColumnSearchableViaSelect: function isColumnSearchableViaSelect(_ref4) {
         var filterControl = _ref4.filterControl,
-            searchable = _ref4.searchable;
+          searchable = _ref4.searchable;
 
         return filterControl && filterControl.toLowerCase() === 'select' && searchable;
       },
@@ -368,8 +368,8 @@
 
           if (column.filterData !== undefined && column.filterData.toLowerCase() !== 'column') {
             var filterDataType = UtilsFilterControl.getFilterDataMethod(
-            /* eslint-disable no-use-before-define */
-            filterDataMethods, column.filterData.substring(0, column.filterData.indexOf(':')));
+              /* eslint-disable no-use-before-define */
+              filterDataMethods, column.filterData.substring(0, column.filterData.indexOf(':')));
             var filterDataSource = void 0;
             var selectControl = void 0;
 
@@ -483,8 +483,8 @@
           if (header.find('.date-filter-control').length > 0) {
             $.each(that.columns, function (i, _ref6) {
               var filterControl = _ref6.filterControl,
-                  field = _ref6.field,
-                  filterDatepickerOptions = _ref6.filterDatepickerOptions;
+                field = _ref6.field,
+                filterDatepickerOptions = _ref6.filterDatepickerOptions;
 
               if (filterControl !== undefined && filterControl.toLowerCase() === 'datepicker') {
                 header.find('.date-filter-control.bootstrap-table-filter-control-' + field).datepicker(filterDatepickerOptions).on('changeDate', function (_ref7) {
@@ -855,7 +855,7 @@
             // which ones are going to be present.
             if (controls.length > 0) {
               this.filterColumnsPartial = {};
-              $(controls[0]).trigger(controls[0].tagName === 'INPUT' ? 'keyup' : 'change', { keyCode: 13 });
+              $(controls[0]).trigger(controls[0].tagName === 'INPUT' ? 'keyup' : 'change', {keyCode: 13});
             } else {
               return;
             }
@@ -868,7 +868,7 @@
             if (that.options.sortName !== table.data('sortName') || that.options.sortOrder !== table.data('sortOrder')) {
               var sorter = header.find(Utils.sprintf('[data-field="%s"]', $(controls[0]).closest('table').data('sortName')));
               if (sorter.length > 0) {
-                that.onSort({ type: 'keypress', currentTarget: sorter });
+                that.onSort({type: 'keypress', currentTarget: sorter});
                 $(sorter).find('.sortable').trigger('click');
               }
             }

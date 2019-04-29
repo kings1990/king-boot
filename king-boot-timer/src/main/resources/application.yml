@@ -21,9 +21,9 @@ spring:
     encoding: UTF-8
     mode: HTML5
     prefix: classpath:/templates/thymeleaf/
-    
+
 logging:
-  level: 
+  level:
     root: error
     exclude: error
   group:

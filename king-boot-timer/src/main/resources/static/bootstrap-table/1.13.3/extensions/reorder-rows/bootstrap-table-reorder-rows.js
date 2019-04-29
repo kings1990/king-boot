@@ -1,132 +1,132 @@
 (function (global, factory) {
-    if (typeof define === "function" && define.amd) {
-        define([], factory);
-    } else if (typeof exports !== "undefined") {
-        factory();
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory();
-        global.bootstrapTableReorderRows = mod.exports;
-    }
+  if (typeof define === "function" && define.amd) {
+    define([], factory);
+  } else if (typeof exports !== "undefined") {
+    factory();
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory();
+    global.bootstrapTableReorderRows = mod.exports;
+  }
 })(this, function () {
+  'use strict';
+
+  /**
+   * @author: Dennis Hernández
+   * @webSite: http://djhvscf.github.io/Blog
+   * @version: v1.0.1
+   */
+
+  (function ($) {
+
     'use strict';
 
-    /**
-     * @author: Dennis Hernández
-     * @webSite: http://djhvscf.github.io/Blog
-     * @version: v1.0.1
-     */
+    var isSearch = false;
 
-    (function ($) {
+    var rowAttr = function rowAttr(row, index) {
+      return {
+        id: 'customId_' + index
+      };
+    };
 
-        'use strict';
+    $.extend($.fn.bootstrapTable.defaults, {
+      reorderableRows: false,
+      onDragStyle: null,
+      onDropStyle: null,
+      onDragClass: "reorder_rows_onDragClass",
+      dragHandle: null,
+      useRowAttrFunc: false,
+      onReorderRowsDrag: function onReorderRowsDrag(table, row) {
+        return false;
+      },
+      onReorderRowsDrop: function onReorderRowsDrop(table, row) {
+        return false;
+      },
+      onReorderRow: function onReorderRow(newData) {
+        return false;
+      }
+    });
 
-        var isSearch = false;
+    $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
+      'reorder-row.bs.table': 'onReorderRow'
+    });
 
-        var rowAttr = function rowAttr(row, index) {
-            return {
-                id: 'customId_' + index
-            };
-        };
+    var BootstrapTable = $.fn.bootstrapTable.Constructor,
+      _init = BootstrapTable.prototype.init,
+      _initSearch = BootstrapTable.prototype.initSearch;
 
-        $.extend($.fn.bootstrapTable.defaults, {
-            reorderableRows: false,
-            onDragStyle: null,
-            onDropStyle: null,
-            onDragClass: "reorder_rows_onDragClass",
-            dragHandle: null,
-            useRowAttrFunc: false,
-            onReorderRowsDrag: function onReorderRowsDrag(table, row) {
-                return false;
-            },
-            onReorderRowsDrop: function onReorderRowsDrop(table, row) {
-                return false;
-            },
-            onReorderRow: function onReorderRow(newData) {
-                return false;
-            }
-        });
+    BootstrapTable.prototype.init = function () {
 
-        $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
-            'reorder-row.bs.table': 'onReorderRow'
-        });
+      if (!this.options.reorderableRows) {
+        _init.apply(this, Array.prototype.slice.apply(arguments));
+        return;
+      }
 
-        var BootstrapTable = $.fn.bootstrapTable.Constructor,
-            _init = BootstrapTable.prototype.init,
-            _initSearch = BootstrapTable.prototype.initSearch;
+      var that = this;
+      if (this.options.useRowAttrFunc) {
+        this.options.rowAttributes = rowAttr;
+      }
 
-        BootstrapTable.prototype.init = function () {
+      var onPostBody = this.options.onPostBody;
+      this.options.onPostBody = function () {
+        setTimeout(function () {
+          that.makeRowsReorderable();
+          onPostBody.apply();
+        }, 1);
+      };
 
-            if (!this.options.reorderableRows) {
-                _init.apply(this, Array.prototype.slice.apply(arguments));
-                return;
-            }
+      _init.apply(this, Array.prototype.slice.apply(arguments));
+    };
 
-            var that = this;
-            if (this.options.useRowAttrFunc) {
-                this.options.rowAttributes = rowAttr;
-            }
+    BootstrapTable.prototype.initSearch = function () {
+      _initSearch.apply(this, Array.prototype.slice.apply(arguments));
 
-            var onPostBody = this.options.onPostBody;
-            this.options.onPostBody = function () {
-                setTimeout(function () {
-                    that.makeRowsReorderable();
-                    onPostBody.apply();
-                }, 1);
-            };
+      if (!this.options.reorderableRows) {
+        return;
+      }
 
-            _init.apply(this, Array.prototype.slice.apply(arguments));
-        };
+      //Known issue after search if you reorder the rows the data is not display properly
+      //isSearch = true;
+    };
 
-        BootstrapTable.prototype.initSearch = function () {
-            _initSearch.apply(this, Array.prototype.slice.apply(arguments));
+    BootstrapTable.prototype.makeRowsReorderable = function () {
+      if (this.options.cardView) {
+        return;
+      }
 
-            if (!this.options.reorderableRows) {
-                return;
-            }
+      var that = this;
+      this.$el.tableDnD({
+        onDragStyle: that.options.onDragStyle,
+        onDropStyle: that.options.onDropStyle,
+        onDragClass: that.options.onDragClass,
+        onDrop: that.onDrop,
+        onDragStart: that.options.onReorderRowsDrag,
+        dragHandle: that.options.dragHandle
+      });
+    };
 
-            //Known issue after search if you reorder the rows the data is not display properly
-            //isSearch = true;
-        };
+    BootstrapTable.prototype.onDrop = function (table, droppedRow) {
+      var tableBs = $(table),
+        tableBsData = tableBs.data('bootstrap.table'),
+        tableBsOptions = tableBs.data('bootstrap.table').options,
+        row = null,
+        newData = [];
 
-        BootstrapTable.prototype.makeRowsReorderable = function () {
-            if (this.options.cardView) {
-                return;
-            }
+      for (var i = 0; i < table.tBodies[0].rows.length; i++) {
+        row = $(table.tBodies[0].rows[i]);
+        newData.push(tableBsOptions.data[row.data('index')]);
+        row.data('index', i).attr('data-index', i);
+      }
 
-            var that = this;
-            this.$el.tableDnD({
-                onDragStyle: that.options.onDragStyle,
-                onDropStyle: that.options.onDropStyle,
-                onDragClass: that.options.onDragClass,
-                onDrop: that.onDrop,
-                onDragStart: that.options.onReorderRowsDrag,
-                dragHandle: that.options.dragHandle
-            });
-        };
+      tableBsOptions.data = tableBsOptions.data.slice(0, tableBsData.pageFrom - 1).concat(newData).concat(tableBsOptions.data.slice(tableBsData.pageTo));
 
-        BootstrapTable.prototype.onDrop = function (table, droppedRow) {
-            var tableBs = $(table),
-                tableBsData = tableBs.data('bootstrap.table'),
-                tableBsOptions = tableBs.data('bootstrap.table').options,
-                row = null,
-                newData = [];
+      //Call the user defined function
+      tableBsOptions.onReorderRowsDrop.apply(table, [table, droppedRow]);
 
-            for (var i = 0; i < table.tBodies[0].rows.length; i++) {
-                row = $(table.tBodies[0].rows[i]);
-                newData.push(tableBsOptions.data[row.data('index')]);
-                row.data('index', i).attr('data-index', i);
-            }
-
-            tableBsOptions.data = tableBsOptions.data.slice(0, tableBsData.pageFrom - 1).concat(newData).concat(tableBsOptions.data.slice(tableBsData.pageTo));
-
-            //Call the user defined function
-            tableBsOptions.onReorderRowsDrop.apply(table, [table, droppedRow]);
-
-            //Call the event reorder-row
-            tableBsData.trigger('reorder-row', newData);
-        };
-    })(jQuery);
+      //Call the event reorder-row
+      tableBsData.trigger('reorder-row', newData);
+    };
+  })(jQuery);
 });

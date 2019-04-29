@@ -1,20 +1,20 @@
 eureka:
-   instance:
-     hostname: register.ws.com
-     statusPageUrl: http://${eureka.instance.hostname}/info
-     status-page-url-path: http://${eureka.instance.hostname}/info
-     prefer-ip-address: true
+  instance:
+    hostname: register.ws.com
+    statusPageUrl: http://${eureka.instance.hostname}/info
+    status-page-url-path: http://${eureka.instance.hostname}/info
+    prefer-ip-address: true
 
-   client:
-     healthcheck:
-       enabled: true
-     registerWithEureka: false
-     fetchRegistry: false
-     serviceUrl:
-       defaultZone: http://kings:1234@${eureka.instance.hostname}/eureka/
+  client:
+    healthcheck:
+      enabled: true
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://kings:1234@${eureka.instance.hostname}/eureka/
 
-   server:
-     enable-self-preservation: true
+  server:
+    enable-self-preservation: true
 server:
   port: 8201
 

@@ -1,4 +1,3 @@
-
 spring:
   application:
     name: king-boot-config-server
@@ -11,35 +10,35 @@ spring:
           default-label: master
           timeout: 5
           private-key: |
-                  -----BEGIN RSA PRIVATE KEY-----
-                  MIIEpAIBAAKCAQEAuFmmyMmc7H+bd50kjb25LPgwb7RCUIutwMv+W7+cOrww4/qk
-                  7AZGVo5oAdti9nh4ZsO4SPnk2McZ7a3A0joRbDR87uRlNzJFNZUxNfe4HnHG9S0x
-                  LquA3St53N3lvjAZnARrZR7GpDHIzTuw0OS4HwDh2sKVTaaOUJ4/pCeIDg0rIW8O
-                  Bgbn1azmo9oW2bkCJm6lTPYc7t9tqWqaAYheiZNT+b1li7dVrWMw7SELsr+6mXeo
-                  r+xdZ8PybHOVgHEdXLsojsHa9qfKEhZVqMq/3b+9XodHKvKD6OFNe6dnpgB83Y2I
-                  kfdedww0FLFE+qwaWYkf7TihIam44/HxEOJVfwIDAQABAoIBAHlEiEFW1sKAIt3p
-                  Yk1XO4PIc9xXYLQpXhAQYO8ruXKtrx+ZFnoomoZ/wQ1PqublUpaPMx/WOuMa/gRq
-                  owfnqORcFr7zQV2w1PQtgyS0IsrsH2vS4aKIsQlMeyp+UY3tiDsocRkgyJzkHupa
-                  1LJlcnT6mJfWHm7pHH8NymGKm6ZZhrqIw62n+oMEO66riyWl9pG0CxgrhvkIt1T5
-                  tfS7ZD9dt7i6yKIrl7iqt8CsZyWHDcoad936vU6Db3or3LwRSEeHh7LRddemIVIz
-                  2u8edqqJFMZ86lWvxtZ31EnpgcvAVeOz2RAlOztYeiysJQD6FynHTQXyi8/dkfq6
-                  fiEqx+ECgYEA6SI4Kg/axlWRkuvEHustNw3HpFDNJiy3K30wKxX8oldIEk5j3if4
-                  KVv512Bbo1/7oFlb44Nk+rw35RK/rhW1T+vQQWP68JDu5Yu/rOIC6Z+ML4xHPh1I
-                  bKktnKd6fhPeBCNy7zUrwaNQ0sEm/uhI6YHtWPXKxpG4i6SOdVoP0m8CgYEAym6F
-                  tNb+PuZ4Yr5CmcyJnmJJr9a6ZP89MDYvsQnz/dUWvSmfJtFPdxDnFnzozM2mLB4O
-                  uu2Ol7hZ7Z6En/mwUm1isS/pnse5zSf33hz6APTHDNLBuEpz497UKXtcDqKi0jPz
-                  V+HnRTM+N++8T4HAS1tclBxTUUsXwgU+ys539fECgYEApcI71sRBFAWhJKpXXnhu
-                  RJeanB0LUBo4/kXbarcOUkrmpoVwAnO+wYFw6Y7MeSP0n/UJHYG92Xzb7RbgjKFI
-                  shODlgrFUChsg29SkFR+J6fWH7SIrwRZC1Faaei2clAj6iNeQ/A1NU+uVrsYw+Na
-                  fBRyMm9IhtjzMu6Ej7HCUCcCgYEAtJpig/MEJk4svbwNY3YOmdYK8+xZo93sU2Uk
-                  q4i7vI0umlnV+iXoBcx4v6F1ebNIPDgc4D0taMM6yDsTDD8SRpf84yRiBB0g8Z5l
-                  EC8+BThdll06JBeYyYZ2NwQuH4iOR4e95XxQf3a2XeVvVmfmjdTXBfU3iGG8sodH
-                  fF00vaECgYARU6ExzpAuvfUC/uYZr8Xu6ONlqQk0NH7o4+/e1Hs4/ixZwNv1Qa0H
-                  g5/DgIjljJeiAEj0gbtF5i4qWFWC1bD0nNXE42Wrh1+bS2FpXT8VEWqHGxDejerv
-                  jPMdRz5Oz9NvkXRDO3WmWnlHsSCKkJNdL0ExFw0G29wYVw3aHDrT5g==
-                  -----END RSA PRIVATE KEY-----
+            -----BEGIN RSA PRIVATE KEY-----
+            MIIEpAIBAAKCAQEAuFmmyMmc7H+bd50kjb25LPgwb7RCUIutwMv+W7+cOrww4/qk
+            7AZGVo5oAdti9nh4ZsO4SPnk2McZ7a3A0joRbDR87uRlNzJFNZUxNfe4HnHG9S0x
+            LquA3St53N3lvjAZnARrZR7GpDHIzTuw0OS4HwDh2sKVTaaOUJ4/pCeIDg0rIW8O
+            Bgbn1azmo9oW2bkCJm6lTPYc7t9tqWqaAYheiZNT+b1li7dVrWMw7SELsr+6mXeo
+            r+xdZ8PybHOVgHEdXLsojsHa9qfKEhZVqMq/3b+9XodHKvKD6OFNe6dnpgB83Y2I
+            kfdedww0FLFE+qwaWYkf7TihIam44/HxEOJVfwIDAQABAoIBAHlEiEFW1sKAIt3p
+            Yk1XO4PIc9xXYLQpXhAQYO8ruXKtrx+ZFnoomoZ/wQ1PqublUpaPMx/WOuMa/gRq
+            owfnqORcFr7zQV2w1PQtgyS0IsrsH2vS4aKIsQlMeyp+UY3tiDsocRkgyJzkHupa
+            1LJlcnT6mJfWHm7pHH8NymGKm6ZZhrqIw62n+oMEO66riyWl9pG0CxgrhvkIt1T5
+            tfS7ZD9dt7i6yKIrl7iqt8CsZyWHDcoad936vU6Db3or3LwRSEeHh7LRddemIVIz
+            2u8edqqJFMZ86lWvxtZ31EnpgcvAVeOz2RAlOztYeiysJQD6FynHTQXyi8/dkfq6
+            fiEqx+ECgYEA6SI4Kg/axlWRkuvEHustNw3HpFDNJiy3K30wKxX8oldIEk5j3if4
+            KVv512Bbo1/7oFlb44Nk+rw35RK/rhW1T+vQQWP68JDu5Yu/rOIC6Z+ML4xHPh1I
+            bKktnKd6fhPeBCNy7zUrwaNQ0sEm/uhI6YHtWPXKxpG4i6SOdVoP0m8CgYEAym6F
+            tNb+PuZ4Yr5CmcyJnmJJr9a6ZP89MDYvsQnz/dUWvSmfJtFPdxDnFnzozM2mLB4O
+            uu2Ol7hZ7Z6En/mwUm1isS/pnse5zSf33hz6APTHDNLBuEpz497UKXtcDqKi0jPz
+            V+HnRTM+N++8T4HAS1tclBxTUUsXwgU+ys539fECgYEApcI71sRBFAWhJKpXXnhu
+            RJeanB0LUBo4/kXbarcOUkrmpoVwAnO+wYFw6Y7MeSP0n/UJHYG92Xzb7RbgjKFI
+            shODlgrFUChsg29SkFR+J6fWH7SIrwRZC1Faaei2clAj6iNeQ/A1NU+uVrsYw+Na
+            fBRyMm9IhtjzMu6Ej7HCUCcCgYEAtJpig/MEJk4svbwNY3YOmdYK8+xZo93sU2Uk
+            q4i7vI0umlnV+iXoBcx4v6F1ebNIPDgc4D0taMM6yDsTDD8SRpf84yRiBB0g8Z5l
+            EC8+BThdll06JBeYyYZ2NwQuH4iOR4e95XxQf3a2XeVvVmfmjdTXBfU3iGG8sodH
+            fF00vaECgYARU6ExzpAuvfUC/uYZr8Xu6ONlqQk0NH7o4+/e1Hs4/ixZwNv1Qa0H
+            g5/DgIjljJeiAEj0gbtF5i4qWFWC1bD0nNXE42Wrh1+bS2FpXT8VEWqHGxDejerv
+            jPMdRz5Oz9NvkXRDO3WmWnlHsSCKkJNdL0ExFw0G29wYVw3aHDrT5g==
+            -----END RSA PRIVATE KEY-----
 
-          
+
 server:
   port: 8202
 

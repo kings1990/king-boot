@@ -29,138 +29,138 @@ import java.io.Serializable;
  * @date 2019.01.02 17:17:46
  */
 public class RestResponse<T> implements Serializable {
-    /**
-     * The constant VOID_REST_RESPONSE.
-     */
-    public static final RestResponse<Void> VOID_REST_RESPONSE = new RestResponse<>(null);
-    private static final long serialVersionUID = 1L;
-    /** Code. */
-    @ApiModelProperty ("Code码")
-    private int code;
-    
-    /** Message. */
-    @ApiModelProperty ("消息")
-    private String message;
-    
-    @ApiModelProperty ("下一个需要跳转的地址")
-    private String redirectUrl;
-    
-    /** Data. */
-    @ApiModelProperty ("返回实体数据")
-    private T data = null;
-    
-    public RestResponse() {
-    }
-    
-    public RestResponse(HttpStatus code, String message, T data) {
-        this(code.value(), message, data);
-    }
-    
-    public RestResponse(int code, String message, T data) {
-        this(code, message, data, "");
-    }
-    
-    /**
-     * Instantiates a new Rest response.
-     * @param code    the code
-     * @param message the message
-     * @param data    the data
-     */
-    public RestResponse(int code, String message, T data, String redirectUrl) {
-        this.code = code;
-        this.message = message;
-        // this.data = data;
-        //this.data = data;
-        // if (data != null && data.getClass().equals(PageInfo.class)) {
-        //     Map<String, Object> map = new HashMap<String, Object>();
-        //     map.put("pageInfo", data);
-        //     this.data = (T) map;
-        // } else {
-        this.data = data;
-        this.redirectUrl = redirectUrl;
-        //}
-        
-    }
-    
-    /**
-     * Instantiates a new Rest response.
-     * @param status the status
-     * @param data   the data
-     */
-    public RestResponse(HttpStatus status, T data) {
-        this(status.value(), status.getReasonPhrase(), data, "");
-    }
-    
-    public RestResponse(HttpStatus status, String message, T data, String redirectUrl) {
-        this(status.value(), status.getReasonPhrase(), data, redirectUrl);
-    }
-    
-    /**
-     * Instantiates a new Rest response.
-     * @param data the data
-     */
-    public RestResponse(T data) {
-        this(HttpStatus.OK.value(), "OK", data, "");
-    }
-    
-    /**
-     * Gets data.
-     * @return the data
-     */
-    public T getData() {
-        return data;
-    }
-    
-    /**
-     * Sets data.
-     * @param data the data
-     */
-    public void setData(T data) {
-        this.data = data;
-    }
-    
-    /**
-     * Gets code.
-     * @return the code
-     */
-    public int getCode() {
-        return code;
-    }
-    
-    /**
-     * Sets code.
-     * @param code the code
-     */
-    public void setCode(int code) {
-        this.code = code;
-    }
-    
-    /**
-     * Gets message.
-     * @return the message
-     */
-    public String getMessage() {
-        return message;
-    }
-    
-    /**
-     * Sets message.
-     * @param message the message
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
-    
-    public String getRedirectUrl() {
-        return redirectUrl == null ? "" : redirectUrl;
-    }
-    
-    public void setRedirectUrl(String redirectUrl) {
-        this.redirectUrl = redirectUrl;
-    }
-    
-    @Override
-    public String toString() {
-        return "{\"code\":" + code + ",\"message\":\"" + message + "\",\"data\":" + data + ",\"redirectUrl\":\"" + getRedirectUrl() + "\"}";
-    }
+	/**
+	 * The constant VOID_REST_RESPONSE.
+	 */
+	public static final RestResponse<Void> VOID_REST_RESPONSE = new RestResponse<>(null);
+	private static final long serialVersionUID = 1L;
+	/** Code. */
+	@ApiModelProperty ("Code码")
+	private int code;
+	
+	/** Message. */
+	@ApiModelProperty ("消息")
+	private String message;
+	
+	@ApiModelProperty ("下一个需要跳转的地址")
+	private String redirectUrl;
+	
+	/** Data. */
+	@ApiModelProperty ("返回实体数据")
+	private T data = null;
+	
+	public RestResponse() {
+	}
+	
+	public RestResponse(HttpStatus code, String message, T data) {
+		this(code.value(), message, data);
+	}
+	
+	public RestResponse(int code, String message, T data) {
+		this(code, message, data, "");
+	}
+	
+	/**
+	 * Instantiates a new Rest response.
+	 * @param code    the code
+	 * @param message the message
+	 * @param data    the data
+	 */
+	public RestResponse(int code, String message, T data, String redirectUrl) {
+		this.code = code;
+		this.message = message;
+		// this.data = data;
+		//this.data = data;
+		// if (data != null && data.getClass().equals(PageInfo.class)) {
+		//     Map<String, Object> map = new HashMap<String, Object>();
+		//     map.put("pageInfo", data);
+		//     this.data = (T) map;
+		// } else {
+		this.data = data;
+		this.redirectUrl = redirectUrl;
+		//}
+		
+	}
+	
+	/**
+	 * Instantiates a new Rest response.
+	 * @param status the status
+	 * @param data   the data
+	 */
+	public RestResponse(HttpStatus status, T data) {
+		this(status.value(), status.getReasonPhrase(), data, "");
+	}
+	
+	public RestResponse(HttpStatus status, String message, T data, String redirectUrl) {
+		this(status.value(), status.getReasonPhrase(), data, redirectUrl);
+	}
+	
+	/**
+	 * Instantiates a new Rest response.
+	 * @param data the data
+	 */
+	public RestResponse(T data) {
+		this(HttpStatus.OK.value(), "OK", data, "");
+	}
+	
+	/**
+	 * Gets data.
+	 * @return the data
+	 */
+	public T getData() {
+		return data;
+	}
+	
+	/**
+	 * Sets data.
+	 * @param data the data
+	 */
+	public void setData(T data) {
+		this.data = data;
+	}
+	
+	/**
+	 * Gets code.
+	 * @return the code
+	 */
+	public int getCode() {
+		return code;
+	}
+	
+	/**
+	 * Sets code.
+	 * @param code the code
+	 */
+	public void setCode(int code) {
+		this.code = code;
+	}
+	
+	/**
+	 * Gets message.
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
+	}
+	
+	/**
+	 * Sets message.
+	 * @param message the message
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	public String getRedirectUrl() {
+		return redirectUrl == null ? "" : redirectUrl;
+	}
+	
+	public void setRedirectUrl(String redirectUrl) {
+		this.redirectUrl = redirectUrl;
+	}
+	
+	@Override
+	public String toString() {
+		return "{\"code\":" + code + ",\"message\":\"" + message + "\",\"data\":" + data + ",\"redirectUrl\":\"" + getRedirectUrl() + "\"}";
+	}
 }

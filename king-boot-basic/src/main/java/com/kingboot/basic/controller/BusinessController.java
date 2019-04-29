@@ -16,13 +16,13 @@ import javax.validation.Valid;
 @RequestMapping ("/business")
 @Controller
 public class BusinessController {
-    @PostMapping (name = "validate验证", value = "/1")
-    @ResponseBody
-    @KingParam ("{\"email\":\"123\",\"type\":1}")
-    @ValidateMethod
-    public RestResponse<String> test1(@Valid BusinessModel businessModel, BindingResult bindingResult) {
-        
-        return new RestResponse<>("1");
-    }
+	@PostMapping (name = "validate验证", value = "/1")
+	@ResponseBody
+	@KingParam ("{\"email\":\"123\",\"type\":1}")
+	@ValidateMethod
+	public RestResponse<String> test1(@Valid BusinessModel businessModel, BindingResult bindingResult) {
+		
+		return new RestResponse<>("1");
+	}
 }
 

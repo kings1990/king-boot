@@ -8,13 +8,13 @@ import java.util.Map;
 
 @Component
 public class UserEnv {
-    
-    public String userName() {
-        Map<String,Object> pac4jPrincipal = (Map) SecurityUtils.getSubject().getPrincipal();
-        if (pac4jPrincipal != null) {
-            return pac4jPrincipal.get("account").toString();
-        }
-        return null;
-    }
-    
+	
+	public String userName() {
+		Map<String, Object> pac4jPrincipal = (Map) SecurityUtils.getSubject().getPrincipal();
+		if (pac4jPrincipal != null) {
+			return pac4jPrincipal.get("account").toString();
+		}
+		return null;
+	}
+	
 }

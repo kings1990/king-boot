@@ -18,12 +18,12 @@ import java.util.List;
 @Getter
 @Setter
 public class Executor {
-    private List<TopicInfo> topicInfos;
-    private String lastExpectTime;
-    
-    public static void main(String[] args) {
-        Executor executor = new Executor();
-        String lastExpectTime = "aaa";
-        executor.setLastExpectTime(lastExpectTime);
-    }
+	private List<TopicInfo> topicInfos;
+	private String lastExpectTime;
+	
+	public static void main(String[] args) {
+		Executor executor = new Executor();
+		String lastExpectTime = "aaa";
+		executor.setLastExpectTime(lastExpectTime);
+	}
 }

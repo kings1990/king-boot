@@ -6,17 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 @RequestMapping ("/jsp")
 @Controller
 public class TestJspController {
-    
-    
-    @GetMapping (name = "返回jsp页面", value = "/1")
-    public String test2(Model model) {
-        model.addAttribute("a", "haha");
-        return "jsp/a";
-    }
+	
+	
+	@GetMapping (name = "返回jsp页面", value = "/1")
+	public String test2(Model model) {
+		model.addAttribute("a", "haha");
+		return "jsp/a";
+	}
 }
 

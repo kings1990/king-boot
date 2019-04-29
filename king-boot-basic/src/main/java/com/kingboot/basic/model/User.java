@@ -17,23 +17,23 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    
-    @ApiModelProperty ("用户id")
-    private Integer accountId;
-    
-    @ApiModelProperty ("年龄")
-    private int age;
-    @JsonIgnore
-    private String password;
-    
-    @JsonProperty ("account")
-    @JsonInclude (JsonInclude.Include.NON_NULL)//空字段不返回
-    @ApiModelProperty ("账号")
-    private String phone;
-    
-    @JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GTM+8")
-    @ApiModelProperty ("创建时间")
-    private Date createTime;
-    
-    
+	
+	@ApiModelProperty ("用户id")
+	private Integer accountId;
+	
+	@ApiModelProperty ("年龄")
+	private int age;
+	@JsonIgnore
+	private String password;
+	
+	@JsonProperty ("account")
+	@JsonInclude (JsonInclude.Include.NON_NULL)//空字段不返回
+	@ApiModelProperty ("账号")
+	private String phone;
+	
+	@JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GTM+8")
+	@ApiModelProperty ("创建时间")
+	private Date createTime;
+	
+	
 }

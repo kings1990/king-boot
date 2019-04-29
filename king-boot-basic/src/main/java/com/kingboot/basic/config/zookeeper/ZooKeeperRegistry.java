@@ -11,26 +11,26 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ZooKeeperRegistry {
-    
-    @Value ("${zk.address}")
-    private String zkServers;
-    
-    @Value ("${zk.sessionTimeout}")
-    private Integer zkSessionTimeout;
-    
-    @Value ("${zk.connectionTimeout}")
-    private Integer zkConnectionTimeout;
-    
-    @Bean
-    private ZooKeeper initZooKeeper() throws Exception {
-        Watcher watcher = watchedEvent -> System.out.println(watchedEvent);
-        return new ZooKeeper(zkServers, zkSessionTimeout, watcher);
-    }
-    
-    
-    @Bean
-    private ZkClient initZKClient() throws Exception {
-        BytesPushThroughSerializer bytesPushThroughSerializer = new BytesPushThroughSerializer();
-        return new ZkClient(zkServers, zkSessionTimeout, zkConnectionTimeout, bytesPushThroughSerializer);
-    }
+	
+	@Value ("${zk.address}")
+	private String zkServers;
+	
+	@Value ("${zk.sessionTimeout}")
+	private Integer zkSessionTimeout;
+	
+	@Value ("${zk.connectionTimeout}")
+	private Integer zkConnectionTimeout;
+	
+	@Bean
+	private ZooKeeper initZooKeeper() throws Exception {
+		Watcher watcher = watchedEvent -> System.out.println(watchedEvent);
+		return new ZooKeeper(zkServers, zkSessionTimeout, watcher);
+	}
+	
+	
+	@Bean
+	private ZkClient initZKClient() throws Exception {
+		BytesPushThroughSerializer bytesPushThroughSerializer = new BytesPushThroughSerializer();
+		return new ZkClient(zkServers, zkSessionTimeout, zkConnectionTimeout, bytesPushThroughSerializer);
+	}
 }

@@ -14,9 +14,9 @@
   'use strict';
 
   /**
-  * Bootstrap Table German translation
-  * Author: Paul Mohr - Sopamo<p.mohr@sopamo.de>
-  */
+   * Bootstrap Table German translation
+   * Author: Paul Mohr - Sopamo<p.mohr@sopamo.de>
+   */
   (function ($) {
     $.fn.bootstrapTable.locales['de-DE'] = {
       formatLoadingMessage: function formatLoadingMessage() {

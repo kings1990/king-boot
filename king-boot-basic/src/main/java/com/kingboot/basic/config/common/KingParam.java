@@ -17,7 +17,7 @@ import java.lang.annotation.*;
 @Retention (RetentionPolicy.RUNTIME)
 @Documented
 public @interface KingParam {
-    String value() default "";
-    
-    @AliasFor ("value") String data() default "";
+	String value() default "";
+	
+	@AliasFor ("value") String data() default "";
 }

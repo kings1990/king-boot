@@ -5,14 +5,14 @@ $(function () {
 });
 
 var DEFAULT_OPTIONS = {
-    url:"",
-    data:"",
-    type:"post",
-    dataType:"json",
-    async:true,//异步请求
-    alone:false,//独立提交（一次有效的提交）
-    cache:false,
-    success:function (data) {
+    url: "",
+    data: "",
+    type: "post",
+    dataType: "json",
+    async: true,//异步请求
+    alone: false,//独立提交（一次有效的提交）
+    cache: false,
+    success: function (data) {
         /*console.log('请求成功');*/
         // setTimeout(function () {
         //     layer.msg(data.message);//通过layer插件来进行提示信息
@@ -31,7 +31,7 @@ var DEFAULT_OPTIONS = {
             }
         }
     },
-    error:function (data) {
+    error: function (data) {
         /*console.error('请求成功失败');*/
         /*data.code;//错误状态吗*/
         layer.closeAll('loading');
@@ -63,21 +63,20 @@ function ajax(options) {
         success: options.success || DEFAULT_OPTIONS.success,
         error: options.error || DEFAULT_OPTIONS.error,
     };
-    
+
     var url = options.url;
-    var reg = new RegExp(("{(\\w+)}"),"gi");
+    var reg = new RegExp(("{(\\w+)}"), "gi");
     var matchArray = url.match(reg);
-    if(matchArray){
-        for(j = 0; j < matchArray.length; j++) {
+    if (matchArray) {
+        for (j = 0; j < matchArray.length; j++) {
             var paramStrWithDollar = matchArray[j];
-            paramStr = paramStrWithDollar.replace("{","").replace("}","");
-            url = url.replace(paramStrWithDollar,options.data[paramStr]);
+            paramStr = paramStrWithDollar.replace("{", "").replace("}", "");
+            url = url.replace(paramStrWithDollar, options.data[paramStr]);
         }
         options.url = url;
     }
-    
-    
-    
+
+
     /*判断是否可以发送请求*/
     if (!ajaxStatus) {
         return false;
@@ -89,7 +88,7 @@ function ajax(options) {
             ajaxStatus = true;
         }, 1000);
     }
-    if(options.url){
+    if (options.url) {
         $.ajax({
             'url': options.url,
             'data': options.data,
@@ -108,7 +107,7 @@ function ajax(options) {
             },
         });
     }
-    
+
 }
 
 // submitAjax(post方式提交)
@@ -118,14 +117,14 @@ function submitAjax(form, success, cache, alone) {
     var url = form.attr('action');
     var data = form.serialize();
     var options = {
-        url:url,
-        data:data,
-        success:success,
-        cache:cache,
-        alone:alone,
-        async:false,
-        type:'post',
-        dataType:"json"
+        url: url,
+        data: data,
+        success: success,
+        cache: cache,
+        alone: alone,
+        async: false,
+        type: 'post',
+        dataType: "json"
     };
     ajax(options);
 }
@@ -141,15 +140,15 @@ $(function () {
 // ajax提交(post方式提交)
 function post(url, data, success, cache, alone) {
     var options = {
-        url:url,
-        data:data,
-        success:success,
-        cache:cache,
-        alone:alone,
-        async:false,
-        type:'post',
-        dataType:"json"
-        
+        url: url,
+        data: data,
+        success: success,
+        cache: cache,
+        alone: alone,
+        async: false,
+        type: 'post',
+        dataType: "json"
+
     };
     ajax(options);
 }
@@ -157,14 +156,14 @@ function post(url, data, success, cache, alone) {
 // ajax提交(get方式提交)
 function get(url, success, cache, alone) {
     var options = {
-        url:url,
-        data:{},
-        success:success,
-        cache:cache,
-        alone:alone,
-        async:false,
-        type:'get',
-        dataType:"json"
+        url: url,
+        data: {},
+        success: success,
+        cache: cache,
+        alone: alone,
+        async: false,
+        type: 'get',
+        dataType: "json"
 
     };
     ajax(options);
@@ -173,14 +172,14 @@ function get(url, success, cache, alone) {
 // jsonp跨域请求(get方式提交)
 function jsonp(url, success, cache, alone) {
     var options = {
-        url:url,
-        data:{},
-        success:success,
-        cache:cache,
-        alone:alone,
-        async:false,
-        type:'get',
-        dataType:"jsonp"
+        url: url,
+        data: {},
+        success: success,
+        cache: cache,
+        alone: alone,
+        async: false,
+        type: 'get',
+        dataType: "jsonp"
 
     };
     ajax(options);

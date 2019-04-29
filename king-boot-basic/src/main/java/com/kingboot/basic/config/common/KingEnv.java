@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class KingEnv {
-    @Autowired
-    private Environment environment;
-    
-    public String key(String key) {
-        return environment.getProperty(key);
-    }
+	@Autowired
+	private Environment environment;
+	
+	public String key(String key) {
+		return environment.getProperty(key);
+	}
 }

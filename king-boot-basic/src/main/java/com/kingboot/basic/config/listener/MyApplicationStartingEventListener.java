@@ -14,9 +14,9 @@ import org.springframework.context.ApplicationListener;
  * ApplicationFailedEvent
  */
 public class MyApplicationStartingEventListener implements ApplicationListener<ApplicationStartingEvent> {
-    
-    @Override
-    public void onApplicationEvent(ApplicationStartingEvent event) {
-        System.err.println("....启动开始.....");
-    }
+	
+	@Override
+	public void onApplicationEvent(ApplicationStartingEvent event) {
+		System.err.println("....启动开始.....");
+	}
 }

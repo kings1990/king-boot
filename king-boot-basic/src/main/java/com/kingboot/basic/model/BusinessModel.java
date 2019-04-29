@@ -11,12 +11,12 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class BusinessModel {
-    
-    @NotBlank
-    @Email
-    private String email;
-    
-    @NotNull
-    private Integer type;
-    
+	
+	@NotBlank
+	@Email
+	private String email;
+	
+	@NotNull
+	private Integer type;
+	
 }

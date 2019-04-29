@@ -17,10 +17,10 @@ import java.util.Date;
  * @date 2017.04.28 09:53:49
  */
 public class DateMessageJob extends AbstractJob<Date> {
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        super.afterPropertiesSet();
-        setJobMessageFactory(new DateMessageFactory(DateMessageFactory.DATE_FORMAT));
-        setJobPayloadFactory(new DatePayloadFactory());
-    }
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		super.afterPropertiesSet();
+		setJobMessageFactory(new DateMessageFactory(DateMessageFactory.DATE_FORMAT));
+		setJobPayloadFactory(new DatePayloadFactory());
+	}
 }

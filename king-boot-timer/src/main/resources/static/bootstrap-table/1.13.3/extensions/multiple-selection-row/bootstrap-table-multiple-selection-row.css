@@ -4,12 +4,12 @@
 
 .table tbody tr:hover td,
 .table tbody tr:hover th {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 
 .table-striped tbody tr:nth-child(odd):hover td {
-   background-color: #F9F9F9;
+    background-color: #F9F9F9;
 }
 
 .fixed-table-container tbody .selected td {

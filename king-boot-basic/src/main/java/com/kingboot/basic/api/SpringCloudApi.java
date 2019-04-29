@@ -16,20 +16,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping ("/cloud")
 @Api (description = "cloud应用")
 public class SpringCloudApi {
-    
-    @Autowired
-    private UserClient userClient;
-    
-    @HystrixCommand(fallbackMethod = "findByUserIdFail")
-    @GetMapping (value = "/feign",name = "feign负载均衡")
-    public RestResponse<User> findByUserId() {
-        return userClient.findById(1);
-    }
-    
-    //熔断异常处理
-    private RestResponse<User> findByUserIdFail(){
-        return new RestResponse<>(-1,"服务异常",null);
-    }
-   
+	
+	@Autowired
+	private UserClient userClient;
+	
+	@HystrixCommand (fallbackMethod = "findByUserIdFail")
+	@GetMapping (value = "/feign", name = "feign负载均衡")
+	public RestResponse<User> findByUserId() {
+		return userClient.findById(1);
+	}
+	
+	//熔断异常处理
+	private RestResponse<User> findByUserIdFail() {
+		return new RestResponse<>(- 1, "服务异常", null);
+	}
+	
 }
 

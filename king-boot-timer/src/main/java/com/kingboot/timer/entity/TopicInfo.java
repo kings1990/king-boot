@@ -19,28 +19,28 @@ import java.util.Date;
 @Getter
 @Setter
 public class TopicInfo {
-    /** The constant dateFormat. */
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    /** Consumer. */
-    private String consumer;
-    /** Last time. */
-    private Date lastTime;
-    private Long offset;
-    private String topic;
-    
-    private String payload;
-    
-    /**
-     * Instantiates a new Topic info.
-     * @param consumer the consumer
-     */
-    public TopicInfo(String consumer, String topic, Long offset, Date lastTime) {
-        this.consumer = consumer;
-        this.topic = topic;
-        this.offset = offset;
-        this.lastTime = lastTime;
-    }
-    
-    public TopicInfo() {
-    }
+	/** The constant dateFormat. */
+	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	/** Consumer. */
+	private String consumer;
+	/** Last time. */
+	private Date lastTime;
+	private Long offset;
+	private String topic;
+	
+	private String payload;
+	
+	/**
+	 * Instantiates a new Topic info.
+	 * @param consumer the consumer
+	 */
+	public TopicInfo(String consumer, String topic, Long offset, Date lastTime) {
+		this.consumer = consumer;
+		this.topic = topic;
+		this.offset = offset;
+		this.lastTime = lastTime;
+	}
+	
+	public TopicInfo() {
+	}
 }

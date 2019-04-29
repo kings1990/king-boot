@@ -12,16 +12,16 @@ import java.util.List;
 @Getter
 @Setter
 public class MyConfig {
-    private String host;
-    
-    private List<String> domain = new ArrayList<String>();
-    
-    
-    @Override
-    public String toString() {
-        StringBuilder domains = new StringBuilder();
-        this.domain.stream().forEach(q -> domains.append(q).append(","));
-        domains.deleteCharAt(domains.length() - 1);
-        return "host:" + this.host + "\tdomain:[" + domains.toString() + "]";
-    }
+	private String host;
+	
+	private List<String> domain = new ArrayList<String>();
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder domains = new StringBuilder();
+		this.domain.stream().forEach(q -> domains.append(q).append(","));
+		domains.deleteCharAt(domains.length() - 1);
+		return "host:" + this.host + "\tdomain:[" + domains.toString() + "]";
+	}
 }

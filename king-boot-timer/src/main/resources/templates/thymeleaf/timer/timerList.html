@@ -12,10 +12,8 @@
     <script src="../../static/bootstrap-table/1.13.3/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/bootstrap-table/1.13.3/locale/bootstrap-table-zh-CN.min.js}"></script>
     <script src="../../static/bootstrap-table/1.13.3/extensions/export/bootstrap-table-export.min.js" th:src="@{/static/bootstrap-table/1.13.3/extensions/export/bootstrap-table-export.min.js}"></script>
     <script src="../../static/zui/1.8.1/lib/datetimepicker/datetimepicker.min.js" th:src="@{/static/zui/1.8.1/lib/datetimepicker/datetimepicker.min.js}"></script>
-    
-    <link rel="icon" href="http://static.ws.com/images/ico/timer.ico" th:href="@{http://static.ws.com/images/ico/timer.ico}" type="image/x-icon" />
-    <link rel="shortcut icon" href="http://static.ws.com/images/ico/timer.ico" th:href="@{http://static.ws.com/images/ico/timer.ico}" type="image/x-icon" />
-    
+    <link href="http://static.ws.com/images/ico/timer.ico" rel="icon" th:href="@{http://static.ws.com/images/ico/timer.ico}" type="image/x-icon" />
+    <link href="http://static.ws.com/images/ico/timer.ico" rel="shortcut icon" th:href="@{http://static.ws.com/images/ico/timer.ico}" type="image/x-icon" />
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -35,11 +33,10 @@
     </div>
 </nav>
 <div class="container">
-<div class="panel panel-danger">
-    <div class="panel-heading">定时器列表</div>
-    <div class="panel-body">
-        <div class="page-content">
-            
+    <div class="panel panel-danger">
+        <div class="panel-heading">定时器列表</div>
+        <div class="panel-body">
+            <div class="page-content">
                 <div class="tab-content pt-20">
                     <div class="tab-pane active">
                         <form class="form-horizontal" id="formSearch">
@@ -75,29 +72,26 @@
                                         <input class="form-control" id="describe" name="describe"
                                                onblur="$(this).val($.trim($(this).val()))" type="text">
                                     </div>
-                                    <br/>
+                                    <br />
                                     <span class="pull-right">
                                         <button class="btn btn-primary" id="btn_query" type="button">查询</button>
-                                        <a  class='data-detail btn btn-success' href='/timer/addTimer' title='新增定时器'>新增</a>
+                                        <a class='data-detail btn btn-success' href='/timer/addTimer' title='新增定时器'>新增</a>
                                         <a class="btn btn-info" href="/topic/list">Topic列表</a>
                                     </span>
                                 </div>
-                                
-                                
-                               
                             </div>
                         </form>
-                        <br/>
+                        <br />
                         <div class="bootstrap-table pt-10">
                             <table class="table table-hover table-striped" id="table">
                             </table>
                         </div>
                     </div>
                 </div>
-            <!--页面内容end-->
+                <!--页面内容end-->
+            </div>
         </div>
     </div>
-</div>
 </div>
 <script>
     /**判断时间格式 YYYY-MM-DD格式*/

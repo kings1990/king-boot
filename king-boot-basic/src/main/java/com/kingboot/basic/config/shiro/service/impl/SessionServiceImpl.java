@@ -13,28 +13,26 @@ import java.util.Map;
 
 @Service
 public class SessionServiceImpl implements SessionService {
-    @Value("${shiro.timeout.seconds}")
-    private Integer shiroTimeoutSeconds;
-    
-    @Autowired
-    private KingRedisManager kingRedisManager;
-    
-    private static final String ACCOUNT = "Account";
-    
-    @Override
-    public Map<String, Object> getExtraAttributes(String account) {
-        Map<String, Object> result = new HashMap<>();
-        //todo set some account info
-        return result;
-    }
-    
-    @Override
-    public void saveAccountToSessionIdMapping(String account, String sid) {
-        if (StringUtils.isBlank(account)) {
-            return;
-        }
-        kingRedisManager.hset(ACCOUNT,account,sid);
-        kingRedisManager.expire(ACCOUNT,shiroTimeoutSeconds);
-    }
+	private static final String ACCOUNT = "Account";
+	@Value ("${shiro.timeout.seconds}")
+	private Integer shiroTimeoutSeconds;
+	@Autowired
+	private KingRedisManager kingRedisManager;
+	
+	@Override
+	public Map<String, Object> getExtraAttributes(String account) {
+		Map<String, Object> result = new HashMap<>();
+		//todo set some account info
+		return result;
+	}
+	
+	@Override
+	public void saveAccountToSessionIdMapping(String account, String sid) {
+		if (StringUtils.isBlank(account)) {
+			return;
+		}
+		kingRedisManager.hset(ACCOUNT, account, sid);
+		kingRedisManager.expire(ACCOUNT, shiroTimeoutSeconds);
+	}
 }
 

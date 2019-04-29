@@ -8,16 +8,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    
-    
-    /**
-     * Override this method to configure {@link WebSecurity}. For example, if you wish to
-     * ignore certain requests.
-     * @param web
-     */
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/**");
-    }
+	
+	
+	/**
+	 * Override this method to configure {@link WebSecurity}. For example, if you wish to
+	 * ignore certain requests.
+	 * @param web
+	 */
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/**");
+	}
 }

@@ -11,10 +11,10 @@ eureka:
 #\u81EA\u5B9A\u4E49\u8DEF\u7531\u6620\u5C04
 zuul:
   routes:
-    king-boot-user: 
+    king-boot-user:
       path: /apigateway/u/**
       service-id: king-boot-user
-    king-boot-order: 
+    king-boot-order:
       path: /apigateway/o/**
       service-id: king-boot-order
     auth-service:

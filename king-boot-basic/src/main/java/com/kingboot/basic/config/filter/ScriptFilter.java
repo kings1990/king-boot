@@ -21,25 +21,25 @@ import java.io.IOException;
  */
 @Component
 public class ScriptFilter implements Filter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ScriptFilter.class);
-    
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        LOGGER.debug(ScriptFilter.class.getCanonicalName() + " init...");
-    }
-    
-    @Override
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) req;
-        boolean filterFlag = "POST".equalsIgnoreCase(HttpMethod.POST.name()) || "PUT".equalsIgnoreCase(HttpMethod.PUT.name()) || "DELETE".equalsIgnoreCase(HttpMethod.DELETE.name());
-        if (filterFlag) {
-            request = new KingRequest(request, request.getParameterMap());
-        }
-        chain.doFilter(request, res);
-    }
-    
-    @Override
-    public void destroy() {
-        
-    }
+	private static final Logger LOGGER = LoggerFactory.getLogger(ScriptFilter.class);
+	
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		LOGGER.debug(ScriptFilter.class.getCanonicalName() + " init...");
+	}
+	
+	@Override
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest request = (HttpServletRequest) req;
+		boolean filterFlag = "POST".equalsIgnoreCase(HttpMethod.POST.name()) || "PUT".equalsIgnoreCase(HttpMethod.PUT.name()) || "DELETE".equalsIgnoreCase(HttpMethod.DELETE.name());
+		if (filterFlag) {
+			request = new KingRequest(request, request.getParameterMap());
+		}
+		chain.doFilter(request, res);
+	}
+	
+	@Override
+	public void destroy() {
+	
+	}
 }

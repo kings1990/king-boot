@@ -14,9 +14,9 @@ import java.util.Map;
 @ConfigurationProperties (prefix = "my.fruit")
 @Component
 public class MyFruilt {
-    private List<String> like;
-    
-    private Map<String, String> pineapple;
-    
-    
+	private List<String> like;
+	
+	private Map<String, String> pineapple;
+	
+	
 }

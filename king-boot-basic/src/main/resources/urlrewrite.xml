@@ -1,43 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
 <urlrewrite default-match-type="wildcard">
-    <rule>
-        <from>/eureka/images/**</from>
-        <to>/static/eureka/images/$1</to>
-    </rule>
+	<rule>
+		<from>/eureka/images/**</from>
+		<to>/static/eureka/images/$1</to>
+	</rule>
 
-    <rule>
-        <from>/eureka/js/**</from>
-        <to>/static/eureka/js/$1</to>
-    </rule>
+	<rule>
+		<from>/eureka/js/**</from>
+		<to>/static/eureka/js/$1</to>
+	</rule>
 
-    <rule>
-        <from>/eureka/css/**</from>
-        <to>/static/eureka/css/$1</to>
-    </rule>
+	<rule>
+		<from>/eureka/css/**</from>
+		<to>/static/eureka/css/$1</to>
+	</rule>
 
-    <rule>
-        <from>/eureka/fonts/**</from>
-        <to>/static/eureka/fonts/$1</to>
-    </rule>
+	<rule>
+		<from>/eureka/fonts/**</from>
+		<to>/static/eureka/fonts/$1</to>
+	</rule>
 
-    <rule>
-        <from>/hystrix/css/**</from>
-        <to>/static/hystrix/css/$1</to>
-    </rule>
-    <rule>
-        <from>/hystrix/js/**</from>
-        <to>/static/hystrix/js/$1</to>
-    </rule>
+	<rule>
+		<from>/hystrix/css/**</from>
+		<to>/static/hystrix/css/$1</to>
+	</rule>
+	<rule>
+		<from>/hystrix/js/**</from>
+		<to>/static/hystrix/js/$1</to>
+	</rule>
 
-    <rule>
-        <from>/hystrix/images/**</from>
-        <to>/static/hystrix/images/$1</to>
-    </rule>
+	<rule>
+		<from>/hystrix/images/**</from>
+		<to>/static/hystrix/images/$1</to>
+	</rule>
 
-    <rule>
-        <from>/hystrix/components/**</from>
-        <to>/static/hystrix/components/$1</to>
-    </rule>
-    
+	<rule>
+		<from>/hystrix/components/**</from>
+		<to>/static/hystrix/components/$1</to>
+	</rule>
+
 </urlrewrite>

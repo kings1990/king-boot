@@ -12,12 +12,12 @@ import java.io.Serializable;
 @Setter
 @Data
 public class Person implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private String firstName;
-    
-    private String lastName;
-    
-    private String fullName;
-    
-    
+	private static final long serialVersionUID = 1L;
+	private String firstName;
+	
+	private String lastName;
+	
+	private String fullName;
+	
+	
 }

@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @Setter
 @Validated
 public class Me {
-    private MyFruilt fruit;
-    @Valid
-    private MyContact contact;
+	private MyFruilt fruit;
+	@Valid
+	private MyContact contact;
 }

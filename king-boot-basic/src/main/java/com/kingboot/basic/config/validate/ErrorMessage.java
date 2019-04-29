@@ -20,40 +20,40 @@ package com.kingboot.basic.config.validate;
  * @date 2016.08.03 17:49:37
  */
 public class ErrorMessage {
-    
-    /** 字段名 */
-    private String fieldName;
-    /** 错误提示. */
-    private String message;
-    
-    /**
-     * Instantiates a new Error message.
-     * @param fieldName the field name
-     * @param message   the message
-     */
-    public ErrorMessage(String fieldName, String message) {
-        this.fieldName = fieldName;
-        this.message = message;
-    }
-    
-    /**
-     * Gets field name.
-     * @return the field name
-     */
-    public String getFieldName() {
-        return fieldName;
-    }
-    
-    /**
-     * Gets message.
-     * @return the message
-     */
-    public String getMessage() {
-        return message;
-    }
-    
-    @Override
-    public String toString() {
-        return "{\"fieldName\":\"" + fieldName + "\",\"message\":\"" + message + "\"}";
-    }
+	
+	/** 字段名 */
+	private String fieldName;
+	/** 错误提示. */
+	private String message;
+	
+	/**
+	 * Instantiates a new Error message.
+	 * @param fieldName the field name
+	 * @param message   the message
+	 */
+	public ErrorMessage(String fieldName, String message) {
+		this.fieldName = fieldName;
+		this.message = message;
+	}
+	
+	/**
+	 * Gets field name.
+	 * @return the field name
+	 */
+	public String getFieldName() {
+		return fieldName;
+	}
+	
+	/**
+	 * Gets message.
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
+	}
+	
+	@Override
+	public String toString() {
+		return "{\"fieldName\":\"" + fieldName + "\",\"message\":\"" + message + "\"}";
+	}
 }

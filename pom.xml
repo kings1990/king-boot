@@ -1,144 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.1.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <groupId>com.kingboot</groupId>
-    <artifactId>king-boot</artifactId>
-    <version>1.0.2</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>king-boot-basic</module>
-        <module>king-boot-dubbo-server</module>
-        <module>king-boot-admin</module>
-        <module>king-boot-timer</module>
-        <module>king-boot-api-gateway</module>
-        <module>king-boot-auth</module>
-        
-        <module>kingboot-service</module>
-        <module>kingboot-service-impl</module>
-        <module>king-boot-user</module>
-        <module>king-boot-order</module>
-        <module>king-boot-common-model</module>
-    </modules>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.1.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.kingboot</groupId>
+	<artifactId>king-boot</artifactId>
+	<version>1.0.2</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>king-boot-basic</module>
+		<module>king-boot-dubbo-server</module>
+		<module>king-boot-admin</module>
+		<module>king-boot-timer</module>
+		<module>king-boot-api-gateway</module>
+		<module>king-boot-auth</module>
 
-    <properties>
-        <spring-boot-admin.version>2.1.1</spring-boot-admin.version>
-        <mapper.version>2.1.4</mapper.version>
-        <pagehelper.version>1.2.10</pagehelper.version>
-        <boot.mybatis.version>2.0.0</boot.mybatis.version>
-        <swagger.version>2.9.2</swagger.version>
-        <dubbo.version>2.7.0</dubbo.version>
+		<module>kingboot-service</module>
+		<module>kingboot-service-impl</module>
+		<module>king-boot-user</module>
+		<module>king-boot-order</module>
+		<module>king-boot-common-model</module>
+	</modules>
 
-        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
-        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-        
-        <boot-common.version>1.0.2</boot-common.version>
-        
-        <boot-user.version>1.0.2</boot-user.version>
-        <boot-order.version>1.0.2</boot-order.version>
+	<properties>
+		<spring-boot-admin.version>2.1.1</spring-boot-admin.version>
+		<mapper.version>2.1.4</mapper.version>
+		<pagehelper.version>1.2.10</pagehelper.version>
+		<boot.mybatis.version>2.0.0</boot.mybatis.version>
+		<swagger.version>2.9.2</swagger.version>
+		<dubbo.version>2.7.0</dubbo.version>
 
-        <docker.image.prefix>darkings1990</docker.image.prefix>
-    </properties>
+		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+		<spring-boot.version>2.1.1.RELEASE</spring-boot.version>
 
-    <distributionManagement>
-        <repository>
-            <id>bintray-darkings1990-kings</id>
-            <name>darkings1990-kings</name>
-            <url>https://api.bintray.com/maven/darkings1990/kings/com.king.ws/;publish=1</url>
-        </repository>
-    </distributionManagement>
+		<boot-common.version>1.0.2</boot-common.version>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- Spring Boot -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+		<boot-user.version>1.0.2</boot-user.version>
+		<boot-order.version>1.0.2</boot-order.version>
 
-            <!-- Apache Dubbo  -->
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-dependencies-bom</artifactId>
-                <version>${dubbo.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+		<docker.image.prefix>darkings1990</docker.image.prefix>
+	</properties>
 
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${dubbo.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>servlet-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>2.5</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+	<distributionManagement>
+		<repository>
+			<id>bintray-darkings1990-kings</id>
+			<name>darkings1990-kings</name>
+			<url>https://api.bintray.com/maven/darkings1990/kings/com.king.ws/;publish=1</url>
+		</repository>
+	</distributionManagement>
 
-        </plugins>
-    </build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Spring Boot -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
-    <repositories>
-        <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    
+			<!-- Apache Dubbo  -->
+			<dependency>
+				<groupId>org.apache.dubbo</groupId>
+				<artifactId>dubbo-dependencies-bom</artifactId>
+				<version>${dubbo.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.dubbo</groupId>
+				<artifactId>dubbo</artifactId>
+				<version>${dubbo.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>javax.servlet</groupId>
+						<artifactId>servlet-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 </project>

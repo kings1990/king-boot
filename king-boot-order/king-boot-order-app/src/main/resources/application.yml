@@ -26,14 +26,14 @@ eureka:
     health-check-url: http://localhost:${server.port}/actuator/health
     status-page-url: http://localhost:${server.port}/actuator/info
     home-page-url: htts://localhost:${server.port}/
-    
+
 spring:
   zipkin:
     base-url: http://localhost:9411/
   sleuth:
     sampler:
       #采样百分比、开发环境可以设置为1表示全部，生成用默认
-      probability: 1 
+      probability: 1
   application:
     name: king-boot-order
   rabbitmq:
@@ -60,7 +60,7 @@ king-boot-order:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
     listOfServers: localhost:8302
-    
+
 info:
   description: sringboot order
 
@@ -74,9 +74,9 @@ feign:
   hystrix:
     enabled: true
   httpclient:
-    connection-timeout: 4000  
-  
-  
+    connection-timeout: 4000
+
+
 
 hystrix:
   command:

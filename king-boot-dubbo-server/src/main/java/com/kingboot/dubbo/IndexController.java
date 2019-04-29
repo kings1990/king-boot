@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping ("/")
 @Controller
 public class IndexController {
-    
-    @RequestMapping (value = "", method = RequestMethod.GET)
-    @ResponseBody
-    public String index() {
-        
-        return "success";
-    }
+	
+	@RequestMapping (value = "", method = RequestMethod.GET)
+	@ResponseBody
+	public String index() {
+		
+		return "success";
+	}
 }
 

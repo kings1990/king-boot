@@ -48,9 +48,9 @@
     });
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
-        _initBody = BootstrapTable.prototype.initBody,
-        _toggleView = BootstrapTable.prototype.toggleView,
-        _resetView = BootstrapTable.prototype.resetView;
+      _initBody = BootstrapTable.prototype.initBody,
+      _toggleView = BootstrapTable.prototype.toggleView,
+      _resetView = BootstrapTable.prototype.resetView;
 
     BootstrapTable.prototype.initBody = function () {
       var that = this;

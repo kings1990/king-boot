@@ -9,10 +9,8 @@
     <script src="../../static/zui/1.8.1/js/zui.min.js" th:src="@{/static/zui/1.8.1/js/zui.min.js}"></script>
     <script src="../../static/layer/3.1.1/layer/layer.js" th:src="@{/static/layer/3.1.1/layer/layer.js}"></script>
     <script src="../../static/kings/1.0.0/ajax.js" th:src="@{/static/kings/1.0.0/ajax.js}"></script>
-    
-    <link rel="icon" href="http://static.ws.com/images/ico/springboot.ico" th:href="@{http://static.ws.com/images/ico/springboot.ico}" type="image/x-icon" />
-    <link rel="shortcut icon" href="http://static.ws.com/images/ico/springboot.ico" th:href="@{http://static.ws.com/images/ico/springboot.ico}" type="image/x-icon" />
-    
+    <link href="http://static.ws.com/images/ico/springboot.ico" rel="icon" th:href="@{http://static.ws.com/images/ico/springboot.ico}" type="image/x-icon" />
+    <link href="http://static.ws.com/images/ico/springboot.ico" rel="shortcut icon" th:href="@{http://static.ws.com/images/ico/springboot.ico}" type="image/x-icon" />
     <style>
         .navbar-inverse {
             background-color: #63b175;
@@ -74,12 +72,15 @@
                     <td>
                         <span class="label " th:classappend="${(mapping.method eq 'GET'? 'label-info':'') + (mapping.method eq 'POST' ? 'label-success':'') 
                         + (mapping.method eq 'PUT' ? 'label-warning':'')
-                        + (mapping.method eq 'DELETE' ? 'label-danger':'')}" th:text="${mapping.method}">方法</span>
+                        + (mapping.method eq 'DELETE' ? 'label-danger':'')}" th:text="${mapping.method}">方法
+                        </span>
                     </td>
                     <td th:text="${mapping.name}">功能</td>
                     <td>
                         <a target="_blank" th:href="${mapping.urlWithParam}" th:if="${mapping.method eq 'GET'}" th:text="${mapping.url}">URL</a>
-                        <a class="a-ajax" th:data_href="${mapping.url}" th:data_type="${mapping.method}" th:data_params="${mapping.data}" th:if="${mapping.method eq 'POST' or mapping.method eq 'PUT' or mapping.method eq 'DELETE'}" th:text="${mapping.url}">URL</a>
+                        <a class="a-ajax" th:data_href="${mapping.url}" th:data_params="${mapping.data}" th:data_type="${mapping.method}" th:if="${mapping.method eq 'POST' or mapping.method eq 'PUT' or mapping.method eq 'DELETE'}" th:text="${mapping.url}">
+                            URL
+                        </a>
                     </td>
                 </tr>
             </table>
@@ -94,11 +95,11 @@
             var type = $(this).attr("data_type");
             //post(url, $.parseJSON(data));
             ajax({
-                url:url,
-                data:$.parseJSON(data),
-                type:type
+                url: url,
+                data: $.parseJSON(data),
+                type: type
             })
-            
+
         })
     })
 </script>

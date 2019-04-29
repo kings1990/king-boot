@@ -15,11 +15,11 @@ import java.io.Serializable;
 @Data
 @Validated
 public class MyContact implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    private Telephone tel;
-    private String phone;
-    @Email
-    private String email;
-    
+	private static final long serialVersionUID = 1L;
+	
+	private Telephone tel;
+	private String phone;
+	@Email
+	private String email;
+	
 }

@@ -57,9 +57,9 @@
 
     function createFilter(that, header) {
       var enableFilter = false,
-          isVisible,
-          html,
-          timeoutId = 0;
+        isVisible,
+        html,
+        timeoutId = 0;
 
       $.each(that.columns, function (i, column) {
         isVisible = 'hidden';
@@ -113,7 +113,7 @@
 
                 $filter.off('mouseup').on('mouseup', function (event) {
                   var $input = $(this),
-                      oldValue = $input.val();
+                    oldValue = $input.val();
 
                   if (oldValue === "") {
                     return;
@@ -210,9 +210,9 @@
     });
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
-        _init = BootstrapTable.prototype.init,
-        _initHeader = BootstrapTable.prototype.initHeader,
-        _initSearch = BootstrapTable.prototype.initSearch;
+      _init = BootstrapTable.prototype.init,
+      _initHeader = BootstrapTable.prototype.initHeader,
+      _initSearch = BootstrapTable.prototype.initSearch;
 
     BootstrapTable.prototype.init = function () {
       //Make sure that the filtercontrol option is set
@@ -265,15 +265,15 @@
 
     BootstrapTable.prototype.initSearch = function () {
       var that = this,
-          filterValues = that.filterColumnsPartial;
+        filterValues = that.filterColumnsPartial;
 
       // Filter for client
       if (that.options.sidePagination === 'client') {
         this.data = $.grep(this.data, function (row, idx) {
           for (var field in filterValues) {
             var column = that.columns[that.fieldsColumnsIndex[field]],
-                filterValue = filterValues[field].toLowerCase(),
-                rowValue = row[field];
+              filterValue = filterValues[field].toLowerCase(),
+              rowValue = row[field];
 
             rowValue = $.fn.bootstrapTable.utils.calculateObjectValue(that.header, that.header.formatters[$.inArray(field, that.header.fields)], [rowValue, row, idx], rowValue);
 
@@ -313,8 +313,8 @@
 
     BootstrapTable.prototype.setSelect2Data = function (field, data) {
       var that = this,
-          $header = getCurrentHeader(that),
-          $selectEle = $header.find('select[data-filter-field=\"' + field + '\"]');
+        $header = getCurrentHeader(that),
+        $selectEle = $header.find('select[data-filter-field=\"' + field + '\"]');
       $selectEle.empty();
       $selectEle.select2({
         data: data,

@@ -13,33 +13,31 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration
 public class Pac4jConfig {
-    
-    
-    /**
-     * pac4j配置
-     * @param kingClients
-     * @param shiroSessionStore
-     *
-     * @return
-     */
-    @Bean ("authcConfig")
-    public Config config(Clients kingClients, ShiroSessionStore shiroSessionStore) {
-        Config config = new Config();
-        config.setClients(kingClients);
-        config.setSessionStore(shiroSessionStore);
-        return config;
-    }
-    
-    /**
-     * 自定义存储
-     * @return
-     */
-    @Bean
-    public ShiroSessionStore shiroSessionStore() {
-        return new ShiroSessionStore();
-    }
-    
-    
-    
-    
+	
+	
+	/**
+	 * pac4j配置
+	 * @param kingClients
+	 * @param shiroSessionStore
+	 *
+	 * @return
+	 */
+	@Bean ("authcConfig")
+	public Config config(Clients kingClients, ShiroSessionStore shiroSessionStore) {
+		Config config = new Config();
+		config.setClients(kingClients);
+		config.setSessionStore(shiroSessionStore);
+		return config;
+	}
+	
+	/**
+	 * 自定义存储
+	 * @return
+	 */
+	@Bean
+	public ShiroSessionStore shiroSessionStore() {
+		return new ShiroSessionStore();
+	}
+	
+	
 }

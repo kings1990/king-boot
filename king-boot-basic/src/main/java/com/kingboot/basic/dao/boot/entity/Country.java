@@ -12,11 +12,11 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class Country implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @ColumnType (jdbcType = JdbcType.BIGINT)
-    private Long id;
-    private String countryname;
-    private String countrycode;
-    
+	private static final long serialVersionUID = 1L;
+	@Id
+	@ColumnType (jdbcType = JdbcType.BIGINT)
+	private Long id;
+	private String countryname;
+	private String countrycode;
+	
 }

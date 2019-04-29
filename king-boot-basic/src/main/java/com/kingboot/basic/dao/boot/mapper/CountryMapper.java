@@ -6,6 +6,6 @@ import com.kingboot.basic.dao.boot.entity.Country;
 import java.util.List;
 
 public interface CountryMapper extends MybatisMysqlMapper<Country> {
-    
-    List<Country> findAll();
+	
+	List<Country> findAll();
 }

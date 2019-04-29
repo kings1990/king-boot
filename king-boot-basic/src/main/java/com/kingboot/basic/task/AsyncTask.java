@@ -19,29 +19,28 @@ import java.util.concurrent.Future;
 @Component
 @Async
 public class AsyncTask {
-    
-    public Future<String> task1() throws InterruptedException {
-        long begin = System.currentTimeMillis();
-        Thread.sleep(1000);
-        long end = System.currentTimeMillis();
-        System.out.println("任务1耗时:"+(end-begin));
-        return new AsyncResult<>("任务1");
-    }
-    
-    public Future<String> task2() throws InterruptedException {
-        long begin = System.currentTimeMillis();
-        Thread.sleep(2000);
-        long end = System.currentTimeMillis();
-        System.out.println("任务2耗时:"+(end-begin));
-        return new AsyncResult<>("任务2");
-    }
-    
-    public Future<String> task3() throws InterruptedException {
-        long begin = System.currentTimeMillis();
-        Thread.sleep(3000);
-        long end = System.currentTimeMillis();
-        System.out.println("任务3耗时:"+(end-begin));
-        return new AsyncResult<>("任务3");
-    }
+	
+	public Future<String> task1() throws InterruptedException {
+		long begin = System.currentTimeMillis();
+		Thread.sleep(1000);
+		long end = System.currentTimeMillis();
+		System.out.println("任务1耗时:" + (end - begin));
+		return new AsyncResult<>("任务1");
+	}
+	
+	public Future<String> task2() throws InterruptedException {
+		long begin = System.currentTimeMillis();
+		Thread.sleep(2000);
+		long end = System.currentTimeMillis();
+		System.out.println("任务2耗时:" + (end - begin));
+		return new AsyncResult<>("任务2");
+	}
+	
+	public Future<String> task3() throws InterruptedException {
+		long begin = System.currentTimeMillis();
+		Thread.sleep(3000);
+		long end = System.currentTimeMillis();
+		System.out.println("任务3耗时:" + (end - begin));
+		return new AsyncResult<>("任务3");
+	}
 }
- 

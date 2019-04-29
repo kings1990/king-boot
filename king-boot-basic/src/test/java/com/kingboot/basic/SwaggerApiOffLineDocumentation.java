@@ -27,46 +27,39 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs (outputDir = "target/generated-snippets")
-@RunWith(SpringRunner.class)
+@RunWith (SpringRunner.class)
 @SpringBootTest
 public class SwaggerApiOffLineDocumentation {
-
-    private String snippetDir = "target/generated-snippets";
-    // 这个outputDir必须和插件里面<generated></generated>标签配置一致
-    private String outputDir = "target/asciidoc/generated";
-    
-    @Autowired
-    private WebApplicationContext context;
-    
-    private MockMvc mockMvc;
-    
-    @Before
-    public void setUp() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
-    }
-    
-    @Test
-    public void testKings() {
-        System.err.println("========离线文档adoc生成中......========");
-    }
-    
-    @After
-    public void Test() throws Exception{
-        MockHttpServletRequestBuilder accept = get("https://ws.com/boot/swagger/api").accept(MediaType.APPLICATION_JSON);
-        // 得到swagger.json,写入outputDir目录中
-        // mockMvc.perform(accept)
-        //         .andDo(SwaggerResultHandler.outputDirectory(outputDir).build())
-        //         .andExpect(status().isOk())
-        //         .andReturn();
-        Swagger2MarkupConverter.from(new URL("https://ws.com/boot/swagger/api"))
-                .withConfig(new Swagger2MarkupConfigBuilder()
-                        .withMarkupLanguage(MarkupLanguage.ASCIIDOC)
-                        .withPathsGroupedBy(GroupBy.TAGS)
-                        .build()
-                ).build().toFolder(Paths.get(outputDir));
-    }
-    
-    
-
-    
+	
+	private String snippetDir = "target/generated-snippets";
+	// 这个outputDir必须和插件里面<generated></generated>标签配置一致
+	private String outputDir = "target/asciidoc/generated";
+	
+	@Autowired
+	private WebApplicationContext context;
+	
+	private MockMvc mockMvc;
+	
+	@Before
+	public void setUp() {
+		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+	}
+	
+	@Test
+	public void testKings() {
+		System.err.println("========离线文档adoc生成中......========");
+	}
+	
+	@After
+	public void Test() throws Exception {
+		MockHttpServletRequestBuilder accept = get("https://ws.com/boot/swagger/api").accept(MediaType.APPLICATION_JSON);
+		// 得到swagger.json,写入outputDir目录中
+		// mockMvc.perform(accept)
+		//         .andDo(SwaggerResultHandler.outputDirectory(outputDir).build())
+		//         .andExpect(status().isOk())
+		//         .andReturn();
+		Swagger2MarkupConverter.from(new URL("https://ws.com/boot/swagger/api")).withConfig(new Swagger2MarkupConfigBuilder().withMarkupLanguage(MarkupLanguage.ASCIIDOC).withPathsGroupedBy(GroupBy.TAGS).build()).build().toFolder(Paths.get(outputDir));
+	}
+	
+	
 }

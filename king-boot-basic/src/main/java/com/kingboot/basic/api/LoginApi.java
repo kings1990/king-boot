@@ -31,27 +31,26 @@ import java.util.Optional;
 @Api (description = "loginApi")
 @Slf4j
 public class LoginApi {
-
-    //需要设置安装jce $JAVA_HOME/jre/lib/security/java.security 设置crypto.policy=unlimited
-    @Value ("${jwt.salt}")
-    private String salt;
-    
-    @Autowired
-    private JwtAuthenticator jwtAuthenticator;
-    
-    @PostMapping("/token")
-    public RestResponse<String> login(HttpServletRequest request, HttpServletResponse response) throws NoSuchAlgorithmException {
-        J2EContext context = new J2EContext(request, response);
-        final ProfileManager manager = new ProfileManager(context);
-        final JwtGenerator<CommonProfile> generator = new JwtGenerator<>(new SecretSignatureConfiguration(salt, JWSAlgorithm.HS256),
-                new SecretEncryptionConfiguration(salt, JWEAlgorithm.DIR, EncryptionMethod.A128CBC_HS256));
-        String token = "";
-        final Optional<CommonProfile> profile = manager.get(true);
-        if (profile.isPresent()) {
-            token = generator.generate(profile.get());
-        }
-        
-        return new RestResponse<>(token);
-    }
+	
+	//需要设置安装jce $JAVA_HOME/jre/lib/security/java.security 设置crypto.policy=unlimited
+	@Value ("${jwt.salt}")
+	private String salt;
+	
+	@Autowired
+	private JwtAuthenticator jwtAuthenticator;
+	
+	@PostMapping ("/token")
+	public RestResponse<String> login(HttpServletRequest request, HttpServletResponse response) throws NoSuchAlgorithmException {
+		J2EContext context = new J2EContext(request, response);
+		final ProfileManager manager = new ProfileManager(context);
+		final JwtGenerator<CommonProfile> generator = new JwtGenerator<>(new SecretSignatureConfiguration(salt, JWSAlgorithm.HS256), new SecretEncryptionConfiguration(salt, JWEAlgorithm.DIR, EncryptionMethod.A128CBC_HS256));
+		String token = "";
+		final Optional<CommonProfile> profile = manager.get(true);
+		if (profile.isPresent()) {
+			token = generator.generate(profile.get());
+		}
+		
+		return new RestResponse<>(token);
+	}
 }
 

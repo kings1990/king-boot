@@ -24,34 +24,35 @@ import javax.sql.DataSource;
  */
 //@Configuration
 public class CustomeDatasourceConfig {
-    /**
-     * <p class="detail">
-     * 功能:
-     * </p>
-     * @return data source
-     * @author Kings
-     * @date 2016.01.22 10:47:42
-     */
-    
-    @Value("${mybatis.type-aliases-package}")
-    private String typeAliasesPackage;
-    @Bean("dBoot")
-    @Primary
-    @ConfigurationProperties (prefix = "spring.datasource.dboot")
-    public DataSource primaryDataSource() {
-        return DataSourceBuilder.create().build();
-    }
-
-
-    @Bean(name = "sqlSessionFactory-boot")
-    @Primary
-    public SqlSessionFactory  bootSqlSessionFactory(@Qualifier ("dBoot") DataSource dataSource) throws Exception {
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage(typeAliasesPackage);
-        bean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml"));
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
-        return bean.getObject();
-    }
-
+	/**
+	 * <p class="detail">
+	 * 功能:
+	 * </p>
+	 * @return data source
+	 * @author Kings
+	 * @date 2016.01.22 10:47:42
+	 */
+	
+	@Value ("${mybatis.type-aliases-package}")
+	private String typeAliasesPackage;
+	
+	@Bean ("dBoot")
+	@Primary
+	@ConfigurationProperties (prefix = "spring.datasource.dboot")
+	public DataSource primaryDataSource() {
+		return DataSourceBuilder.create().build();
+	}
+	
+	
+	@Bean (name = "sqlSessionFactory-boot")
+	@Primary
+	public SqlSessionFactory bootSqlSessionFactory(@Qualifier ("dBoot") DataSource dataSource) throws Exception {
+		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+		bean.setDataSource(dataSource);
+		bean.setTypeAliasesPackage(typeAliasesPackage);
+		bean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml"));
+		bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
+		return bean.getObject();
+	}
+	
 }

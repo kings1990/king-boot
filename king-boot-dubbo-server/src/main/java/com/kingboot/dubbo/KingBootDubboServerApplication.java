@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @EnableDubbo
 public class KingBootDubboServerApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(KingBootDubboServerApplication.class, args);
-    }
-    
+	public static void main(String[] args) {
+		SpringApplication.run(KingBootDubboServerApplication.class, args);
+	}
+	
 }
 

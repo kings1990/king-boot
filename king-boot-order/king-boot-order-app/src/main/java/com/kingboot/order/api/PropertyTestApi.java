@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Api (description = "")
 @RefreshScope//刷新配置 访问POST http://localhost:8302/actuator/bus-refresh刷新
 public class PropertyTestApi {
-    @Value("${a}")
-    
-    private Integer a;
-    
-    @RequestMapping (value = "/test", method = RequestMethod.GET)
-    @ResponseBody
-    public Integer test() {
-        
-        return a;
-    }
+	@Value ("${a}")
+	
+	private Integer a;
+	
+	@RequestMapping (value = "/test", method = RequestMethod.GET)
+	@ResponseBody
+	public Integer test() {
+		
+		return a;
+	}
 }
 

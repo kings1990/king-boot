@@ -11,11 +11,11 @@ import java.util.Date;
 @RequestMapping ("/json")
 @RestController
 public class TestJsonController {
-    
-    @GetMapping (value = "/1",name = "json框架使用 ")
-    public User getUser() {
-        
-        return new User(1,1,"123456",null,new Date());
-    }
+	
+	@GetMapping (value = "/1", name = "json框架使用 ")
+	public User getUser() {
+		
+		return new User(1, 1, "123456", null, new Date());
+	}
 }
 

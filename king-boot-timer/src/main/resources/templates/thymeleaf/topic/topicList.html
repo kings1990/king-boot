@@ -12,9 +12,8 @@
     <script src="../../static/bootstrap-table/1.13.3/locale/bootstrap-table-zh-CN.min.js" th:src="@{/static/bootstrap-table/1.13.3/locale/bootstrap-table-zh-CN.min.js}"></script>
     <script src="../../static/bootstrap-table/1.13.3/extensions/export/bootstrap-table-export.min.js" th:src="@{/static/bootstrap-table/1.13.3/extensions/export/bootstrap-table-export.min.js}"></script>
     <script src="../../static/zui/1.8.1/lib/datetimepicker/datetimepicker.min.js" th:src="@{/static/zui/1.8.1/lib/datetimepicker/datetimepicker.min.js}"></script>
-    
-    <link rel="icon" href="http://static.ws.com/images/ico/timer.ico" th:href="@{http://static.ws.com/images/ico/timer.ico}" type="image/x-icon" />
-    <link rel="shortcut icon" href="http://static.ws.com/images/ico/timer.ico" th:href="@{http://static.ws.com/images/ico/timer.ico}" type="image/x-icon" />
+    <link href="http://static.ws.com/images/ico/timer.ico" rel="icon" th:href="@{http://static.ws.com/images/ico/timer.ico}" type="image/x-icon" />
+    <link href="http://static.ws.com/images/ico/timer.ico" rel="shortcut icon" th:href="@{http://static.ws.com/images/ico/timer.ico}" type="image/x-icon" />
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -38,7 +37,6 @@
         <div class="panel-heading">topic列表</div>
         <div class="panel-body">
             <div class="page-content">
-                
                 <div class="tab-content pt-20">
                     <div class="tab-pane active">
                         <form class="form-horizontal" id="formSearch">
@@ -68,9 +66,9 @@
                                         <button class="btn btn-success" onclick="addTopic()" type="button">新增</button>
                                     </span>
                                 </div>
-                            </div>    
+                            </div>
                         </form>
-                        <br/>
+                        <br />
                         <div class="bootstrap-table pl-10 pr-10">
                             <table class="table table-hover table-striped" id="table">
                             </table>
@@ -81,7 +79,7 @@
             </div>
         </div>
     </div>
-</div>    
+</div>
 <script>
     /**判断时间格式 YYYY-MM-DD格式*/
     $(document).on('change', '.check-datetime', function () {

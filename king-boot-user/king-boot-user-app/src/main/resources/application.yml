@@ -1,7 +1,7 @@
 server:
   port: 8301
   servlet:
-    context-path: 
+    context-path:
 
 management:
   #暴露所有接口
@@ -28,7 +28,7 @@ eureka:
     health-check-url: http://localhost:${server.port}actuator/health
     status-page-url: http://localhost:${server.port}/actuator/info
     home-page-url: htts://localhost:${server.port}
-    
+
 spring:
   application:
     name: king-boot-user
@@ -59,12 +59,12 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 4000
-            
+
 king-boot-user:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
     listOfServers: localhost:8301
-    
+
 
 info:
   description: sringboot user

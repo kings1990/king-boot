@@ -20,16 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 @Api (description = "用户API")
 @Slf4j
 public class UserApi {
-    
-    @Autowired
-    private UserService userService;
-    
-    @GetMapping (value = "/detail/{id}",name = "根据id查询")
-    @ApiOperation (value = "根据id查询用户",notes = "根据id查询用户【Kings】")
-    public RestResponse<User> findById (@PathVariable @ApiParam Integer id) throws Exception {
-        log.error("1234");
-        //TimeUnit.SECONDS.sleep(2);
-        return new RestResponse<>(userService.findById(id));
-    }
+	
+	@Autowired
+	private UserService userService;
+	
+	@GetMapping (value = "/detail/{id}", name = "根据id查询")
+	@ApiOperation (value = "根据id查询用户", notes = "根据id查询用户【Kings】")
+	public RestResponse<User> findById(@PathVariable @ApiParam Integer id) throws Exception {
+		log.error("1234");
+		//TimeUnit.SECONDS.sleep(2);
+		return new RestResponse<>(userService.findById(id));
+	}
 }
 

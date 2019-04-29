@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping ("/profile")
 @RestController
 public class ProfileController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProfileController.class);
-    
-    @Value ("${test.version}")
-    private String version;
-    
-    @GetMapping (name = "spring.profiles.include测试配置", value = "/1")
-    public String test1() {
-        return version;
-    }
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileController.class);
+	
+	@Value ("${test.version}")
+	private String version;
+	
+	@GetMapping (name = "spring.profiles.include测试配置", value = "/1")
+	public String test1() {
+		return version;
+	}
 }
 
