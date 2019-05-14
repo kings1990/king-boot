@@ -100,5 +100,3 @@ cd ~/develop/environment/elk/filebeat-6.6.0
 cd ~/develop/environment/elk/kibana-6.6.0/bin
 ./kibana
 ```
-
-
