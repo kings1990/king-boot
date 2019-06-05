@@ -41,6 +41,7 @@
 
 		<boot-user.version>1.0.2</boot-user.version>
 		<boot-order.version>1.0.2</boot-order.version>
+		<codingapi.txlcn.version>5.0.2.RELEASE</codingapi.txlcn.version>
 
 		<docker.image.prefix>darkings1990</docker.image.prefix>
 	</properties>
@@ -98,6 +99,24 @@
 						<artifactId>log4j</artifactId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>com.codingapi.txlcn</groupId>
+				<artifactId>txlcn-tc</artifactId>
+				<version>${codingapi.txlcn.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.codingapi.txlcn</groupId>
+				<artifactId>txlcn-tm</artifactId>
+				<version>${codingapi.txlcn.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.codingapi.txlcn</groupId>
+				<artifactId>txlcn-txmsg-netty</artifactId>
+				<version>${codingapi.txlcn.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

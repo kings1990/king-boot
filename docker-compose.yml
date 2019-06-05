@@ -1,0 +1,20 @@
+version: '3.6'
+services:
+#  king-boot-eureka-server:
+#    build:
+#      context: ./
+#      dockerfile: ./king-boot-eureka-server/Dockerfile
+#    restart: always
+#    container_name: king-boot-eureka-server
+#    image: darkings1990/king-boot-eureka-server
+#    ports:
+#      - 8201:8201
+  king-boot-timer:
+    build:
+      context: ./
+      dockerfile: ./king-boot-timer/Dockerfile
+    restart: always
+    container_name: king-boot-timer
+    image: darkings1990/king-boot-timer
+    ports:
+      - 9100:9100

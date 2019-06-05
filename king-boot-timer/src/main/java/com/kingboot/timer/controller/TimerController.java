@@ -31,7 +31,6 @@ import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.quartz.JobBuilder.newJob;
@@ -222,7 +221,7 @@ public class TimerController {
 		MongoPage mongoPage = new MongoPage();
 		mongoPage.setPageNum(page);
 		mongoPage.setPageSize(rows);
-		mongoPage = mongoDBService.findPage(query, mongoPage, Object.class, TIMER);
+		mongoPage = mongoDBService.findPage(query, mongoPage, TimerEntity.class, TIMER);
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		jsonMap.put("rows", mongoPage.getList());
 		jsonMap.put("total", mongoPage.getTotal());
