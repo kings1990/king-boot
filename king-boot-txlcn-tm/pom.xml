@@ -15,7 +15,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.codingapi.txlcn</groupId>
-			<artifactId>txlcn-tc</artifactId>
+			<artifactId>txlcn-tm</artifactId>
 		</dependency>
 	</dependencies>
 
