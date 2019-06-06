@@ -48,6 +48,17 @@ spring:
       simple:
         retry:
           enabled: true
+          
+  datasource:
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+    url: jdbc:mysql://localhost:3306/boot-order?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true      
 
   cloud:
     config:
@@ -55,6 +66,29 @@ spring:
         service-id: king-boot-config-server
         enabled: true
 
+#mapper
+mapper:
+  mappers:
+    - tk.mybatis.mapper.common.Mapper
+    - com.kingboot.common.config.mybatis.mapper.MybatisMysqlMapper
+    - tk.mybatis.mapper.common.MySqlMapper
+  notEmpty: true
+  identity: MYSQL
+  safe-delete: true
+#mapper
+
+mybatis:
+  type-aliases-package: com.kingboot.order.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+  
 
 king-boot-order:
   ribbon:

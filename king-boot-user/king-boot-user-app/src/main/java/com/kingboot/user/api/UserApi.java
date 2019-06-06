@@ -2,7 +2,8 @@ package com.kingboot.user.api;
 
 
 import com.kingboot.common.model.RestResponse;
-import com.kingboot.user.User;
+
+import com.kingboot.user.entity.User;
 import com.kingboot.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,10 +27,19 @@ public class UserApi {
 	
 	@GetMapping (value = "/detail/{id}", name = "根据id查询")
 	@ApiOperation (value = "根据id查询用户", notes = "根据id查询用户【Kings】")
-	public RestResponse<User> findById(@PathVariable @ApiParam Integer id) throws Exception {
+	@Deprecated
+	public RestResponse<com.kingboot.user.User> findById(@PathVariable @ApiParam Integer id) throws Exception {
 		log.error("1234");
 		//TimeUnit.SECONDS.sleep(2);
 		return new RestResponse<>(userService.findById(id));
 	}
+	
+	@GetMapping (value = "/{id}", name = "根据id查询")
+	@ApiOperation (value = "根据id查询用户", notes = "根据id查询用户【Kings】")
+	public RestResponse<User> findDetailById(@PathVariable @ApiParam Integer id) throws Exception {
+		return new RestResponse<>(userService.selectByPrimaryKey(id));
+	}
+	
+	
 }
 

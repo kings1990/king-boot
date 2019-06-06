@@ -41,7 +41,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -99,6 +98,11 @@
 			<version>${boot-user.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.kingboot</groupId>
+			<artifactId>king-boot-common-config</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 	</dependencies>
 
@@ -107,6 +111,34 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<configurationFile>src/main/resources/generator/generatorConfig.xml</configurationFile>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>8.0.13</version>
+					</dependency>
+					<dependency>
+						<groupId>tk.mybatis</groupId>
+						<artifactId>mapper</artifactId>
+						<version>3.5.3</version>
+					</dependency>
+					<dependency>
+						<groupId>com.kingboot</groupId>
+						<artifactId>king-boot-common-config</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

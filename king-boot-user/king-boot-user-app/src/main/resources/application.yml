@@ -39,7 +39,40 @@ spring:
       #采样百分比、开发环境可以设置为1表示全部，生成用默认
       probability: 1
 
+  datasource:
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+    url: jdbc:mysql://localhost:3306/boot-user?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    
+#mapper
+mapper:
+  mappers:
+    - tk.mybatis.mapper.common.Mapper
+    - com.kingboot.common.config.mybatis.mapper.MybatisMysqlMapper
+    - tk.mybatis.mapper.common.MySqlMapper
+  notEmpty: true
+  identity: MYSQL
+  safe-delete: true
+#mapper
 
+mybatis:
+  type-aliases-package: com.kingboot.basic.dao.boot.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+  
 feign:
   client:
     config:

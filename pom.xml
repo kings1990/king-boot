@@ -24,6 +24,7 @@
 		<module>king-boot-user</module>
 		<module>king-boot-order</module>
 		<module>king-boot-common-model</module>
+		<module>king-boot-common-config</module>
 	</modules>
 
 	<properties>

@@ -3,7 +3,9 @@ package com.kingboot.order.api;
 
 import com.kingboot.common.model.RestResponse;
 import com.kingboot.order.entity.Order;
+import com.kingboot.order.entity.Orders;
 import com.kingboot.order.service.OrderService;
+import com.kingboot.order.service.OrdersService;
 import com.kingboot.user.User;
 import com.kingboot.user.client.UserClient;
 import io.swagger.annotations.Api;
@@ -24,6 +26,9 @@ public class OrderApi {
 	private OrderService orderService;
 	
 	@Autowired
+	private OrdersService ordersService;
+	
+	@Autowired
 	private UserClient userClient;
 	
 	@GetMapping (value = "/detail/{id}", name = "根据id查询")
@@ -35,6 +40,15 @@ public class OrderApi {
 		System.out.println(u);
 		return new RestResponse<>(orderService.findById(id));
 	}
+	
+	@GetMapping (value = "/{id}", name = "根据id查询")
+	@ResponseBody
+	@ApiOperation (value = "根据id查询订单", notes = "根据id查询订单【Kings】")
+	public RestResponse<Orders> findByDetailId(@PathVariable @ApiParam Integer id) {
+		return new RestResponse<>(ordersService.selectByPrimaryKey(id));
+	}
+	
+	
 	
 }
 
