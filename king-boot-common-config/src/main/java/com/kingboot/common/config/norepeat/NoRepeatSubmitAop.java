@@ -1,22 +1,20 @@
 package com.kingboot.common.config.norepeat;
 
 import com.kingboot.common.config.redis.KingRedisManager;
+import com.kingboot.common.model.RestResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Aspect
-@Component
-@Order (-1)
 public class NoRepeatSubmitAop {
 	
 	private Log logger = LogFactory.getLog(getClass());
@@ -37,12 +35,11 @@ public class NoRepeatSubmitAop {
 				return o;
 			} else {
 				logger.error("重复提交");
-				return null;
+				return new RestResponse<>(HttpStatus.BAD_REQUEST,"验证重复提交时出现未知异常",null);
 			}
 		} catch (Throwable e) {
-			e.printStackTrace();
-			logger.error("验证重复提交时出现未知异常!");
-			return "{\"code\":-889,\"message\":\"验证重复提交时出现未知异常!\"}";
+			logger.error("redis异常!");
+			return new RestResponse<>(HttpStatus.BAD_REQUEST,"redis异常",null);
 		}
 		
 	}

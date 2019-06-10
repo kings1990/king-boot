@@ -3,8 +3,8 @@ package com.kingboot.common.config.redis;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
-import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.SortingParams;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@Component
+@AutoConfigureAfter(RedisPoolConfig.class)
 public class KingRedisManager {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RedisCacheConfiguration.class);
@@ -1010,7 +1010,6 @@ public class KingRedisManager {
 			result = jedis.get(key);
 		} catch (Exception e) {
 			releaseBrokenJedis(jedis);
-			e.printStackTrace();
 		} finally {
 			releaseJedis(jedis);
 		}
