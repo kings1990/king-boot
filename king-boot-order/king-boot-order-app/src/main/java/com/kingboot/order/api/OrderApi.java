@@ -49,6 +49,12 @@ public class OrderApi {
 	}
 	
 	
+	@PostMapping("")
+	@ApiOperation (value = "保存订单[@Kings]")
+	public RestResponse<Integer> saveOrder() {
+	    return new RestResponse<>(ordersService.saveOrder(1,"测试"));
+	}
+	
 	
 }
 

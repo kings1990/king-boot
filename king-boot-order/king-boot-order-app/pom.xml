@@ -103,6 +103,14 @@
 			<artifactId>king-boot-common-config</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.codingapi.txlcn</groupId>
+			<artifactId>txlcn-tc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.codingapi.txlcn</groupId>
+			<artifactId>txlcn-txmsg-netty</artifactId>
+		</dependency>
 
 	</dependencies>
 

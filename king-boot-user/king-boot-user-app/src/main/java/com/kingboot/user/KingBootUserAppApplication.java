@@ -1,5 +1,6 @@
 package com.kingboot.user;
 
+import com.codingapi.txlcn.tc.config.EnableDistributedTransaction;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableEurekaClient
 @tk.mybatis.spring.annotation.MapperScan (basePackages = "com.kingboot.user.mapper")
 @EnableTransactionManagement
+@EnableDistributedTransaction
 public class KingBootUserAppApplication {
 	
 	public static void main(String[] args) {
