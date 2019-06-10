@@ -14,7 +14,8 @@ import java.lang.annotation.Target;
  * @Version V1.0.
  * @date 2019.06.10 16:11:49
  */
-@Target (ElementType.METHOD) // 作用到方法上
+@Target ({ElementType.METHOD,ElementType.TYPE}) // 作用到方法上
+
 @Retention (RetentionPolicy.RUNTIME) // 运行时有效
 public @interface NoRepeatSubmit {
 }

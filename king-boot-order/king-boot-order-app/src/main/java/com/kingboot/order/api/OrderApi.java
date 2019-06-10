@@ -43,7 +43,15 @@ public class OrderApi {
 		return new RestResponse<>(orderService.findById(id));
 	}
 	
-	@GetMapping (value = "/{id}", name = "根据id查询")
+	@PostMapping (value = "/test", name = "重复提交测试")
+	@ResponseBody
+	@NoRepeatSubmit
+	@ApiOperation (value = "重复提交测试", notes = "重复提交测试【Kings】")
+	public RestResponse<Integer> noRepeatTest() {
+		return new RestResponse<>(1);
+	}
+	
+	@PostMapping (value = "/{id}", name = "根据id查询")
 	@ResponseBody
 	@ApiOperation (value = "根据id查询订单", notes = "根据id查询订单【Kings】")
 	public RestResponse<Orders> findByDetailId(@PathVariable @ApiParam Integer id) {
@@ -53,7 +61,6 @@ public class OrderApi {
 	
 	@PostMapping("")
 	@ApiOperation (value = "保存订单[@Kings]")
-	@NoRepeatSubmit
 	public RestResponse<Integer> saveOrder() {
 	    return new RestResponse<>(ordersService.saveOrder(1,"测试"));
 	}

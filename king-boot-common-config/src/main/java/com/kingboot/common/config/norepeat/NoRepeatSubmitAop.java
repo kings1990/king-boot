@@ -24,8 +24,8 @@ public class NoRepeatSubmitAop {
 	@Autowired
 	private KingRedisManager kingRedisManager;
 	
-	@Around("@annotation(nrs) && (@annotation(org.springframework.web.bind.annotation.DeleteMapping) || @annotation(org.springframework.web.bind.annotation.PostMapping) ||@annotation(org.springframework.web.bind.annotation.PutMapping))")
-	public Object arround(ProceedingJoinPoint pjp, NoRepeatSubmit nrs) {
+	@Around("@annotation(com.kingboot.common.config.norepeat.NoRepeatSubmit) && ( (@annotation(org.springframework.web.bind.annotation.DeleteMapping) || @annotation(org.springframework.web.bind.annotation.PostMapping) ||@annotation(org.springframework.web.bind.annotation.PutMapping)))")
+	public Object arround(ProceedingJoinPoint pjp) {
 		try {
 			ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 			String sessionId = RequestContextHolder.getRequestAttributes().getSessionId();
