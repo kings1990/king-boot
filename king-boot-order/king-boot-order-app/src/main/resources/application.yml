@@ -28,6 +28,15 @@ eureka:
     home-page-url: htts://localhost:${server.port}/
 
 spring:
+  redis:
+    host: localhost
+    password:
+    port: 6379
+    timeout: 6000
+    jedis:
+      pool:
+        max-idle: 8
+        max-wait: 1
   zipkin:
     base-url: http://localhost:9411/
   sleuth:

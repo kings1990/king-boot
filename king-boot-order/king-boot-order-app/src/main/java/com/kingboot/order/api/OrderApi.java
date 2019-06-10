@@ -1,6 +1,7 @@
 package com.kingboot.order.api;
 
 
+import com.kingboot.common.config.norepeat.NoRepeatSubmit;
 import com.kingboot.common.model.RestResponse;
 import com.kingboot.order.entity.Order;
 import com.kingboot.order.entity.Orders;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @Api (description = "订单API")
 @Slf4j
 public class OrderApi {
+	
 	
 	@Autowired
 	private OrderService orderService;
@@ -51,6 +53,7 @@ public class OrderApi {
 	
 	@PostMapping("")
 	@ApiOperation (value = "保存订单[@Kings]")
+	@NoRepeatSubmit
 	public RestResponse<Integer> saveOrder() {
 	    return new RestResponse<>(ordersService.saveOrder(1,"测试"));
 	}

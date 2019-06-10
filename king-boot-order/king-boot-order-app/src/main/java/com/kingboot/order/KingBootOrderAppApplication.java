@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootApplication (scanBasePackages = {"com.kingboot.user.client", "com.kingboot.order"})
+@SpringBootApplication (scanBasePackages = {"com.kingboot.user.client", "com.kingboot.order","com.kingboot.common.config"})
 @EnableFeignClients ("com.kingboot.user.client")
 @EnableEurekaClient
 @tk.mybatis.spring.annotation.MapperScan (basePackages = "com.kingboot.order.mapper")

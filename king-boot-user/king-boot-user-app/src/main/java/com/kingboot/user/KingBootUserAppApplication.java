@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication
+@SpringBootApplication (scanBasePackages = {"com.kingboot.common.config"})
 @EnableFeignClients
 @EnableEurekaClient
 @tk.mybatis.spring.annotation.MapperScan (basePackages = "com.kingboot.user.mapper")

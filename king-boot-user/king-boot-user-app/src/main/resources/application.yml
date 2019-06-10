@@ -49,6 +49,15 @@ spring:
       max-active: 20
       test-on-borrow: true
     url: jdbc:mysql://localhost:3306/boot-user?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+  redis:
+    host: localhost
+    password:
+    port: 6379
+    timeout: 6000
+    jedis:
+      pool:
+        max-idle: 8
+        max-wait: 1  
     
 #mapper
 mapper:
