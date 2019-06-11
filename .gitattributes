@@ -1,2 +1,2 @@
+*.java linguist-language=java
 *.js linguist-language=Jquery
-*.java linguist-language=java8
