@@ -27,7 +27,6 @@ public class TestApi {
 	@GetMapping ("/version")
 	@ApiOperation (value = "乐观锁测试[@Kings]")
 	public RestResponse<Integer> versionTest() {
-		userMapper.deleteAll();
 		int id = 1;
 		int version = 2;
 		

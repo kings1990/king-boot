@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * @author waylen.chi
@@ -52,16 +51,18 @@ public class MybatisPlusConfig {
 		return new SQLFilter();
 	}
 	
+	//执行分析插件
 	@Bean
-	@Profile ({"dev","test"})// 设置 dev test 环境开启
+	@Profile ({"dev1","test"})// 设置 dev test 环境开启
 	public SqlExplainInterceptor sqlExplainInterceptor(){
 		SqlExplainInterceptor sqlExplainInterceptor = new SqlExplainInterceptor();
-		Properties properties = new Properties();
-		properties.put("stopProceed",true);
-		sqlExplainInterceptor.setProperties(properties);
+		// Properties properties = new Properties();
+		// properties.put("stopProceed",true);
+		// sqlExplainInterceptor.setProperties(properties);
 		return sqlExplainInterceptor;
 	}
 	
+	//性能分析插件
 	@Bean
 	@Profile ({"dev","test"})// 设置 dev test 环境开启
 	public PerformanceInterceptor performanceInterceptor() {
@@ -72,5 +73,11 @@ public class MybatisPlusConfig {
 	@Bean
 	public OptimisticLockerInterceptor optimisticLockerInterceptor() {
 		return new OptimisticLockerInterceptor();
+	}
+	
+	//公共字段
+	@Bean
+	public MyMetaObjectHandler myMetaObjectHandler(){
+		return new MyMetaObjectHandler();
 	}
 }
