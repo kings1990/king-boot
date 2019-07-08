@@ -4,12 +4,16 @@ import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * @author waylen.chi
@@ -52,4 +56,19 @@ public class MybatisPlusConfig {
 		return new SQLFilter();
 	}
 	
+	@Bean
+	@Profile ({"dev","test"})// 设置 dev test 环境开启
+	public SqlExplainInterceptor sqlExplainInterceptor(){
+		SqlExplainInterceptor sqlExplainInterceptor = new SqlExplainInterceptor();
+		Properties properties = new Properties();
+		properties.put("stopProceed",true);
+		sqlExplainInterceptor.setProperties(properties);
+		return sqlExplainInterceptor;
+	}
+	
+	@Bean
+	@Profile ({"dev","test"})// 设置 dev test 环境开启
+	public PerformanceInterceptor performanceInterceptor() {
+		return new PerformanceInterceptor();
+	}
 }
