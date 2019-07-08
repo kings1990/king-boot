@@ -1,8 +1,6 @@
 package com.kingboot.mplus.config;
 
-import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
-import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
@@ -39,17 +37,14 @@ public class MybatisPlusConfig {
 		paginationInterceptor.setSqlParserList(sqlParserList);
 		return paginationInterceptor;
 	}
-
-	/**
-	 * 逻辑删除插件
-	 *
-	 * @return LogicSqlInjector
-	 */
+	
+	
 	@Bean
 	@ConditionalOnMissingBean
-	public ISqlInjector sqlInjector() {
-		return new LogicSqlInjector();
+	public MySqlInjector mySqlInjector() {
+		return new MySqlInjector();
 	}
+	
 	
 	@Bean
 	@ConditionalOnMissingBean

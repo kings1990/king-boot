@@ -3,6 +3,7 @@ package com.kingboot.mplus.api;
 
 import com.kingboot.common.model.RestResponse;
 import com.kingboot.mplus.entity.User;
+import com.kingboot.mplus.mapper.UserMapper;
 import com.kingboot.mplus.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,11 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestApi {
 	
 	@Autowired
+	private UserMapper userMapper;
+	
+	@Autowired
 	private UserService userService;
 	
 	@GetMapping ("/version")
 	@ApiOperation (value = "乐观锁测试[@Kings]")
 	public RestResponse<Integer> versionTest() {
+		userMapper.deleteAll();
 		int id = 1;
 		int version = 2;
 		

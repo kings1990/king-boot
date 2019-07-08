@@ -10,5 +10,6 @@ import com.kingboot.mplus.entity.User;
  * @date 2019-07-08 14:24:50
  */
 public interface UserMapper extends BaseMapper<User> {
-
+	
+	int deleteAll();
 }
