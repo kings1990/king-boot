@@ -7,9 +7,12 @@ import ${package}.${moduleName}.service.${className}Service;
 import org.springframework.stereotype.Service;
 
 /**
- * ${comments}
- *
+ * <p class="detail">
+ * 功能:${comments} ServiceImpl
+ * </p>
  * @author ${author}
+ * @ClassName ${className}ServiceImpl
+ * @Version V1.0.
  * @date ${datetime}
  */
 @Service

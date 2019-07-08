@@ -4,9 +4,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import ${package}.${moduleName}.entity.${className};
 
 /**
- * ${comments}
- *
+ * <p class="detail">
+ * 功能:${comments} Service
+ * </p>
  * @author ${author}
+ * @ClassName ${className}Service
+ * @Version V1.0.
  * @date ${datetime}
  */
 public interface ${className}Service extends IService<${className}> {

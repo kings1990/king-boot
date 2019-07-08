@@ -13,9 +13,12 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * ${comments}
- *
+ * <p class="detail">
+ * 功能:${comments}
+ * </p>
  * @author ${author}
+ * @ClassName ${className}
+ * @Version V1.0.
  * @date ${datetime}
  */
 @Data
