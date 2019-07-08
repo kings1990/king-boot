@@ -1,9 +1,7 @@
-package ${package}.${moduleName}.controller;
+package ${package}.${moduleName}.api;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.jcwlcloud.jcwl.common.core.util.R;
-import com.jcwlcloud.jcwl.common.log.annotation.SysLog;
 import ${package}.${moduleName}.entity.${className};
 import ${package}.${moduleName}.service.${className}Service;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,74 +10,94 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
- * ${comments}
- *
+ * <p class="detail">
+ * 功能:${comments}
+ * </p>
  * @author ${author}
+ * @ClassName ${className}api.
+ * @Version V1.0.
  * @date ${datetime}
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/${pathName}" )
-public class ${className}Controller {
+@RequestMapping("/${pathName}s" )
+public class ${className}Api {
 
     private final  ${className}Service ${classname}Service;
-
+    
     /**
-     * 分页查询
-     * @param page 分页对象
-     * @param ${classname} ${comments}
-     * @return
-     */
+	 * <p class="detail">
+	 * 功能:分页查询
+	 * </p>
+	 * 
+	 * @param ${classname} ${comments}
+	 * @return RestResponse
+	 * @author ${author}
+	 * @date ${datetime}
+	 */
     @GetMapping("/page" )
-    public R<${classname}> get${className}Page(Page page, ${className} ${classname}) {
-        return new R<>(${classname}Service.page(page, Wrappers.query(${classname})));
+    public RestResponse<${classname}> get${className}Page(Page page, ${className} ${classname}) {
+        return new RestResponse<>(${classname}Service.page(page, Wrappers.query(${classname})));
     }
-
-
+    
     /**
-     * 通过id查询${comments}
+     * <p class="detail">
+     * 功能:通过id查询${comments}
+     * </p>
+     *
      * @param ${pk.lowerAttrName} id
-     * @return R
+     * @return RestResponse
+     * @author ${author}
+     * @date ${datetime}
      */
     @GetMapping("/{${pk.lowerAttrName}}" )
-    public R<${classname}> getById(@PathVariable("${pk.lowerAttrName}" ) ${pk.attrType} ${pk.lowerAttrName}) {
-        return new R<>(${classname}Service.getById(${pk.lowerAttrName}));
+    public RestResponse<${classname}> getById(@PathVariable("${pk.lowerAttrName}" ) ${pk.attrType} ${pk.lowerAttrName}) {
+        return new RestResponse<>(${classname}Service.getById(${pk.lowerAttrName}));
     }
-
+    
     /**
-     * 新增${comments}
+     * <p class="detail">
+     * 功能:新增${comments}
+     * </p>
+     *
      * @param ${classname} ${comments}
-     * @return R
+     * @return RestResponse
+     * @author ${author}
+     * @date ${datetime}
      */
-    @SysLog("新增${comments}" )
     @PostMapping
-    @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_add')" )
-    public R save(@RequestBody ${className} ${classname}) {
-        return new R<>(${classname}Service.save(${classname}));
+    public RestResponse save(@RequestBody ${className} ${classname}) {
+        return new RestResponse<>(${classname}Service.save(${classname}));
     }
-
+    
     /**
-     * 修改${comments}
+     * <p class="detail">
+     * 功能:修改${comments}
+     * </p>
+     *
      * @param ${classname} ${comments}
-     * @return R
+     * @return RestResponse
+     * @author ${author}
+     * @date ${datetime}
      */
-    @SysLog("修改${comments}" )
     @PutMapping
-    @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_edit')" )
-    public R updateById(@RequestBody ${className} ${classname}) {
-        return new R<>(${classname}Service.updateById(${classname}));
+    public RestResponse updateById(@RequestBody ${className} ${classname}) {
+        return new RestResponse<>(${classname}Service.updateById(${classname}));
     }
-
+    
     /**
-     * 通过id删除${comments}
+     * <p class="detail">
+     * 功能:通过id删除${comments}
+     * </p>
+     *
      * @param ${pk.lowerAttrName} id
-     * @return R
+     * @return RestResponse
+     * @author ${author}
+     * @date ${datetime}
      */
-    @SysLog("删除${comments}" )
     @DeleteMapping("/{${pk.lowerAttrName}}" )
-    @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_del')" )
-    public R removeById(@PathVariable ${pk.attrType} ${pk.lowerAttrName}) {
-        return new R<>(${classname}Service.removeById(${pk.lowerAttrName}));
+    public RestResponse removeById(@PathVariable ${pk.attrType} ${pk.lowerAttrName}) {
+        return new RestResponse<>(${classname}Service.removeById(${pk.lowerAttrName}));
     }
 
 }
