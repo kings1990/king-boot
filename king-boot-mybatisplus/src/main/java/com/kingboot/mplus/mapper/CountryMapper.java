@@ -4,10 +4,9 @@ package com.kingboot.mplus.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kingboot.mplus.entity.Country;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface CountryMapper extends BaseMapper<Country> {
-	List<Country> selectUserList(Page page, Integer state);
 	
+	Page<Country> selectByTheFirstLetterPage(Page page ,@Param("letter") String letter);
 }

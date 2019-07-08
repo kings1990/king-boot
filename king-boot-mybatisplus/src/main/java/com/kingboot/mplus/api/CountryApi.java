@@ -16,7 +16,7 @@ import java.util.List;
 
 @RequestMapping ("/api/countrys")
 @RestController
-public class countryApi {
+public class CountryApi {
 	
 	@Autowired
 	private CountryMapper countryMapper;
@@ -28,9 +28,14 @@ public class countryApi {
 	}
 	
 	@RequestMapping (value = "/page", method = RequestMethod.GET)
-	public RestResponse<IPage<Country>> listAll(Page<Country> page) {
+	public RestResponse<IPage<Country>> page(Page<Country> page) {
 		page.setCurrent(2);
 		return new RestResponse<>(countryMapper.selectPage(page,Wrappers.query()));
+	}
+	
+	@RequestMapping (value = "/page/by/letter", method = RequestMethod.GET)
+	public RestResponse<IPage<Country>> pageByLetter(Page<Country> page) {
+		return new RestResponse<>(countryMapper.selectByTheFirstLetterPage(page,"A"));
 	}
 }
 
