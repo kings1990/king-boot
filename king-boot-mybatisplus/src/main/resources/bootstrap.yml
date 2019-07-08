@@ -1,0 +1,26 @@
+#使用注册中心需要此段配置，把uri设置在bootstrap.yml中
+spring:
+  cloud:
+    config:
+      profile: default
+      #可配置多个
+      uri: http://localhost:8202
+      #建议用分支区分环境
+      label: test
+
+tx-lcn:
+  client:
+    manager-address: localhost:8070
+  ribbon:
+    loadbalancer:
+      dtx:
+        enabled: true
+ribbon:
+  MaxAutoRetriesNextServer: 0
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+ 
+
+
+
+
