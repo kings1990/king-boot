@@ -40,4 +40,14 @@ public class User implements Serializable {
 	@JsonFormat (shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd", timezone="GMT+8")
 	private LocalDateTime lastUpdatedTime;
 	
+	/**
+	 * 删除标记  1-未删除 0-已删除
+	 */
+	@TableLogic
+	private Boolean deleteFlag;
+	
+	/**
+	 * 租户id 1-浙江 2-上海
+	 */
+	private Integer tenantId;
 }

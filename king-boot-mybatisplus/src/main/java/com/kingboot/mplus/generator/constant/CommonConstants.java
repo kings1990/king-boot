@@ -15,6 +15,11 @@ public interface CommonConstants {
 	 * 后端工程名
 	 */
 	String BACK_END_PROJECT = "kings";
+	
+	/**
+	 * header 中租户ID
+	 */
+	String TENANT_ID = "TenantId";
 
 	
 }

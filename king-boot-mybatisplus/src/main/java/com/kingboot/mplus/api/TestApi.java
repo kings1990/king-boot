@@ -42,5 +42,14 @@ public class TestApi {
 		}
 	    return new RestResponse<>(1);
 	}
+	
+	@GetMapping ("/delete")
+	@ApiOperation (value = "删除测试[@Kings]")
+	public RestResponse<Integer> deleteTest() {
+		userService.removeById(2);
+		return new RestResponse<>(1);
+	}
+	
+	
 }
 

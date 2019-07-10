@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
+import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,15 +14,23 @@ import org.springframework.context.annotation.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
-/**
- * @author waylen.chi
- * @date 2017/10/29
- */
+
 @Configuration
 public class MybatisPlusConfig {
-
-
+	
+	
+	// /**
+	//  * 创建租户维护处理器对象
+	//  *
+	//  * @return 处理后的租户维护处理器
+	//  */
+	// @Bean
+	// @ConditionalOnMissingBean
+	// public KingsTenantHandler jcwlTenantHandler() {
+	// 	return new KingsTenantHandler();
+	// }
 	/**
 	 * 分页插件
 	 *
@@ -28,16 +38,17 @@ public class MybatisPlusConfig {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
-	public PaginationInterceptor paginationInterceptor() {
+	public PaginationInterceptor paginationInterceptor(TenantHandler tenantHandler) {
 		PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
 		List<ISqlParser> sqlParserList = new ArrayList<>();
-		// TenantSqlParser tenantSqlParser = new TenantSqlParser();
-		// sqlParserList.add(tenantSqlParser);
+		TenantSqlParser tenantSqlParser = new TenantSqlParser();
+		tenantSqlParser.setTenantHandler(tenantHandler);
+		sqlParserList.add(tenantSqlParser);
 		paginationInterceptor.setSqlParserList(sqlParserList);
 		return paginationInterceptor;
 	}
 	
-	
+	//注入自定义SQL
 	@Bean
 	@ConditionalOnMissingBean
 	public MySqlInjector mySqlInjector() {
@@ -53,12 +64,12 @@ public class MybatisPlusConfig {
 	
 	//执行分析插件
 	@Bean
-	@Profile ({"dev1","test"})// 设置 dev test 环境开启
+	@Profile ({"dev","test"})// 设置 dev test 环境开启
 	public SqlExplainInterceptor sqlExplainInterceptor(){
 		SqlExplainInterceptor sqlExplainInterceptor = new SqlExplainInterceptor();
-		// Properties properties = new Properties();
-		// properties.put("stopProceed",true);
-		// sqlExplainInterceptor.setProperties(properties);
+		Properties properties = new Properties();
+		properties.put("stopProceed",true);
+		sqlExplainInterceptor.setProperties(properties);
 		return sqlExplainInterceptor;
 	}
 	
