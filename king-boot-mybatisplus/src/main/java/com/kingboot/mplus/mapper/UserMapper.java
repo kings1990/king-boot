@@ -1,6 +1,6 @@
 package com.kingboot.mplus.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.kingboot.mplus.config.MyBaseMapper;
 import com.kingboot.mplus.entity.User;
 
 /**
@@ -9,7 +9,7 @@ import com.kingboot.mplus.entity.User;
  * @author Kings
  * @date 2019-07-08 14:24:50
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends MyBaseMapper<User> {
 	
 	int deleteAll();
 }

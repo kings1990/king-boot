@@ -46,6 +46,8 @@ public class User implements Serializable {
 	@TableLogic
 	private Boolean deleteFlag;
 	
+	@TableField (fill = FieldFill.UPDATE)
+	private Integer syncFlag;
 	/**
 	 * 租户id 1-浙江 2-上海
 	 */

@@ -46,7 +46,19 @@ public class TestApi {
 	@GetMapping ("/delete")
 	@ApiOperation (value = "删除测试[@Kings]")
 	public RestResponse<Integer> deleteTest() {
-		userService.removeById(2);
+		User user = new User();
+		user.setId(2);
+		user.setName("King's");
+		//userMapper.updateById(user);
+		// UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+		// updateWrapper.set("logicDeleteColumn","deleteValue");
+		// userMapper.update(new User(), updateWrapper);
+		User user4d = new User();
+		user4d.setId(2);
+		user4d.setSyncFlag(2);
+		userMapper.deleteByIdWithFill(user4d);
+		//userService.removeById(2);
+		
 		return new RestResponse<>(1);
 	}
 	
