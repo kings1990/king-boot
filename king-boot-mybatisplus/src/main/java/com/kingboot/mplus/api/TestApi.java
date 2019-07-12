@@ -1,6 +1,7 @@
 package com.kingboot.mplus.api;
 
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.kingboot.common.model.RestResponse;
 import com.kingboot.mplus.entity.User;
 import com.kingboot.mplus.mapper.UserMapper;
@@ -49,13 +50,11 @@ public class TestApi {
 		User user = new User();
 		user.setId(2);
 		user.setName("King's");
-		//userMapper.updateById(user);
-		// UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
-		// updateWrapper.set("logicDeleteColumn","deleteValue");
-		// userMapper.update(new User(), updateWrapper);
+		userMapper.update(user, Wrappers.<User>query().lambda().eq(User::getId,2));
+		
 		User user4d = new User();
 		user4d.setId(2);
-		user4d.setSyncFlag(2);
+		user4d.setSyncFlag(1);
 		userMapper.deleteByIdWithFill(user4d);
 		//userService.removeById(2);
 		

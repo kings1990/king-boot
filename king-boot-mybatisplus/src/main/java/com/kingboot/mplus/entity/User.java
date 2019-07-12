@@ -25,6 +25,7 @@ public class User implements Serializable {
 	/**
 	 * 用户名
 	 */
+	@TableField(updateStrategy = FieldStrategy.NOT_NULL)
 	private String name;
 	/**
 	 *
@@ -46,10 +47,18 @@ public class User implements Serializable {
 	@TableLogic
 	private Boolean deleteFlag;
 	
+	/**
+	 * 0-默认 1-已删除 2-已更新 3-已同步
+	 */
 	@TableField (fill = FieldFill.UPDATE)
 	private Integer syncFlag;
 	/**
 	 * 租户id 1-浙江 2-上海
 	 */
 	private Integer tenantId;
+	
+	/**
+	 * 排除字段不在数据库里面
+	 */
+	private transient String noColumn;
 }

@@ -26,7 +26,8 @@ mybatis-plus:
       id-type: auto
       # 默认数据库表下划线命名
       table-underline: true
-      insert-strategy: NOT_NULL
+      insert-strategy: not_null
+      update-strategy: not_null
 kings:
   tenant:
     column: tenant_id
