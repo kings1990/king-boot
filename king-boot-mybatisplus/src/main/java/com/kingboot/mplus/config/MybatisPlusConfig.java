@@ -1,6 +1,8 @@
 package com.kingboot.mplus.config;
 
+import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
+import com.baomidou.mybatisplus.extension.MybatisMapWrapperFactory;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
@@ -90,5 +92,11 @@ public class MybatisPlusConfig {
 	@Bean
 	public MyMetaObjectHandler myMetaObjectHandler(){
 		return new MyMetaObjectHandler();
+	}
+	
+	//Map下划线自动转驼峰
+	@Bean
+	public ConfigurationCustomizer configurationCustomizer() {
+		return i -> i.setObjectWrapperFactory(new MybatisMapWrapperFactory());
 	}
 }

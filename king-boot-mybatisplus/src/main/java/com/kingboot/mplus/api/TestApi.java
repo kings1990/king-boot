@@ -1,7 +1,6 @@
 package com.kingboot.mplus.api;
 
 
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.kingboot.common.model.RestResponse;
 import com.kingboot.mplus.entity.User;
 import com.kingboot.mplus.mapper.UserMapper;
@@ -50,7 +49,7 @@ public class TestApi {
 		User user = new User();
 		user.setId(2);
 		user.setName("King's");
-		userMapper.update(user, Wrappers.<User>query().lambda().eq(User::getId,2));
+		userMapper.updateById(user);
 		
 		User user4d = new User();
 		user4d.setId(2);
