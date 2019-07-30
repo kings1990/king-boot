@@ -10,9 +10,18 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+/**
+ * <p class="detail">
+ * 功能:kafka生产者
+ * </p>
+ * @author Kings
+ * @ClassName Producer
+ * @Version V1.0.
+ * @date 2019.07.30 10:37:51
+ */
 public class Producer {
 	
-	public static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
 	
 	@Autowired
 	private KafkaTemplate<String, GenericMessage> kafkaTemplate;

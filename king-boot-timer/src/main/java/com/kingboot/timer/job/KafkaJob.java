@@ -26,16 +26,17 @@ import java.util.Date;
 public class KafkaJob implements Job {
 	
 	private static final Logger logger = LoggerFactory.getLogger(KafkaJob.class);
-	private static SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	public static final String PATTERN = "yyyy-MM-dd HH:mm:ss";
 	
 	
 	@Override
 	public void execute(JobExecutionContext jobExecutionContext) {
+		SimpleDateFormat fmt = new SimpleDateFormat(PATTERN);
 		JobDetail jobDetail = jobExecutionContext.getJobDetail();
 		String topic = (String) jobDetail.getJobDataMap().get("topic");
 		Producer producer = (Producer) jobDetail.getJobDataMap().get("producer");
-		FORMATTER = (SimpleDateFormat) jobDetail.getJobDataMap().get("sdf");
-		String message = FORMATTER.format(new Date());
+		fmt = (SimpleDateFormat) jobDetail.getJobDataMap().get("sdf");
+		String message = fmt.format(new Date());
 		producer.send(topic, new GenericMessage<>(message));
 		logger.info("Message {} to topic {} sent", message, topic);
 	}

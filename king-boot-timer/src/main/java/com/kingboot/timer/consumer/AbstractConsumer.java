@@ -10,10 +10,22 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.sql.Timestamp;
 
+/**
+ * <p class="detail">
+ * 功能:
+ * </p>
+ * @author Kings
+ * @ClassName Abstract consumer.
+ * @Version V1.0.
+ * @date 2019.07.30 10:31:01
+ */
 public abstract class AbstractConsumer implements MessageHandler {
+	/** The constant TOPICINFO. */
 	private static final String TOPICINFO = "TopicInfo";
+	/** Mongo template. */
 	@Autowired
 	private MongoTemplate mongoTemplate;
+	/** Group id. */
 	@Value ("${spring.kafka.consumer.group-id}")
 	private String groupId;
 	
@@ -33,5 +45,14 @@ public abstract class AbstractConsumer implements MessageHandler {
 		mongoTemplate.insert(topicInfo, TOPICINFO);
 	}
 	
+	/**
+	 * <p class="detail">
+	 * 功能:监听
+	 * </p>
+	 * @param record :消费记录
+	 *
+	 * @author Kings
+	 * @date 2019.07.30 10:31:01
+	 */
 	public abstract void listen(ConsumerRecord<?, ?> record);
 }

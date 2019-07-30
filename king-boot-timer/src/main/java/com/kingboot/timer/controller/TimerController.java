@@ -6,7 +6,7 @@ import com.kingboot.timer.entity.TimerEntity;
 import com.kingboot.timer.entity.TimerTopic;
 import com.kingboot.timer.entity.TopicInfo;
 import com.kingboot.timer.job.KafkaJob;
-import com.kingboot.timer.mongo.MongoDBService;
+import com.kingboot.timer.mongo.MongoDbService;
 import com.kingboot.timer.mongo.MongoPage;
 import org.apache.commons.lang.StringUtils;
 import org.quartz.*;
@@ -55,11 +55,11 @@ public class TimerController {
 	private static final String TIMER_TOPIC = "TimerTopic";
 	private static final Logger logger = LoggerFactory.getLogger(TimerController.class);
 	private static final String TOPICINFO = "TopicInfo";
-	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
 	@Resource
 	private Scheduler scheduler;
 	@Autowired
-	private MongoDBService mongoDBService;
+	private MongoDbService mongoDbService;
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	@Value ("${spring.kafka.bootstrap-servers}")
@@ -122,9 +122,13 @@ public class TimerController {
 		return "ok";
 	}
 	
-	//quartz启动执行器
+	/**
+	 * quartz启动执行器
+	 * @param timerEntity
+	 * @throws SchedulerException
+	 */
 	private void doStartTimer(TimerEntity timerEntity) throws SchedulerException {
-		Map<String, Object> map = new HashMap();
+		Map<String, Object> map = new HashMap<>(2);
 		map.put("producer", producer);
 		SimpleDateFormat sdf = new SimpleDateFormat(timerEntity.getMessage());
 		map.put("sdf", sdf);
@@ -162,7 +166,11 @@ public class TimerController {
 		return "ok";
 	}
 	
-	//quartz停止执行器
+	/**
+	 * quartz停止执行器
+	 * @param timerEntity
+	 * @throws SchedulerException
+	 */
 	private void doStopTimer(TimerEntity timerEntity) throws SchedulerException {
 		JobDetail job = newJob(KafkaJob.class).withIdentity("Timer_" + timerEntity.getTopic()).build();
 		scheduler.deleteJob(job.getKey());
@@ -186,11 +194,14 @@ public class TimerController {
 	@ResponseBody
 	@RequestMapping (value = "loadTimerList", method = RequestMethod.GET)
 	public Map<String, Object> loadTimerList(String timerName, String topic, String describe, Integer limit, Integer offset, String createTimeBeg, String createTimeEnd) {
-		Integer page = (offset / limit) + 1;//转换到当前查询页码
-		Integer rows = limit;              //转换当前页面查询容量pagesize
+		//转换到当前查询页码
+		Integer page = (offset / limit) + 1;
+		//转换当前页面查询容量pagesize
+		Integer rows = limit;
 		Query query = new Query();
 		Criteria criteria = new Criteria();
-		query.with(new Sort(Sort.Direction.DESC, "_id"));//根据createTime降序排序
+		//根据createTime降序排序
+		query.with(new Sort(Sort.Direction.DESC, "_id"));
 		
 		//↓↓↓↓↓↓↓↓↓↓设置查询参数↓↓↓↓↓↓↓↓↓↓
 		//查询未删除的定时器
@@ -206,13 +217,15 @@ public class TimerController {
 			criteria.and("describe").regex(".*" + describe + ".*");
 		}
 		
-		if ((createTimeBeg != null && ! createTimeBeg.equals("")) && (createTimeEnd == null || createTimeEnd.equals(""))) {
+		if (StringUtils.isNotBlank(createTimeBeg) && StringUtils.isNotBlank(createTimeEnd)) {
 			criteria.and("createTime").gt(createTimeBeg + " 0:0:0");
 		}
-		if ((createTimeEnd != null && ! createTimeEnd.equals("")) && (createTimeBeg == null || createTimeBeg.equals(""))) {
+		
+		if (StringUtils.isNotBlank(createTimeEnd) && StringUtils.isBlank(createTimeBeg)) {
 			criteria.and("createTime").lte(createTimeEnd + " 23:59:59");
 		}
-		if (createTimeBeg != null && ! createTimeBeg.equals("") && createTimeEnd != null && ! createTimeEnd.equals("")) {
+		
+		if(StringUtils.isNotBlank(createTimeBeg) && StringUtils.isNotBlank(createTimeEnd)){
 			criteria.and("createTime").gt(createTimeBeg + " 0:0:0").lte(createTimeEnd + " 23:59:59");
 		}
 		
@@ -222,8 +235,8 @@ public class TimerController {
 		MongoPage mongoPage = new MongoPage();
 		mongoPage.setPageNum(page);
 		mongoPage.setPageSize(rows);
-		mongoPage = mongoDBService.findPage(query, mongoPage, TimerEntity.class, TIMER);
-		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		mongoPage = mongoDbService.findPage(query, mongoPage, TimerEntity.class, TIMER);
+		Map<String, Object> jsonMap = new HashMap<>(2);
 		jsonMap.put("rows", mongoPage.getList());
 		jsonMap.put("total", mongoPage.getTotal());
 		return jsonMap;
@@ -290,6 +303,7 @@ public class TimerController {
 			logger.error("timer {} update fail", timerEntity.getName());
 			return "fail";
 		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		timerEntity.set_id(id);
 		timerEntity.setCreateTime(sdf.format(new Date()));
 		mongoTemplate.save(timerEntity, TIMER);
@@ -335,15 +349,7 @@ public class TimerController {
 			return "cronError";
 		}
 		
-		//判断是否存在topic 目前允许存在相同topic
-      /*  Query query = new Query(Criteria.where("topic").is(timerEntity.getTopic()));
-        query.addCriteria(Criteria.where("delStatus").is(false));
-        if (mongoTemplate.exists(query, TimerEntity.class, TIMER)) {
-            logger.info("Topic {} is exist", timerEntity.getTopic());
-            return timerEntity.getTopic() + " is exist";
-        }
-*/
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		timerEntity.setTopic(timerEntity.getTopic());
 		timerEntity.setCreateTime(sdf.format(new Date()));
 		mongoTemplate.insert(timerEntity, TIMER);
@@ -459,7 +465,10 @@ public class TimerController {
 	}
 	
 	
-	//获取所有TimerTopic
+	/**
+	 * 获取所有TimerTopic
+	 * @return
+	 */
 	private List<TimerTopic> getAllTopics() {
 		Query query = new Query(Criteria.where("delStatus").is(false));
 		//根据topic降序排序
@@ -469,7 +478,12 @@ public class TimerController {
 	}
 	
 	
-	//根据corn获取理论上次执行时间
+	/**
+	 * 根据corn获取理论上次执行时间
+	 * @param corn
+	 * @return
+	 * @throws ParseException
+	 */
 	private String getLastExpectTime(String corn) throws ParseException {
 		CronTriggerImpl cronTriggerImpl = new CronTriggerImpl();
 		cronTriggerImpl.setCronExpression(corn);
@@ -478,6 +492,7 @@ public class TimerController {
 		//把统计的区间段设置为从一个月前到现在
 		calendar.add(Calendar.MONTH, - 1);
 		List<Date> dates = TriggerUtils.computeFireTimesBetween(cronTriggerImpl, null, calendar.getTime(), now);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return sdf.format(dates.get(dates.size() - 1));
 	}
 	
@@ -496,7 +511,11 @@ public class TimerController {
 		return result;
 	}
 	
-	//判断message是否符合要求
+	/**
+	 * 判断message是否符合要求
+	 * @param message
+	 * @return
+	 */
 	private boolean checkMessage(String message) {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat(message);
@@ -506,7 +525,11 @@ public class TimerController {
 		return true;
 	}
 	
-	//判断cron是否符合要求
+	/**
+	 * 判断cron是否符合要求
+	 * @param cron
+	 * @return
+	 */
 	private boolean checkCron(String cron) {
 		CronTriggerImpl trigger = new CronTriggerImpl();
 		try {

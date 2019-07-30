@@ -36,7 +36,8 @@ public class MongoUtil {
 	 * @date 2016年5月18日
 	 */
 	public static PageView findPageByMongo(String page, String rows, PageView pageView, String collectionName, Query query, MongoTemplate mongoTemplate) {
-		Integer resultSize = mongoTemplate.find(query, Object.class, collectionName).size();//总记录数
+		//总记录数
+		Integer resultSize = mongoTemplate.find(query, Object.class, collectionName).size();
 		//mongo分页用
 		page = page == null ? "1" : page;
 		rows = rows == null ? "10" : rows;

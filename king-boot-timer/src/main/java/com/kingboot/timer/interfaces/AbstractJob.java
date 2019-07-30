@@ -12,6 +12,17 @@ import org.springframework.messaging.support.GenericMessage;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 
+/**
+ * <p class="detail">
+ * 功能:抽象job
+ * </p>
+ * @param <T> the type parameter
+ *
+ * @author Kings
+ * @ClassName Abstract job.
+ * @Version V1.0.
+ * @date 2019.07.30 10:34:21
+ */
 public class AbstractJob<T> implements com.kingboot.timer.interfaces.JobInterface, InitializingBean {
 	private static final Logger logger = LoggerFactory.getLogger(AbstractJob.class);
 	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

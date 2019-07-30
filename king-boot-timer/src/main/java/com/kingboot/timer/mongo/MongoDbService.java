@@ -5,14 +5,14 @@ import org.springframework.data.mongodb.core.query.Query;
 
 /**
  * <p class="detail">
- * 功能:
+ * 功能:mongobd实现
  * </p>
- * @author hbprotoss
+ * @author Kings
  * @ClassName Mongo db service.
  * @Version V1.0.
- * @date 2017.05.12 13:57:46
+ * @date 2019.07.30 10:36:52
  */
-public interface MongoDBService {
+public interface MongoDbService {
 	
 	
 	/**

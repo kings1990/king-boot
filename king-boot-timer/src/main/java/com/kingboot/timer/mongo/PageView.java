@@ -2,6 +2,15 @@ package com.kingboot.timer.mongo;
 
 import java.util.List;
 
+/**
+ * <p class="detail">
+ * 功能:mongo分页视图
+ * </p>
+ * @author Kings
+ * @ClassName Page view.
+ * @Version V1.0.
+ * @date 2019.07.30 10:37:51
+ */
 public class PageView {
 	private List<?> records;
 	private long pageCount;
@@ -90,6 +99,7 @@ public class PageView {
 		this.startPage = startPage;
 	}
 	
+	@Override
 	public String toString() {
 		return "PageView [ pageCount=" + this.pageCount + ", pageSize=" + this.pageSize + ", pageNow=" + this.pageNow + ", rowCount=" + this.rowCount + ", startPage=" + this.startPage + ", pagecode=" + this.pagecode + "]";
 	}

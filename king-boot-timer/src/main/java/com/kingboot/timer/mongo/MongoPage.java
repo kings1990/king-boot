@@ -2,6 +2,17 @@ package com.kingboot.timer.mongo;
 
 import java.util.List;
 
+/**
+ * <p class="detail">
+ * 功能:mongo分页
+ * </p>
+ * @param <T> the type parameter
+ *
+ * @author Kings
+ * @ClassName Mongo page.
+ * @Version V1.0.
+ * @date 2019.07.30 10:37:18
+ */
 public class MongoPage<T> {
 	private List<T> list;
 	private int pageNum = 1;

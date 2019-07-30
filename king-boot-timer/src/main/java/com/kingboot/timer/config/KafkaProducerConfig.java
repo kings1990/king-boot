@@ -21,6 +21,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * <p class="detail">
+ * 功能:kafka生产者配置
+ * </p>
+ * @author Kings
+ * @ClassName Kafka producer config.
+ * @Version V1.0.
+ * @date 2019.07.30 10:36:16
+ */
 @EnableAsync
 @Configuration
 public class KafkaProducerConfig {
@@ -32,7 +41,7 @@ public class KafkaProducerConfig {
 	
 	@Bean
 	public Map<String, Object> producerConfigs() {
-		Map<String, Object> props = new HashMap<>();
+		Map<String, Object> props = new HashMap<>(4);
 		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, servers);
 		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);

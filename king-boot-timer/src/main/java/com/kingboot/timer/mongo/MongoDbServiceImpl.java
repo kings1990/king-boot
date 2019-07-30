@@ -7,10 +7,13 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+
 @Service
-public class MongoDBServiceImpl implements MongoDBService {
-	private static final Logger logger = LoggerFactory.getLogger(MongoDBServiceImpl.class);
+public class MongoDbServiceImpl implements MongoDbService {
+	/** The constant logger. */
+	private static final Logger logger = LoggerFactory.getLogger(MongoDbServiceImpl.class);
 	
+	/** Mongo template. */
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	

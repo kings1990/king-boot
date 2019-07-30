@@ -3,7 +3,7 @@ package com.kingboot.timer.controller;
 
 import com.kingboot.timer.entity.TimerEntity;
 import com.kingboot.timer.entity.TimerTopic;
-import com.kingboot.timer.mongo.MongoDBService;
+import com.kingboot.timer.mongo.MongoDbService;
 import com.kingboot.timer.mongo.MongoPage;
 import org.apache.commons.lang.StringUtils;
 import org.quartz.SchedulerException;
@@ -26,6 +26,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * <p class="detail">
+ * 功能:topic控制器
+ * </p>
+ * @author Kings
+ * @ClassName Topic controller.
+ * @Version V1.0.
+ * @date 2019.07.30 10:39:24
+ */
 @Controller
 @RequestMapping ("topic")
 public class TopicController {
@@ -35,7 +44,7 @@ public class TopicController {
 	private static final Logger logger = LoggerFactory.getLogger(TopicController.class);
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	@Autowired
-	private MongoDBService mongoDBService;
+	private MongoDbService mongoDbService;
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
@@ -83,26 +92,32 @@ public class TopicController {
 		//↓↓↓↓↓↓↓↓↓↓设置查询参数↓↓↓↓↓↓↓↓↓↓
 		//查询未删除的定时器
 		query.addCriteria(Criteria.where("delStatus").is(false));
+		
 		if (StringUtils.isNotBlank(topicName)) {
 			criteria.and("topic").regex(".*" + topicName + ".*");
 		}
-		if ((createTimeBeg != null && ! createTimeBeg.equals("")) && (createTimeEnd == null || createTimeEnd.equals(""))) {
+		
+		if (StringUtils.isNotBlank(createTimeBeg) && StringUtils.isBlank(createTimeEnd)) {
 			criteria.and("createTime").gt(createTimeBeg + " 0:0:0");
 		}
-		if ((createTimeEnd != null && ! createTimeEnd.equals("")) && (createTimeBeg == null || createTimeBeg.equals(""))) {
+		
+		if (StringUtils.isNotBlank(createTimeEnd) && StringUtils.isBlank(createTimeBeg)) {
 			criteria.and("createTime").lte(createTimeEnd + " 23:59:59");
 		}
-		if (createTimeBeg != null && ! createTimeBeg.equals("") && createTimeEnd != null && ! createTimeEnd.equals("")) {
+		
+		if(StringUtils.isNotBlank(createTimeBeg) && StringUtils.isNotBlank(createTimeEnd)){
 			criteria.and("createTime").gt(createTimeBeg + " 0:0:0").lte(createTimeEnd + " 23:59:59");
 		}
+		
+		
 		//↑↑↑↑↑↑↑↑↑↑设置查询参数↑↑↑↑↑↑↑↑↑↑
 		
 		query.addCriteria(criteria);
 		MongoPage mongoPage = new MongoPage();
 		mongoPage.setPageNum(page);
 		mongoPage.setPageSize(rows);
-		mongoPage = mongoDBService.findPage(query, mongoPage, Object.class, TIMER_TOPIC);
-		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		mongoPage = mongoDbService.findPage(query, mongoPage, Object.class, TIMER_TOPIC);
+		Map<String, Object> jsonMap = new HashMap<>(2);
 		jsonMap.put("rows", mongoPage.getList());
 		jsonMap.put("total", mongoPage.getTotal());
 		return jsonMap;
