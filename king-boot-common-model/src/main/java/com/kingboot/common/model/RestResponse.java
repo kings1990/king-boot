@@ -69,17 +69,8 @@ public class RestResponse<T> implements Serializable {
 	public RestResponse(int code, String message, T data, String redirectUrl) {
 		this.code = code;
 		this.message = message;
-		// this.data = data;
-		//this.data = data;
-		// if (data != null && data.getClass().equals(PageInfo.class)) {
-		//     Map<String, Object> map = new HashMap<String, Object>();
-		//     map.put("pageInfo", data);
-		//     this.data = (T) map;
-		// } else {
 		this.data = data;
 		this.redirectUrl = redirectUrl;
-		//}
-		
 	}
 	
 	/**

@@ -4,13 +4,21 @@ import lombok.Getter;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
 
-
+/**
+ * <p class="detail">
+ * 功能:jwt配置
+ * </p>
+ * @author Kings
+ * @ClassName JwtConfig
+ * @Version V1.0.
+ * @date 2019.07.30 11:35:22
+ */
 @Getter
 @ToString
 public class JwtConfig {
 	
 	@Value ("${security.jwt.uri:/auth/**}")
-	private String Uri;
+	private String uri;
 	
 	@Value ("${security.jwt.header:Authorization}")
 	private String header;
@@ -24,9 +32,8 @@ public class JwtConfig {
 	@Value ("${security.jwt.secret:JwtSecretKey}")
 	private String secret;
 	
-	// In case you want to use plain getters instead of lombok.
 	public String getUri() {
-		return Uri;
+		return uri;
 	}
 	
 	public String getHeader() {

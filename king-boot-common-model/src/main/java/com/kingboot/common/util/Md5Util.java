@@ -1,20 +1,25 @@
 package com.kingboot.common.util;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
-/**
- * MD5 Utils
- */
 
-public class MD5Util {
-	// 全局数组
-	private final static String[] strDigits = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
+/**
+ * <p class="detail">
+ * 功能:md5工具类
+ * </p>
+ * @author Kings
+ * @ClassName Md5Util
+ * @Version V1.0.
+ * @date 2019.07.30 11:37:01
+ */
+public class Md5Util {
 	
 	public static String encrypt32(String strObj) {
 		MessageDigest md5 = null;
 		try {
 			md5 = MessageDigest.getInstance("MD5");
-			byte[] byteArray = strObj.getBytes("UTF-8");
+			byte[] byteArray = strObj.getBytes(StandardCharsets.UTF_8);
 			byte[] md5Bytes = md5.digest(byteArray);
 			StringBuffer hexValue = new StringBuffer();
 			for (int i = 0; i < md5Bytes.length; i++) {
