@@ -713,7 +713,7 @@ public class KingRedisManager {
 	 * 清空当前数据库中的所有 key。
 	 * @return
 	 */
-	public String flushDB() {
+	public String flushDb() {
 		Jedis jedis = getJedis();
 		String result = jedis.flushDB();
 		releaseJedis(jedis);
@@ -1294,10 +1294,10 @@ public class KingRedisManager {
 			result = jedis.ttl(key);
 		} catch (Exception e) {
 			if (jedis != null) {
-				redisPool.returnBrokenResource(jedis);
+				redisPool.close();
 			}
 		} finally {
-			redisPool.returnResource(jedis);
+			redisPool.close();
 		}
 		
 		return result;
@@ -1317,10 +1317,10 @@ public class KingRedisManager {
 			result = jedis.pttl(key);
 		} catch (Exception e) {
 			if (jedis != null) {
-				redisPool.returnBrokenResource(jedis);
+				redisPool.close();
 			}
 		} finally {
-			redisPool.returnResource(jedis);
+			redisPool.close();
 		}
 		return result;
 	}

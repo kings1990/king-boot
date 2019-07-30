@@ -38,6 +38,7 @@ import java.util.Map;
 @Order (1000)
 public abstract class AbstractDBBaseCRUDServiceImpl<T> implements BaseCRUDService<T> {
 	
+	/** The constant PAGE_SIZE_LIMIT. */
 	private static final int PAGE_SIZE_LIMIT = 9999;
 	
 	/** The constant logger. */
@@ -64,7 +65,8 @@ public abstract class AbstractDBBaseCRUDServiceImpl<T> implements BaseCRUDServic
 	@Override
 	public PageInfo selectPage(PageInfo pageInfo, T record) throws Exception {
 		try {
-			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();//处理空值
+			//处理空值
+			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 			
 			int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
 			PageHelper.startPage(pageNum, pageSize);
@@ -81,8 +83,8 @@ public abstract class AbstractDBBaseCRUDServiceImpl<T> implements BaseCRUDServic
 	@Override
 	public PageInfo selectPage(PageInfo pageInfo, T record, String orderbyString) throws Exception {
 		try {
-			
-			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();//处理空值
+			//处理空值
+			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 			
 			int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
 			
@@ -101,7 +103,8 @@ public abstract class AbstractDBBaseCRUDServiceImpl<T> implements BaseCRUDServic
 	
 	@Override
 	public PageInfo selectPage(PageInfo pageInfo, String method, Map<String, Object> param, boolean count, String orderBy) throws Exception {
-		int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();//处理空值
+		//处理空值
+		int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 		
 		int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
 		//Spring4支持泛型注入
@@ -116,7 +119,8 @@ public abstract class AbstractDBBaseCRUDServiceImpl<T> implements BaseCRUDServic
 	
 	@Override
 	public PageInfo selectPage(PageInfo pageInfo, String method, Map<String, Object> param) throws Exception {
-		int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();//处理空值
+		//处理空值
+		int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 		
 		int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
 		//Spring4支持泛型注入
@@ -132,7 +136,8 @@ public abstract class AbstractDBBaseCRUDServiceImpl<T> implements BaseCRUDServic
 	@Override
 	public PageInfo<T> selectPage(PageInfo pageInfo, String method, T record) throws Exception {
 		try {
-			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();//处理空值
+			//处理空值
+			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 			
 			int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
 			PageHelper.startPage(pageNum, pageSize);
@@ -151,7 +156,8 @@ public abstract class AbstractDBBaseCRUDServiceImpl<T> implements BaseCRUDServic
 	
 	@Override
 	public PageInfo selectPage(PageInfo pageInfo, String method, Map<String, Object> param, String orderBy) throws Exception {
-		int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();//处理空值
+		//处理空值
+		int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 		
 		int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
 		//Spring4支持泛型注入
@@ -169,7 +175,8 @@ public abstract class AbstractDBBaseCRUDServiceImpl<T> implements BaseCRUDServic
 	
 	public PageInfo<T> selectPage(PageInfo pageInfo, String method, T record, String orderBy) throws Exception {
 		try {
-			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();//处理空值
+			//处理空值
+			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 			
 			int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
 			PageHelper.startPage(pageNum, pageSize);
@@ -278,5 +285,13 @@ public abstract class AbstractDBBaseCRUDServiceImpl<T> implements BaseCRUDServic
 		return getMapper().deleteByExample(example);
 	}
 	
+	/**
+	 * <p class="detail">
+	 * 功能:抽象mapper
+	 * </p>
+	 * @return abstract common mapper
+	 * @author Kings
+	 * @date 2019.07.30 11:40:34
+	 */
 	protected abstract AbstractCommonMapper<T> getMapper();
 }
