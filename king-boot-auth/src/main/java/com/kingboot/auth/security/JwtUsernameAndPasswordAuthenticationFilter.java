@@ -58,14 +58,13 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 		String token = Jwts.builder().setSubject(auth.getName())
 			// Convert to list of strings.
 			// This is important because it affects the way we get them back in the Gateway.
-			.claim("authorities", auth.getAuthorities().stream().map(GrantedAuthority :: getAuthority).collect(Collectors.toList())).setIssuedAt(new Date(now)).setExpiration(new Date(now + jwtConfig.getExpiration() * 1000))  // in milliseconds
+			.claim("authorities", auth.getAuthorities().stream().map(GrantedAuthority :: getAuthority).collect(Collectors.toList())).setIssuedAt(new Date(now)).setExpiration(new Date(now + jwtConfig.getExpiration() * 1000))
 			.signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes()).compact();
 		
 		// Add token to header
 		response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
 	}
 	
-	// A (temporary) class just to represent the user credentials
 	private static class UserCredentials {
 		private String username, password;
 		

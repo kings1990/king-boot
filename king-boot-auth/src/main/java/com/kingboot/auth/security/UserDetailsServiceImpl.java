@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 
-@Service  // It has to be annotated with @Service.
+@Service
 @Primary
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
@@ -44,7 +44,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		throw new UsernameNotFoundException("Username: " + username + " not found");
 	}
 	
-	// A (temporary) class represent the user saved in the database.
 	private static class AppUser {
 		private Integer id;
 		private String username, password;
