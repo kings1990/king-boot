@@ -32,7 +32,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 		
 		// 2. validate the header and check the prefix
 		if (header == null || ! header.startsWith(jwtConfig.getPrefix())) {
-			chain.doFilter(request, response);        // If not valid, go to the next filter.
+			chain.doFilter(request, response);
 			return;
 		}
 		

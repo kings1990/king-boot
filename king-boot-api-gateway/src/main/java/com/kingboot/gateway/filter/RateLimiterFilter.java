@@ -12,11 +12,22 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Pattern;
 
+/**
+ * <p class="detail">
+ * 功能:限流过滤器
+ * </p>
+ * @author Kings
+ * @ClassName LoginFilter
+ * @Version V1.0.
+ * @date 2019.07.30 11:50:48
+ */
 @Component
 public class RateLimiterFilter extends ZuulFilter {
 	
-	//限流
-	//没秒产生1000个令牌
+	private static Pattern pattern = Pattern.compile("/apigateway/b/order/(.*)");
+	/**
+	 * 限流 每秒产生1000个令牌
+	 */
 	public static final RateLimiter RATE_LIMITER = RateLimiter.create(1000);
 	
 	@Override
@@ -34,7 +45,7 @@ public class RateLimiterFilter extends ZuulFilter {
 	@Override
 	public boolean shouldFilter() {
 		HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
-		boolean match = Pattern.compile("/apigateway/b/order/(.*)").matcher(request.getRequestURI()).matches();
+		boolean match = pattern.matcher(request.getRequestURI()).matches();
 		return match;
 	}
 	

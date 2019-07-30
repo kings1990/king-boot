@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import javax.servlet.http.HttpServletResponse;
 
 
-@EnableWebSecurity    // Enable security config. This annotation denotes config for spring security.
+@EnableWebSecurity
 public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtConfig jwtConfig;
