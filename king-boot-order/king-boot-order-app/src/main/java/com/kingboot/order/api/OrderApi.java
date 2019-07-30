@@ -16,10 +16,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+/**
+ * <p class="detail">
+ * 功能:订单测试api
+ * </p>
+ * @author Kings
+ * @ClassName OrderApi
+ * @Version V1.0.
+ * @date 2019.07.30 11:09:47
+ */
+@SuppressWarnings ( {"ALL"})
 @RestController
 @RequestMapping ("/api/order")
-@Api (description = "订单API")
+@Api (tags = "订单API")
 @Slf4j
 public class OrderApi {
 	
@@ -37,7 +46,6 @@ public class OrderApi {
 	@ResponseBody
 	@ApiOperation (value = "根据id查询用户", notes = "根据id查询用户【Kings】")
 	public RestResponse<Order> findById(@PathVariable @ApiParam Integer id) {
-		//log.info("order findById");
 		RestResponse<User> u = userClient.findById(1);
 		System.out.println(u);
 		return new RestResponse<>(orderService.findById(id));

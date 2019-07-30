@@ -17,7 +17,7 @@ public class OrderDetailServiceImpl extends BaseCRUDServiceImpl<Orders> implemen
 	private UserClient userClient;
 	
 	@Override
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public Integer saveOrder(Integer userId, String note) {
 		Orders orders4i = new Orders();
 		orders4i.setUserId(userId);

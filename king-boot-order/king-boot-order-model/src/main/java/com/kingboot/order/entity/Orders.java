@@ -9,6 +9,15 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * <p class="detail">
+ * 功能:订单数据实体
+ * </p>
+ * @author Kings
+ * @ClassName Orders
+ * @Version V1.0.
+ * @date 2019.07.30 11:07:04
+ */
 @Data
 public class Orders implements Serializable {
     @Id

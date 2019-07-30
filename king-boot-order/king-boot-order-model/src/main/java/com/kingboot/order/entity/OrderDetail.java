@@ -5,6 +5,15 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * <p class="detail">
+ * 功能:订单详情
+ * </p>
+ * @author Kings
+ * @ClassName OrderDetail
+ * @Version V1.0.
+ * @date 2019.07.30 11:07:04
+ */
 @Data
 @Table (name = "order_detail")
 public class OrderDetail implements Serializable {

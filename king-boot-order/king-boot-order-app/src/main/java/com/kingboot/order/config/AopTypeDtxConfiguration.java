@@ -3,7 +3,6 @@ package com.kingboot.order.config;
 import com.codingapi.txlcn.common.util.Transactions;
 import com.codingapi.txlcn.tc.aspect.interceptor.TxLcnInterceptor;
 import com.codingapi.txlcn.tc.aspect.weave.DTXLogicWeaver;
-import com.codingapi.txlcn.tc.config.EnableDistributedTransaction;
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -23,7 +22,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-public class AopTypeDTXConfiguration {
+public class AopTypeDtxConfiguration {
 
     /**
      * 本地事务配置
