@@ -12,19 +12,21 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
 
 /**
- * <p>
- * 测试生成代码
+ * <p class="detail">
+ * 功能:测试生成代码
  * </p>
- *
- * @author K神
- * @date 2017/12/18
+ * @author Kings
+ * @ClassName GeneratorServiceEntity
+ * @Version V1.0.
+ * @date 2019.07.30 11:16:04
  */
-public class GeneratorServiceEntity {
+public class GeneratorServiceEntityTest {
 	
 	@Test
 	public void generateCode() {
 		String packageName = "com.kingboot.mplus";
-		boolean serviceNameStartWithI = false;//user -> UserService, 设置成true: user -> IUserService
+		//user -> UserService, 设置成true: user -> IUserService
+		boolean serviceNameStartWithI = false;
 		generateByTables(serviceNameStartWithI, packageName, "user");
 	}
 	
@@ -50,7 +52,8 @@ public class GeneratorServiceEntity {
 			.setCapitalMode(true)
 			.setEntityLombokModel(true)
 			.setNaming(NamingStrategy.underline_to_camel)
-			.setInclude(tableNames);//修改替换成你需要的表名，多个表名传数组
+			//修改替换成你需要的表名，多个表名传数组
+			.setInclude(tableNames);
 		config.setActiveRecord(false)
 			.setAuthor("Kings")
 			.setOutputDir("/Users/wilson/Desktop/mp/")

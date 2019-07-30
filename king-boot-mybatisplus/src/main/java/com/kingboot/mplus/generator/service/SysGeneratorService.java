@@ -7,23 +7,41 @@ import com.kingboot.mplus.generator.entity.GenConfig;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * @author waylen.chi
- * @date 2018/7/29
+ * <p class="detail">
+ * 功能:生成表service
+ * </p>
+ * @author Kings
+ * @ClassName SysGeneratorService
+ * @Version V1.0.
+ * @date 2019.07.30 11:27:15
  */
 public interface SysGeneratorService {
+	
 	/**
-	 * 生成代码
+	 * <p class="detail">
+	 * 功能:生成代码
+	 * </p>
+	 * @param tableNames :表名
 	 *
-	 * @param tableNames 表名称
-	 * @return
+	 * @return byte [ ]
+	 * @author Kings
+	 * @date 2019.07.30 11:27:04
 	 */
 	byte[] generatorCode(GenConfig tableNames);
-
+	
+	
 	/**
-	 * 分页查询表
-	 * @param tableName 表名
-	 * @return
+	 * <p class="detail">
+	 * 功能:分页查询表
+	 * </p>
+	 * @param page      :分页对象
+	 * @param tableName :表名
+	 *
+	 * @return page page
+	 * @author Kings
+	 * @date 2019.07.30 11:26:47
 	 */
 	IPage<List<Map<String, Object>>> getPage(Page page, String tableName);
 }

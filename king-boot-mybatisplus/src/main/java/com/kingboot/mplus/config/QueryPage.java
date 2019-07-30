@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * @ClassName： 中文名：【分页查询参数】
  */
-public class QPage implements Serializable {
+public class QueryPage implements Serializable {
 	@ApiParam (value="当前页",required=false, example="")
 	private Long pageNum = 0L;
 
@@ -26,7 +26,7 @@ public class QPage implements Serializable {
 	@ApiParam (value="",required=false, example="", hidden=true)
 	private boolean isSearchCount;
 
-	public QPage() {
+	public QueryPage() {
 		this.pageNum = 1L;
 		this.pageSize = 10L;
 		this.optimizeCountSql = true;

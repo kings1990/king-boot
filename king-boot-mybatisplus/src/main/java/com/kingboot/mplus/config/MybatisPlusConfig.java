@@ -22,17 +22,6 @@ import java.util.Properties;
 @Configuration
 public class MybatisPlusConfig {
 	
-	
-	// /**
-	//  * 创建租户维护处理器对象
-	//  *
-	//  * @return 处理后的租户维护处理器
-	//  */
-	// @Bean
-	// @ConditionalOnMissingBean
-	// public KingsTenantHandler jcwlTenantHandler() {
-	// 	return new KingsTenantHandler();
-	// }
 	/**
 	 * 分页插件
 	 *
@@ -50,7 +39,7 @@ public class MybatisPlusConfig {
 		return paginationInterceptor;
 	}
 	
-	//注入自定义SQL
+	/**注入自定义SQL**/
 	@Bean
 	@ConditionalOnMissingBean
 	public MySqlInjector mySqlInjector() {
@@ -60,13 +49,13 @@ public class MybatisPlusConfig {
 	
 	@Bean
 	@ConditionalOnMissingBean
-	public SQLFilter sqlFilter() {
-		return new SQLFilter();
+	public SqlFilter sqlFilter() {
+		return new SqlFilter();
 	}
 	
-	//执行分析插件
+	/**执行分析插件 设置 dev test 环境开启**/
 	@Bean
-	@Profile ({"dev","test"})// 设置 dev test 环境开启
+	@Profile ({"dev","test"})
 	public SqlExplainInterceptor sqlExplainInterceptor(){
 		SqlExplainInterceptor sqlExplainInterceptor = new SqlExplainInterceptor();
 		Properties properties = new Properties();
@@ -75,26 +64,26 @@ public class MybatisPlusConfig {
 		return sqlExplainInterceptor;
 	}
 	
-	//性能分析插件
+	/**性能分析插件 设置 dev test 环境开启**/
 	@Bean
-	@Profile ({"dev","test"})// 设置 dev test 环境开启
+	@Profile ({"dev","test"})
 	public PerformanceInterceptor performanceInterceptor() {
 		return new PerformanceInterceptor();
 	}
 	
-	//乐观锁
+	/**乐观锁**/
 	@Bean
 	public OptimisticLockerInterceptor optimisticLockerInterceptor() {
 		return new OptimisticLockerInterceptor();
 	}
 	
-	//公共字段
+	/**公共字段**/
 	@Bean
 	public MyMetaObjectHandler myMetaObjectHandler(){
 		return new MyMetaObjectHandler();
 	}
 	
-	//Map下划线自动转驼峰
+	/**性能分析插件**/
 	@Bean
 	public ConfigurationCustomizer configurationCustomizer() {
 		return i -> i.setObjectWrapperFactory(new MybatisMapWrapperFactory());

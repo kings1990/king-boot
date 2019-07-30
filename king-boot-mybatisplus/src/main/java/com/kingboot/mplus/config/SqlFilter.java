@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringUtils;
 /**
  * @description： SQL过滤
  */
-public class SQLFilter {
+public class SqlFilter {
 
     /**
      * SQL注入过滤
@@ -31,7 +31,8 @@ public class SQLFilter {
 
         //判断是否包含非法字符
         for (String keyword : keywords) {
-            if (str.contains(keyword)) { //ParameterException为继承RuntimeException的自定义异常
+			//ParameterException为继承RuntimeException的自定义异常
+            if (str.contains(keyword)) {
                 throw new ParameterException("包含非法字符");
             }
         }

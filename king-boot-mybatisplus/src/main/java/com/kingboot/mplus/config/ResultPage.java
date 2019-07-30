@@ -12,7 +12,7 @@ import java.util.List;
  * @description： mybatis-plus专用分页工具
  */
 @Data
-public class RPage<T> implements Serializable {
+public class ResultPage<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -44,7 +44,7 @@ public class RPage<T> implements Serializable {
 	 */
 	private boolean isLastPage = false;
 	
-	public RPage() {
+	public ResultPage() {
 		this.records = new ArrayList<>();
 	}
 	
@@ -55,7 +55,7 @@ public class RPage<T> implements Serializable {
 	 * @param pageSize 每页记录数
 	 * @param pageNum  当前页数
 	 */
-	public RPage(List<T> entities, Long total, Long pageSize, Long pageNum) {
+	public ResultPage(List<T> entities, Long total, Long pageSize, Long pageNum) {
 		this.records = entities;
 		this.total = total;
 		this.pageSize = pageSize;
@@ -70,7 +70,7 @@ public class RPage<T> implements Serializable {
 	/**
 	 * 分页
 	 */
-	public RPage(Page<T> page) {
+	public ResultPage(Page<T> page) {
 		this.records = page.getRecords();
 		this.total = page.getTotal();
 		this.pageSize = page.getSize();
@@ -83,7 +83,7 @@ public class RPage<T> implements Serializable {
 	/**
 	 * 分页
 	 */
-	public RPage(IPage<T> page) {
+	public ResultPage(IPage<T> page) {
 		this.records = page.getRecords();
 		this.total = page.getTotal();
 		this.pageSize = page.getSize();

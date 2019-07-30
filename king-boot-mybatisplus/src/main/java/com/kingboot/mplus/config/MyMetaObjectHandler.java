@@ -18,7 +18,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 		LocalDateTime now = LocalDateTime.now();
 		setUpdateFieldValByName("lastUpdatedTime", now, metaObject);
 		Object syncFlag = getFieldValByName("syncFlag", metaObject);
-		if(syncFlag == null){//更新操作
+		//更新操作
+		if(syncFlag == null){
 			setUpdateFieldValByName("syncFlag", 2, metaObject);
 		}
 		
