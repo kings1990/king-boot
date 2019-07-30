@@ -57,8 +57,8 @@ public class ValidateHandelAspect {
 				}
 			}
 		}
-		
-		if (bindingResult != null && bindingResult.hasErrors()) {//异常输出
+		//异常输出
+		if (bindingResult != null && bindingResult.hasErrors()) {
 			ErrorHelper errorHelper = new ErrorHelper();
 			throw new ValidateException(errorHelper.converBindError2AjaxError(bindingResult, outputAllPropError).toString());
 			//return errorHelper.converBindError2AjaxError(bindingResult,outputAllPropError);

@@ -29,7 +29,7 @@ public class ZooKeeperRegistry {
 	
 	
 	@Bean
-	private ZkClient initZKClient() throws Exception {
+	private ZkClient initZkClient() throws Exception {
 		BytesPushThroughSerializer bytesPushThroughSerializer = new BytesPushThroughSerializer();
 		return new ZkClient(zkServers, zkSessionTimeout, zkConnectionTimeout, bytesPushThroughSerializer);
 	}

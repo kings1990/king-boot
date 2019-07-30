@@ -22,7 +22,6 @@ import javax.sql.DataSource;
  * @Version V1.0.
  * @date 2016.01.22 10:47:42
  */
-//@Configuration
 public class CustomeDatasourceConfig {
 	/**
 	 * <p class="detail">

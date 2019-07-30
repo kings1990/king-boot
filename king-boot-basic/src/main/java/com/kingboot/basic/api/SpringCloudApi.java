@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping ("/cloud")
-@Api (description = "cloud应用")
+@Api (tags = "cloud应用")
 public class SpringCloudApi {
 	
 	@Autowired

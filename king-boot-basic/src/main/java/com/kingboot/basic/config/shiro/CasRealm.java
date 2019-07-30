@@ -54,7 +54,7 @@ public class CasRealm extends Pac4jRealm {
 		final PrincipalCollection principalCollection = new SimplePrincipalCollection(principal, getName());
 		
 		//todo set info to redis
-		Map<String, Object> attributes = new HashMap<>();
+		Map<String, Object> attributes = new HashMap<>(16);
 		String account = principal.getProfile().getId();
 		attributes.put("account", account);
 		Map<String, Object> extraAttributes = sessionService.getExtraAttributes(account);

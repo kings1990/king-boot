@@ -21,6 +21,10 @@ import static org.springframework.web.util.WebUtils.ERROR_STATUS_CODE_ATTRIBUTE;
 @Controller
 public class MyErrorController extends BasicErrorController {
 	
+	private static final Integer CODE_401 = 401;
+	private static final Integer CODE_403 = 403;
+	private static final Integer CODE_404 = 404;
+	
 	public MyErrorController(ServerProperties serverProperties) {
 		super(new DefaultErrorAttributes(), serverProperties.getError());
 	}
@@ -41,11 +45,11 @@ public class MyErrorController extends BasicErrorController {
 		
 		String viewName = "";
 		Integer statusCode = (Integer) request.getAttribute(ERROR_STATUS_CODE_ATTRIBUTE);
-		if (statusCode == 401) {
+		if (statusCode.equals(CODE_401)) {
 			viewName = "thymeleaf/error/401";
-		} else if (statusCode == 404) {
+		} else if (statusCode.equals(CODE_404)) {
 			viewName = "thymeleaf/error/404";
-		} else if (statusCode == 403) {
+		} else if (statusCode.equals(CODE_403)) {
 			viewName = "thymeleaf/error/403";
 		} else {
 			viewName = "thymeleaf/error/500";
@@ -66,7 +70,7 @@ public class MyErrorController extends BasicErrorController {
 		HttpStatus status = getStatus(request);
 		
 		//输出自定义的Json格式
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(4);
 		
 		map.put("code", status.value());
 		map.put("message", status.getReasonPhrase());
@@ -84,11 +88,11 @@ public class MyErrorController extends BasicErrorController {
 	@RequestMapping ("/error")
 	public String handleError(HttpServletRequest request) {
 		Integer statusCode = (Integer) request.getAttribute(ERROR_STATUS_CODE_ATTRIBUTE);
-		if (statusCode == 401) {
+		if (statusCode.equals(CODE_401)) {
 			return "thymeleaf/error/401";
-		} else if (statusCode == 404) {
+		} else if (statusCode.equals(CODE_404)) {
 			return "thymeleaf/error/404";
-		} else if (statusCode == 403) {
+		} else if (statusCode.equals(CODE_403)) {
 			return "thymeleaf/error/403";
 		} else {
 			return "thymeleaf/error/500";

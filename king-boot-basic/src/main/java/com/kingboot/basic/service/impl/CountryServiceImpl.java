@@ -10,14 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class CountryServiceImpl extends BaseCRUDServiceImpl<Country> implements CountryService {
 	
 	@Override
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public void saveCountry() throws Exception {
 		Country country = new Country();
 		country.setCountryname("test");
 		country.setCountrycode("TE");
 		mapper.insertSelective(country);
-		if (1 == 1) {
-			throw new Exception("error");
-		}
+		//手动制造异常
+		throw new Exception("error");
 	}
 }

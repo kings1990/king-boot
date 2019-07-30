@@ -15,6 +15,8 @@ public class RequestTimeInterceptor extends HandlerInterceptorAdapter {
 	private static final String REQUEST_TIME = "reqTime";
 	private static final String POST_HANDLE_TIME = "postHandleTime";
 	private static final String ERROR = "/error";
+	private static final String STATIC = "/static/";
+	
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -27,7 +29,7 @@ public class RequestTimeInterceptor extends HandlerInterceptorAdapter {
 		long begTime = (Long) request.getAttribute(REQUEST_TIME);
 		long postHandleTime = System.currentTimeMillis();
 		request.setAttribute(POST_HANDLE_TIME, postHandleTime);
-		if (! request.getRequestURI().contains("/static/")) {
+		if (! request.getRequestURI().contains(STATIC)) {
 			logger.info("{} postHandle cost {} ms", request.getRequestURL(), postHandleTime - begTime);
 		}
 		super.postHandle(request, response, handler, modelAndView);
@@ -42,7 +44,7 @@ public class RequestTimeInterceptor extends HandlerInterceptorAdapter {
 		
 		if (begTime != null && completeTime != null) {
 			long renderTime = afterCompletionTime - completeTime;
-			if (! request.getRequestURI().contains("/static/")) {
+			if (! request.getRequestURI().contains(STATIC)) {
 				logger.info("{} afterCompletion render view cost {} ms, totally cost {} ms", request.getRequestURL(), renderTime, afterCompletionTime - begTime);
 			}
 			

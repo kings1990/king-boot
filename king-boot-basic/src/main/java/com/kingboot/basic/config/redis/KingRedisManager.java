@@ -1295,10 +1295,10 @@ public class KingRedisManager {
 			result = jedis.ttl(key);
 		} catch (Exception e) {
 			if (jedis != null) {
-				redisPool.returnBrokenResource(jedis);
+				redisPool.close();
 			}
 		} finally {
-			redisPool.returnResource(jedis);
+			redisPool.close();
 		}
 		
 		return result;
@@ -1318,10 +1318,10 @@ public class KingRedisManager {
 			result = jedis.pttl(key);
 		} catch (Exception e) {
 			if (jedis != null) {
-				redisPool.returnBrokenResource(jedis);
+				redisPool.close();
 			}
 		} finally {
-			redisPool.returnResource(jedis);
+			redisPool.close();
 		}
 		return result;
 	}

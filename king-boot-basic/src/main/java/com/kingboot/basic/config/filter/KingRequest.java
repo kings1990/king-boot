@@ -25,6 +25,7 @@ public class KingRequest extends HttpServletRequestWrapper {
 		this.params = newParams;
 	}
 	
+	@Override
 	public String getParameter(String name) {
 		Object v = params.get(name);
 		if (v == null) {
@@ -50,15 +51,18 @@ public class KingRequest extends HttpServletRequestWrapper {
 		}
 	}
 	
+	@Override
 	public Map getParameterMap() {
 		return params;
 	}
 	
+	@Override
 	public Enumeration getParameterNames() {
 		Vector l = new Vector(params.keySet());
 		return l.elements();
 	}
 	
+	@Override
 	public String[] getParameterValues(String name) {
 		Object v = params.get(name);
 		if (v == null) {

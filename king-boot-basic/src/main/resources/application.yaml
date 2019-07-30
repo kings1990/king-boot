@@ -107,8 +107,6 @@ server:
 
 
 management:
-  security:
-    enabled: false
   #暴露所有接口
   endpoints:
     web:

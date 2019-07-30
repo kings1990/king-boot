@@ -21,7 +21,7 @@ public class SessionServiceImpl implements SessionService {
 	
 	@Override
 	public Map<String, Object> getExtraAttributes(String account) {
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<>(16);
 		//todo set some account info
 		return result;
 	}

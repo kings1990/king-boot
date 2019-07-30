@@ -16,7 +16,7 @@ import java.util.Date;
 
 @RestController
 @RequestMapping ("/api/user")
-@Api (description = "用户api")
+@Api (tags = "用户api")
 @Slf4j
 public class UserApi {
 	@GetMapping (value = "/{id}", name = "api测试(查询)")

@@ -28,7 +28,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping ("/jwt")
-@Api (description = "loginApi")
+@Api (tags = "loginApi")
 @Slf4j
 public class LoginApi {
 	

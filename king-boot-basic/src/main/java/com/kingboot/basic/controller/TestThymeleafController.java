@@ -56,22 +56,22 @@ public class TestThymeleafController {
 			Object[] methodsArray = methods.toArray();
 			if (methodsArray.length > 0) {
 				RequestMethod method = (RequestMethod) methodsArray[0];
-				String reqURIs = info.getPatternsCondition().toString();
-				reqURIs = reqURIs.replace("[", "").replace("]", "");
-				String[] reqURIArray = reqURIs.split("\\|\\|");
-				for (String reqURI : reqURIArray) {
+				String reqUris = info.getPatternsCondition().toString();
+				reqUris = reqUris.replace("[", "").replace("]", "");
+				String[] reqUriArray = reqUris.split("\\|\\|");
+				for (String reqUri : reqUriArray) {
 					//reqURI = reqURI.substring(1, reqURIs.length() - 1);
-					reqURI = reqURI.trim();
+					reqUri = reqUri.trim();
 					//params
 					Set<NameValueExpression<String>> expressions = info.getParamsCondition().getExpressions();
 					String params;
 					if (! expressions.isEmpty()) {
 						//a=1&b=2
 						params = expressions.toString().replace(", ", "&").replace("[", "").replace("]", "");
-						if (reqURI.contains("&")) {
-							reqURI = reqURI + "&" + params;
+						if (reqUri.contains("&")) {
+							reqUri = reqUri + "&" + params;
 						} else {
-							reqURI = reqURI + "?" + params;
+							reqUri = reqUri + "?" + params;
 						}
 					}
 					
@@ -85,8 +85,8 @@ public class TestThymeleafController {
 					/*正则替换参数*/
 					String pattern = "\\{(\\w+)\\}";
 					Pattern p = Pattern.compile(pattern);
-					Matcher matcher = p.matcher(reqURI);
-					String urlWithParam = reqURI;
+					Matcher matcher = p.matcher(reqUri);
+					String urlWithParam = reqUri;
 					while (matcher.find()) {
 						String group = matcher.group();
 						String groupWithoutSymbol = group.replace("{", "").replace("}", "");
@@ -95,14 +95,14 @@ public class TestThymeleafController {
 							Object parse = JSONObject.parse(kingParam.value());
 							JSONObject jsonObject = JSONObject.parseObject(parse.toString());
 							if (jsonObject.getString(groupWithoutSymbol) != null) {
-								urlWithParam = reqURI.replace(group, jsonObject.getString(groupWithoutSymbol));
+								urlWithParam = reqUri.replace(group, jsonObject.getString(groupWithoutSymbol));
 							}
 						}
 						
 					}
 					/*正则替换参数*/
 					mappingDetail.setUrlWithParam(contextPath + urlWithParam);
-					mappingDetail.setUrl(contextPath + reqURI);
+					mappingDetail.setUrl(contextPath + reqUri);
 					result.add(mappingDetail);
 				}
 			}

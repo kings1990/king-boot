@@ -52,7 +52,7 @@ public class CustomSelectProvider extends MapperTemplate {
 		Set<EntityColumn> columnList = EntityHelper.getPKColumns(entityClass);
 		Iterator columnListIterator = columnList.iterator();
 		int idx = 0;
-		int pkSize = columnList.size();//pk size
+		int pkSize = columnList.size();
 		if (pkSize == 1) {
 			EntityColumn column = (EntityColumn) columnListIterator.next();
 			sql.append(column.getColumnEqualsHolder());
