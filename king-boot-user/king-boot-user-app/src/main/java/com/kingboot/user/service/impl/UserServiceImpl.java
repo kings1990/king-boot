@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 
+@SuppressWarnings ("AliDeprecation")
 @Service
 public class UserServiceImpl extends BaseCRUDServiceImpl<com.kingboot.user.entity.User> implements UserService {
 	
@@ -24,7 +25,7 @@ public class UserServiceImpl extends BaseCRUDServiceImpl<com.kingboot.user.entit
 	
 	@Override
 	@TxcTransaction (propagation = DTXPropagation.SUPPORTS)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public Integer updateNickName(UserNicknameDto dto) {
 		String nickname = dto.getNickname();
 		Integer id = dto.getId();

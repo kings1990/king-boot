@@ -1,6 +1,7 @@
 package com.kingboot.user;
 
 import com.codingapi.txlcn.tc.config.EnableDistributedTransaction;
+import com.netflix.loadbalancer.IRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;

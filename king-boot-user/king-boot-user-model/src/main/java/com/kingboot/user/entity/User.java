@@ -5,6 +5,16 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
+/**
+ * <p class="detail">
+ * 功能:用户
+ * </p>
+ * @author Kings
+ * @ClassName UserNicknameDto
+ * @Version V1.0.
+ * @date 2019.07.30 10:54:13
+ */
 @Data
 @Table(name = "user")
 public class User {

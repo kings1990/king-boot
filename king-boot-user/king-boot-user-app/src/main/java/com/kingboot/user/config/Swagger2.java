@@ -15,6 +15,15 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * <p class="detail">
+ * 功能:swagger2配置
+ * </p>
+ * @author Kings
+ * @ClassName Swagger2
+ * @Version V1.0.
+ * @date 2019.07.30 10:58:03
+ */
 @Configuration
 @EnableSwagger2
 public class Swagger2 {

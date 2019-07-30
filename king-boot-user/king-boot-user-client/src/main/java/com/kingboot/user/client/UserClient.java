@@ -9,6 +9,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+/**
+ * <p class="detail">
+ * 功能:用户feign接口
+ * </p>
+ * @author Kings
+ * @ClassName UserClient
+ * @Version V1.0.
+ * @date 2019.07.30 10:50:22
+ */
+@SuppressWarnings ("ALL")
 @FeignClient (value = "king-boot-user", fallback = UserClientImpl.class)
 public interface UserClient {
 	

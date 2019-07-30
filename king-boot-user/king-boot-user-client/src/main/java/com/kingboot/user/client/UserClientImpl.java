@@ -7,6 +7,7 @@ import com.kingboot.user.dto.UserNicknameDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@SuppressWarnings ("ALL")
 @Slf4j
 @Component
 public class UserClientImpl implements UserClient {
