@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
 import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.support.ResponseEntityDecoder;
 import org.springframework.cloud.openfeign.support.SpringDecoder;
@@ -24,7 +25,11 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
  * @date 2019.07.31 14:09:46
  */
 @Configuration
+
 public class CustomFeignConfig {
+	
+	@Autowired
+	private ObjectMapper objectMapper;
 	/**
 	 * <p class="detail">
 	 * 功能:反序列化
@@ -64,7 +69,6 @@ public class CustomFeignConfig {
 	 * @date 2019.07.31 14:09:46
 	 */
 	private ObjectMapper customObjectMapper(){
-        ObjectMapper objectMapper = new ObjectMapper();
         //Customize as much as you want 允许传null
         objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
         return objectMapper;
