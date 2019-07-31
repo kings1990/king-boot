@@ -7,16 +7,28 @@ import org.pac4j.core.context.session.SessionStore;
 import org.pac4j.core.redirect.RedirectAction;
 import org.pac4j.core.util.CommonHelper;
 
+
 /**
- * @author gongtao
- * @version 2018-07-06 9:41
- * @update 2018-08-29 升级 pac4j 版本到 4.0.0
- **/
+ * <p class="detail">
+ * 功能:CasClient
+ * </p>
+ * @author Kings
+ * @ClassName CasClient
+ * @Version V1.0.
+ * @date 2019.07.31 16:13:08
+ */
 public class CasClient extends org.pac4j.cas.client.CasClient {
+	/**
+	 * Instantiates a new Cas client.
+	 */
 	public CasClient() {
 		super();
 	}
 	
+	/**
+	 * Instantiates a new Cas client.
+	 * @param configuration the configuration
+	 */
 	public CasClient(CasConfiguration configuration) {
 		super(configuration);
 	}
@@ -48,6 +60,15 @@ public class CasClient extends org.pac4j.cas.client.CasClient {
 		}
 	}
 	
+	/**
+	 * <p class="detail">
+	 * 功能:
+	 * </p>
+	 * @param context :
+	 *
+	 * @author Kings
+	 * @date 2019.07.31 16:13:08
+	 */
 	private void cleanRequestedUrl(WebContext context) {
 		SessionStore<WebContext> sessionStore = context.getSessionStore();
 		if (sessionStore.get(context, Pac4jConstants.REQUESTED_URL) != null) {
@@ -56,6 +77,15 @@ public class CasClient extends org.pac4j.cas.client.CasClient {
 		
 	}
 	
+	/**
+	 * <p class="detail">
+	 * 功能:
+	 * </p>
+	 * @param context :
+	 *
+	 * @author Kings
+	 * @date 2019.07.31 16:13:08
+	 */
 	private void cleanAttemptedAuthentication(WebContext context) {
 		SessionStore<WebContext> sessionStore = context.getSessionStore();
 		if (sessionStore.get(context, this.getName() + ATTEMPTED_AUTHENTICATION_SUFFIX) != null) {

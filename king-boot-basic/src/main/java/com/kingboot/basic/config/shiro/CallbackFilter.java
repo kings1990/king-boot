@@ -19,18 +19,51 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 
 
+/**
+ * <p class="detail">
+ * 功能:回调过滤器
+ * </p>
+ * @author Kings
+ * @ClassName CallbackFilter
+ * @Version V1.0.
+ * @date 2019.07.31 16:13:21
+ */
 public class CallbackFilter extends io.buji.pac4j.filter.CallbackFilter {
+	/** The constant GSON. */
 	private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 	
+	/** The constant PLATFORM. */
 	private static final String PLATFORM = "platform";
 	
+	/** The constant PLATFORM_MOBILE. */
 	private static final String PLATFORM_MOBILE = "m";
 	
+	/**
+	 * <p class="detail">
+	 * 功能:
+	 * </p>
+	 * @param request :
+	 *
+	 * @return boolean
+	 * @author Kings
+	 * @date 2019.07.31 16:13:21
+	 */
 	private static boolean isMobileLogin(HttpServletRequest request) {
 		String loginPlatform = request.getParameter(PLATFORM);
 		return ! Strings.isNullOrEmpty(loginPlatform) && loginPlatform.equals(PLATFORM_MOBILE);
 	}
 	
+	/**
+	 * <p class="detail">
+	 * 功能:
+	 * </p>
+	 * @param response     :
+	 * @param restResponse :
+	 *
+	 * @throws Exception the exception
+	 * @author Kings
+	 * @date 2019.07.31 16:13:21
+	 */
 	private static void doReturnSession(ServletResponse response, RestResponse<?> restResponse) throws Exception {
 		ShiroHttpServletResponse httpServletResponse = (ShiroHttpServletResponse) response;
 		httpServletResponse.addHeader("Content-Type", MediaType.APPLICATION_JSON.toString());
