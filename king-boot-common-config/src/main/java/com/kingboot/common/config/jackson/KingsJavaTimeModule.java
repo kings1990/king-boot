@@ -15,15 +15,20 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * java 8 时间默认序列化
- *
- * @author L.cm
- * @author lishanbu
- */
-public class JcwlJavaTimeModule extends SimpleModule {
 
-	public JcwlJavaTimeModule() {
+/**
+ * <p class="detail">
+ * 功能:java 8 时间默认序列化
+ * </p>
+ * @author Kings
+ * @ClassName JcwlJavaTimeModule
+ * @Version V1.0.
+ * @date 2019.07.31 16:02:33
+ */
+public class KingsJavaTimeModule extends SimpleModule {
+	
+	
+	public KingsJavaTimeModule() {
 		super(PackageVersion.VERSION);
 		this.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DatePattern.NORM_DATETIME_PATTERN)));
 		this.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern(DatePattern.NORM_DATE_PATTERN)));
