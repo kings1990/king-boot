@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.kingboot.common.config.norepeat.NoRepeatSubmitConfig,\
   com.kingboot.common.config.redis.KingRedisConfig,\
-  com.kingboot.common.config.redis.RedisPoolConfig
+  com.kingboot.common.config.redis.RedisPoolConfig,\
+  com.kingboot.common.config.feign.CustomFeignConfig
