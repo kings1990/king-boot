@@ -102,3 +102,4 @@ fabric.properties
 jrebel.xml
 *rebel.xml*
 rebel-remote.xml
+*.mv.db
