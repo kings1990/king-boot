@@ -4,6 +4,9 @@ spring:
   application:
     name: king-boot-api-gateway
 eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 15
   client:
     serviceUrl:
       defaultZone: http://kings:1234@register.ws.com/eureka/

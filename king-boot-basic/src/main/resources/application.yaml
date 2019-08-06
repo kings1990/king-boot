@@ -168,6 +168,8 @@ eureka:
       defaultZone: http://kings:1234@register.ws.com/eureka/
 
   instance:
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 15
     health-check-url: https://ws.com/${server.servlet.context-path}/actuator/health
     status-page-url: https://ws.com/${server.servlet.context-path}/actuator/info
     home-page-url: https://ws.com/${server.servlet.context-path}/

@@ -28,6 +28,8 @@ eureka:
     health-check-url: http://localhost:${server.port}actuator/health
     status-page-url: http://localhost:${server.port}/actuator/info
     home-page-url: htts://localhost:${server.port}
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 15
 
 spring:
   application:
