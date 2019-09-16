@@ -4,10 +4,14 @@
 
 <mapper namespace="com.kingboot.mplus.mapper.UserMapper">
 
-  <resultMap id="userMap" type="com.kingboot.mplus.entity.User">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
-        <result property="createTime" column="create_time"/>
-        <result property="version" column="version"/>
-  </resultMap>
+	<resultMap id="userMap" type="com.kingboot.mplus.entity.User">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="createTime" column="create_time"/>
+		<result property="version" column="version"/>
+		<result column="last_updated_time" property="lastUpdatedTime"/>
+		<result column="delete_flag" property="deleteFlag"/>
+		<result column="sync_flag" property="syncFlag"/>
+		<result column="tenant_id" property="tenantId"/>
+	</resultMap>
 </mapper>
