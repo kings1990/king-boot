@@ -8,13 +8,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * @description： mybatis-plus专用分页工具
+ * <p class="detail">
+ * 功能:分页结果参数
+ * </p>
+ *
+ * @author Kings
+ * @ClassName QueryPage
+ * @Version V1.0.
+ * @date 2019.09.19 11:04:33
  */
 @Data
 public class ResultPage<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 当前页数
 	 */
@@ -43,11 +51,11 @@ public class ResultPage<T> implements Serializable {
 	 * 最后一页
 	 */
 	private boolean isLastPage = false;
-	
+
 	public ResultPage() {
 		this.records = new ArrayList<>();
 	}
-	
+
 	/**
 	 * 分页
 	 * @param entities 列表数据
@@ -61,12 +69,12 @@ public class ResultPage<T> implements Serializable {
 		this.pageSize = pageSize;
 		this.pageNum = pageNum;
 		this.count = (long) Math.ceil((double) total / pageSize);
-		
+
 		if (entities != null) {
 			this.judgePageBoudary();
 		}
 	}
-	
+
 	/**
 	 * 分页
 	 */
@@ -76,10 +84,10 @@ public class ResultPage<T> implements Serializable {
 		this.pageSize = page.getSize();
 		this.pageNum = page.getCurrent();
 		this.count = page.getPages();
-		
+
 		this.judgePageBoudary();
 	}
-	
+
 	/**
 	 * 分页
 	 */
@@ -89,10 +97,10 @@ public class ResultPage<T> implements Serializable {
 		this.pageSize = page.getSize();
 		this.pageNum = page.getCurrent();
 		this.count = page.getPages();
-		
+
 		this.judgePageBoudary();
 	}
-	
+
 	/**
 	 * 参数
 	 */

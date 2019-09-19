@@ -21,24 +21,24 @@ import org.junit.Test;
  * @date 2019.07.30 11:16:04
  */
 public class GeneratorServiceEntityTest {
-	
+
 	@Test
 	public void generateCode() {
 		String packageName = "com.kingboot.mplus";
 		//user -> UserService, 设置成true: user -> IUserService
-		boolean serviceNameStartWithI = false;
-		generateByTables(serviceNameStartWithI, packageName, "user");
+		boolean serviceNameStartWithIlletter= false;
+		generateByTables(serviceNameStartWithIlletter, packageName, "user");
 	}
-	
-	private void generateByTables(boolean serviceNameStartWithI, String packageName, String... tableNames) {
+
+	private void generateByTables(boolean serviceNameStartWithIletter, String packageName, String... tableNames) {
 		// 注入自定义配置，可以在 VM 中使用 cfg.abc 【可无】
 		InjectionConfig cfg = new InjectionConfig() {
 			@Override
 			public void initMap() {
-			
+
 			}
 		};
-		
+
 		GlobalConfig config = new GlobalConfig();
 		String dbUrl = "jdbc:mysql://localhost:3306/boot";
 		DataSourceConfig dataSourceConfig = new DataSourceConfig();
@@ -58,7 +58,7 @@ public class GeneratorServiceEntityTest {
 			.setAuthor("Kings")
 			.setOutputDir("/Users/wilson/Desktop/mp/")
 			.setFileOverride(true);
-		if (!serviceNameStartWithI) {
+		if (!serviceNameStartWithIletter) {
 			config.setServiceName("%sService");
 		}
 		new AutoGenerator().setGlobalConfig(config)
@@ -72,7 +72,7 @@ public class GeneratorServiceEntityTest {
 					.setEntity("entity")
 			).execute();
 	}
-	
+
 	private void generateByTables(String packageName, String... tableNames) {
 		generateByTables(true, packageName, tableNames);
 	}

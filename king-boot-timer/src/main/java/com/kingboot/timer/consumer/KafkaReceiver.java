@@ -19,7 +19,7 @@ import java.util.Optional;
 @Component
 @Slf4j
 public class KafkaReceiver extends AbstractConsumer {
-	
+
 	@Override
 	@KafkaListener (topics = {"test2", "test1"})
 	public void listen(ConsumerRecord<?, ?> record) {
@@ -27,11 +27,11 @@ public class KafkaReceiver extends AbstractConsumer {
 		Optional<?> kafkaMessage = Optional.ofNullable(value);
 		if (kafkaMessage.isPresent()) {
 			Object message = kafkaMessage.get();
-			log.info("record =" + record);
-			log.info("message =" + message);
+			log.info("record ={}", record);
+			log.info("message ={}", message);
 			super.saveExcute(record);
 		}
-		
-		
+
+
 	}
 }

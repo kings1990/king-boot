@@ -5,7 +5,14 @@ import io.swagger.annotations.ApiParam;
 import java.io.Serializable;
 
 /**
- * @ClassName： 中文名：【分页查询参数】
+ * <p class="detail">
+ * 功能:分页查询参数
+ * </p>
+ *
+ * @author Kings
+ * @ClassName QueryPage
+ * @Version V1.0.
+ * @date 2019.09.19 11:04:33
  */
 public class QueryPage implements Serializable {
 	@ApiParam (value="当前页",required=false, example="")
