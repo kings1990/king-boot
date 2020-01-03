@@ -1,4 +1,4 @@
-package com.kingboot.basic.config.mybatis.mapper;
+package com.kingboot.common.config.mybatis.mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +16,16 @@ import org.springframework.stereotype.Service;
  */
 @SuppressWarnings ("SpringAutowiredFieldsWarningInspection")
 @Service
-public abstract class BaseCRUDServiceImpl<T> extends AbstractDBBaseCRUDServiceImpl<T> implements BaseCRUDService<T> {
+public abstract class BaseCrudServiceImpl<T> extends AbstractBaseCrudServiceImpl<T> implements BaseCrudService<T> {
 	/** Mapper. */
 	@Autowired
 	protected MybatisMysqlMapper<T> mapper;
-	
+
 	@Override
 	public AbstractCommonMapper<T> getMapper() {
 		return mapper;
 	}
-	
+
 	/**
 	 * <p class="detail">
 	 * 功能：插入一条数据
@@ -40,7 +40,7 @@ public abstract class BaseCRUDServiceImpl<T> extends AbstractDBBaseCRUDServiceIm
 	public int insert(T record) {
 		return mapper.insert(record);
 	}
-	
+
 	/**
 	 * <p class="detail">
 	 * 功能：插入一条数据,只插入不为null的字段,不会影响有默认值的字段
@@ -55,6 +55,6 @@ public abstract class BaseCRUDServiceImpl<T> extends AbstractDBBaseCRUDServiceIm
 	public int insertSelective(T record) {
 		return mapper.insertSelective(record);
 	}
-	
-	
+
+
 }

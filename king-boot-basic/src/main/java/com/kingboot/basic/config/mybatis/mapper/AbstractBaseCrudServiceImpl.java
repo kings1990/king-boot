@@ -8,13 +8,14 @@
  * it only in accordance with the terms of the license agreement
  * you entered into with Zhejiang GreatTao
  */
-package com.kingboot.common.config.mybatis.mapper;
+package com.kingboot.basic.config.mybatis.mapper;
 
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
@@ -36,13 +37,12 @@ import java.util.Map;
  */
 @Service
 @Order (1000)
-public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<T> {
+public abstract class AbstractBaseCrudServiceImpl<T> implements BaseCrudService<T> {
 
-	/** The constant PAGE_SIZE_LIMIT. */
 	private static final int PAGE_SIZE_LIMIT = 9999;
 
 	/** The constant logger. */
-	private static final Logger logger = Logger.getLogger(AbstractBaseCRUDServiceImpl.class);
+	private static final Logger logger = Logger.getLogger(AbstractBaseCrudServiceImpl.class);
 
 	/**
 	 * <p class="detail">
@@ -65,14 +65,13 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 	@Override
 	public PageInfo selectPage(PageInfo pageInfo, T record) throws Exception {
 		try {
-			//处理空值
 			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 
 			int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
 			PageHelper.startPage(pageNum, pageSize);
 			Method methodReflect = getMapper().getClass().getInterfaces()[0].getMethod("select", Object.class);
 			List<T> list = (List<T>) methodReflect.invoke(getMapper(), record);
-			org.springframework.beans.BeanUtils.copyProperties(new PageInfo<>(list),pageInfo);
+			BeanUtils.copyProperties(new PageInfo<>(list),pageInfo);
 			return pageInfo;
 		} catch (Exception e) {
 			logger.error("com.gttown.common.support.mybatis.AbstractDBBaseCRUDServiceImpl", e);
@@ -83,7 +82,7 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 	@Override
 	public PageInfo selectPage(PageInfo pageInfo, T record, String orderbyString) throws Exception {
 		try {
-			//处理空值
+
 			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 
 			int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
@@ -93,7 +92,7 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 			Method methodReflect = getMapper().getClass().getInterfaces()[0].getMethod("select", Object.class);
 
 			List<T> list = (List<T>) methodReflect.invoke(getMapper(), record);
-			org.springframework.beans.BeanUtils.copyProperties(new PageInfo<>(list),pageInfo);
+			BeanUtils.copyProperties( new PageInfo<>(list),pageInfo);
 			return pageInfo;
 		} catch (Exception e) {
 			logger.error("com.gttown.common.support.mybatis.AbstractDBBaseCRUDServiceImpl", e);
@@ -103,7 +102,6 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 
 	@Override
 	public PageInfo selectPage(PageInfo pageInfo, String method, Map<String, Object> param, boolean count, String orderBy) throws Exception {
-		//处理空值
 		int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 
 		int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
@@ -113,13 +111,12 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 		Method methodReflect = getMapper().getClass().getInterfaces()[0].getDeclaredMethod(method, cArg);
 		PageHelper.startPage(pageNum, pageSize, orderBy).setCount(count);
 		List list = (List) methodReflect.invoke(getMapper(), param);
-		org.springframework.beans.BeanUtils.copyProperties(new PageInfo<>(list),pageInfo);
+		BeanUtils.copyProperties(pageInfo, new PageInfo<Map>(list));
 		return pageInfo;
 	}
 
 	@Override
 	public PageInfo selectPage(PageInfo pageInfo, String method, Map<String, Object> param) throws Exception {
-		//处理空值
 		int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 
 		int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
@@ -129,14 +126,13 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 		Method methodReflect = getMapper().getClass().getInterfaces()[0].getDeclaredMethod(method, cArg);
 		PageHelper.startPage(pageNum, pageSize);
 		List list = (List) methodReflect.invoke(getMapper(), param);
-		org.springframework.beans.BeanUtils.copyProperties(new PageInfo<>(list),pageInfo);
+		BeanUtils.copyProperties(pageInfo, new PageInfo<Map>(list));
 		return pageInfo;
 	}
 
 	@Override
 	public PageInfo<T> selectPage(PageInfo pageInfo, String method, T record) throws Exception {
 		try {
-			//处理空值
 			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 
 			int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
@@ -146,7 +142,7 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 			cArg[0] = record.getClass();
 			Method methodReflect = getMapper().getClass().getInterfaces()[0].getDeclaredMethod(method, cArg);
 			List<T> list = (List<T>) methodReflect.invoke(getMapper(), record);
-			org.springframework.beans.BeanUtils.copyProperties(new PageInfo<>(list),pageInfo);
+			BeanUtils.copyProperties( new PageInfo<>(list),pageInfo);
 			return pageInfo;
 		} catch (Exception e) {
 			logger.error("com.gttown.common.support.mybatis.AbstractDBBaseCRUDServiceImpl", e);
@@ -156,7 +152,6 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 
 	@Override
 	public PageInfo selectPage(PageInfo pageInfo, String method, Map<String, Object> param, String orderBy) throws Exception {
-		//处理空值
 		int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 
 		int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
@@ -167,7 +162,7 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 		PageHelper.startPage(pageNum, pageSize);
 		PageHelper.orderBy(orderBy);
 		List list = (List) methodReflect.invoke(getMapper(), param);
-		org.springframework.beans.BeanUtils.copyProperties(new PageInfo<>(list),pageInfo);
+		BeanUtils.copyProperties(pageInfo, new PageInfo<Map>(list));
 		return pageInfo;
 	}
 
@@ -175,7 +170,6 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 
 	public PageInfo<T> selectPage(PageInfo pageInfo, String method, T record, String orderBy) throws Exception {
 		try {
-			//处理空值
 			int pageNum = pageInfo.getPageNum() == 0 ? 1 : pageInfo.getPageNum();
 
 			int pageSize = pageInfo.getPageSize() == 0 ? 15 : dealPageSize(pageInfo.getPageSize());
@@ -186,7 +180,7 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 			cArg[0] = record.getClass();
 			Method methodReflect = getMapper().getClass().getInterfaces()[0].getDeclaredMethod(method, cArg);
 			List<T> list = (List<T>) methodReflect.invoke(getMapper(), record);
-			org.springframework.beans.BeanUtils.copyProperties(new PageInfo<>(list),pageInfo);
+			BeanUtils.copyProperties( new PageInfo<>(list),pageInfo);
 			return pageInfo;
 		} catch (Exception e) {
 			logger.error("com.gttown.common.support.mybatis.AbstractDBBaseCRUDServiceImpl", e);
@@ -285,13 +279,5 @@ public abstract class AbstractBaseCRUDServiceImpl<T> implements BaseCrudService<
 		return getMapper().deleteByExample(example);
 	}
 
-	/**
-	 * <p class="detail">
-	 * 功能:抽象mapper
-	 * </p>
-	 * @return abstract common mapper
-	 * @author Kings
-	 * @date 2019.07.30 11:40:34
-	 */
 	protected abstract AbstractCommonMapper<T> getMapper();
 }
