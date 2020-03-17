@@ -1,6 +1,6 @@
 package com.kingboot.order.service;
 
-import com.kingboot.common.config.mybatis.mapper.BaseCRUDService;
+import com.kingboot.common.config.mybatis.mapper.BaseCrudService;
 import com.kingboot.order.entity.Items;
 
 /**
@@ -12,5 +12,5 @@ import com.kingboot.order.entity.Items;
  * @Version V1.0.
  * @date 2019.07.30 11:09:00
  */
-public interface ItemsService extends BaseCRUDService<Items> {
+public interface ItemsService extends BaseCrudService<Items> {
 }

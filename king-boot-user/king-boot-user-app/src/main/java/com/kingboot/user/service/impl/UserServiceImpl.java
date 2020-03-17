@@ -2,7 +2,7 @@ package com.kingboot.user.service.impl;
 
 import com.codingapi.txlcn.tc.annotation.DTXPropagation;
 import com.codingapi.txlcn.tc.annotation.TxcTransaction;
-import com.kingboot.common.config.mybatis.mapper.BaseCRUDServiceImpl;
+import com.kingboot.common.config.mybatis.mapper.BaseCrudServiceImpl;
 import com.kingboot.user.dto.UserNicknameDto;
 import com.kingboot.user.entity.User;
 import com.kingboot.user.service.UserService;
@@ -13,8 +13,8 @@ import org.springframework.util.StringUtils;
 
 @SuppressWarnings ("AliDeprecation")
 @Service
-public class UserServiceImpl extends BaseCRUDServiceImpl<com.kingboot.user.entity.User> implements UserService {
-	
+public class UserServiceImpl extends BaseCrudServiceImpl<User> implements UserService {
+
 	@Override
 	public com.kingboot.user.User findById(Integer id) {
 		com.kingboot.user.User user = new com.kingboot.user.User();
@@ -22,7 +22,7 @@ public class UserServiceImpl extends BaseCRUDServiceImpl<com.kingboot.user.entit
 		user.setName("ws");
 		return user;
 	}
-	
+
 	@Override
 	@TxcTransaction (propagation = DTXPropagation.SUPPORTS)
 	@Transactional(rollbackFor = Exception.class)
@@ -38,8 +38,8 @@ public class UserServiceImpl extends BaseCRUDServiceImpl<com.kingboot.user.entit
 		mapper.updateByPrimaryKeySelective(user4up);
 		return 1;
 	}
-	
-	
-	
-	
+
+
+
+
 }

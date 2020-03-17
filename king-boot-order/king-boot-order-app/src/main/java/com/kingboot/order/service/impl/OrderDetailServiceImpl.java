@@ -1,6 +1,6 @@
 package com.kingboot.order.service.impl;
 
-import com.kingboot.common.config.mybatis.mapper.BaseCRUDServiceImpl;
+import com.kingboot.common.config.mybatis.mapper.BaseCrudServiceImpl;
 import com.kingboot.order.entity.Orders;
 import com.kingboot.order.service.OrdersService;
 import com.kingboot.user.client.UserClient;
@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class OrderDetailServiceImpl extends BaseCRUDServiceImpl<Orders> implements  OrdersService {
-	
+public class OrderDetailServiceImpl extends BaseCrudServiceImpl<Orders> implements  OrdersService {
+
 	@Autowired
 	private UserClient userClient;
-	
+
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public Integer saveOrder(Integer userId, String note) {
@@ -23,12 +23,12 @@ public class OrderDetailServiceImpl extends BaseCRUDServiceImpl<Orders> implemen
 		orders4i.setUserId(userId);
 		orders4i.setNote(note);
 		mapper.insertSelective(orders4i);
-		
+
 		UserNicknameDto dto = new UserNicknameDto();
 		dto.setId(userId);
 		dto.setNickname("King's");
 		userClient.updateNickname(dto);
-		
+
 		//制造异常使得feign接口回滚
 		if(userId == 1){
 			throw new IllegalStateException("by exFlag");
