@@ -1,5 +1,6 @@
-package com.kingboot.common.config.redis;
+package io.github.kings1990.card.wx.miniapp.config.redis;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,35 +18,37 @@ import redis.clients.jedis.JedisPoolConfig;
  * @Version V1.0.
  * @date 2019.07.30 11:43:03
  */
-@Getter
-@Setter
+@Data
 @Configuration
 public class RedisPoolConfig {
-	
+
 	/** Host. */
-	@Value ("${spring.redis.host}")
+	@Value("${spring.redis.host}")
 	private String host;
-	
+
 	/** Port. */
 	@Value ("${spring.redis.port}")
 	private int port;
-	
+
 	/** Timeout. */
 	@Value ("${spring.redis.timeout}")
 	private int timeout;
-	
+
 	/** Max idle. */
 	@Value ("${spring.redis.jedis.pool.max-idle}")
 	private int maxIdle;
-	
+
 	/** Max wait millis. */
 	@Value ("${spring.redis.jedis.pool.max-wait}")
 	private long maxWaitMillis;
-	
+
 	/** Password. */
 	@Value ("${spring.redis.password}")
 	private String password;
-	
+
+    	@Value ("${spring.redis.database}")
+    	private int database;
+
 	/**
 	 * <p class="detail">
 	 * 功能:
@@ -59,8 +62,7 @@ public class RedisPoolConfig {
 		JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
 		jedisPoolConfig.setMaxIdle(maxIdle);
 		jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
-		JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout);
-		return jedisPool;
+		return new JedisPool(jedisPoolConfig, host, port, timeout,password,database);
 	}
-	
+
 }
