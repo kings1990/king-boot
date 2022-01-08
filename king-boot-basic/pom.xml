@@ -19,7 +19,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
-		<pac4j.version>3.7.0-SNAPSHOT</pac4j.version>
+		<pac4j.version>5.2.0</pac4j.version>
 		<shiro.version>1.4.0</shiro.version>
 
 		<!--Maven打包时，环境变量替换-->
