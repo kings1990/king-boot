@@ -33,7 +33,7 @@
 		<pagehelper.version>1.2.10</pagehelper.version>
 		<boot.mybatis.version>2.0.0</boot.mybatis.version>
 		<swagger.version>2.9.2</swagger.version>
-		<dubbo.version>2.7.0</dubbo.version>
+		<dubbo.version>2.7.15</dubbo.version>
 
 		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
 		<spring-boot.version>2.1.1.RELEASE</spring-boot.version>
